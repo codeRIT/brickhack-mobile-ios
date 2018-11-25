@@ -26,6 +26,7 @@ class ScanTagViewController: UIViewController, NFCNDEFReaderSessionDelegate {
         DispatchQueue.main.async {
             // Process detected NFCNDEFMessage objects.
             self.detectedMessages.append(contentsOf: messages)
+            print(messages)
             //self.tableView.reloadData()
         }
     }
