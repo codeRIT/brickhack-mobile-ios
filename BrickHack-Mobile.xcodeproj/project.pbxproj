@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3146F5BB219C9DD8009E9D03 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3146F5BA219C9DD8009E9D03 /* HomeViewController.swift */; };
+		3168F12421A3CC73002141B8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3168F12321A3CC73002141B8 /* Launch Screen.storyboard */; };
 		31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F540219B29CD00E3E1AF /* AppDelegate.swift */; };
 		31C5F543219B29CD00E3E1AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F542219B29CD00E3E1AF /* ViewController.swift */; };
 		31C5F546219B29CD00E3E1AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F544219B29CD00E3E1AF /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		3146F5BA219C9DD8009E9D03 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		3168F12321A3CC73002141B8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		31C5F53D219B29CD00E3E1AF /* BrickHack-Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BrickHack-Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C5F540219B29CD00E3E1AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31C5F542219B29CD00E3E1AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				31C5F547219B29CF00E3E1AF /* Assets.xcassets */,
 				31C5F54C219B29CF00E3E1AF /* Info.plist */,
 				31E3920A219F7F0400F7A3BE /* ScanTagViewController.swift */,
+				3168F12321A3CC73002141B8 /* Launch Screen.storyboard */,
 			);
 			path = "BrickHack-Mobile";
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3168F12421A3CC73002141B8 /* Launch Screen.storyboard in Resources */,
 				31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */,
 				31C5F546219B29CD00E3E1AF /* Main.storyboard in Resources */,
 			);

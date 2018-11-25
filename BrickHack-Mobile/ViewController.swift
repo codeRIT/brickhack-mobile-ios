@@ -17,7 +17,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginButton: UIButton!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +29,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
     }
     
     deinit {

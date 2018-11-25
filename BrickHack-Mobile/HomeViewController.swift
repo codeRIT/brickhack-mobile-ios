@@ -12,7 +12,6 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Hello world!")
         // Do any additional setup after loading the view.
     }
     
