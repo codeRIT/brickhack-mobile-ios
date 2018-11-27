@@ -3,15 +3,15 @@
 # Dependencies
 We're using CocoaPods as the dependency manager.
 
-Installing CocoPods
+Installing CocoPods:
 
 `$ sudo gem install cocoapods`
 
-Installing dependencies
+Installing dependencies:
 
 `$ pod install`
 
-Verify Apollo was installed correctly
+Verify Apollo was installed correctly:
 
 `$ pod try Apollo`
 
