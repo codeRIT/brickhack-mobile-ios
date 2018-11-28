@@ -12,12 +12,13 @@ import CoreNFC
 class ScanTagViewController: UIViewController, NFCNDEFReaderSessionDelegate {
     
     let reuseIdentifier = "reuseIdentifier"
-    var detectedMessages = [NFCNDEFMessage]()
     var session: NFCNDEFReaderSession?
+    var detectedAttendees = [NFCNDEFMessage]()
+    var tags = [String]()
     
     @IBAction func scanButtonWasPressed(_ sender: Any) {
         session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
-        session?.alertMessage = "Hold your iPhone near the wristband to scan."
+        session?.alertMessage = "Hold the top of your iPhone near the wristband to scan."
         session?.begin()
     }
     
@@ -25,8 +26,7 @@ class ScanTagViewController: UIViewController, NFCNDEFReaderSessionDelegate {
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
         DispatchQueue.main.async {
             // Process detected NFCNDEFMessage objects.
-            self.detectedMessages.append(contentsOf: messages)
-            print(messages)
+            self.detectedAttendees.append(contentsOf: messages)
             //self.tableView.reloadData()
         }
     }
