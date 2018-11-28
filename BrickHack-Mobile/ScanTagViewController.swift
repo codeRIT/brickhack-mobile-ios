@@ -13,8 +13,14 @@ class ScanTagViewController: UIViewController, NFCNDEFReaderSessionDelegate {
     
     let reuseIdentifier = "reuseIdentifier"
     var session: NFCNDEFReaderSession?
-    var detectedAttendees = [NFCNDEFMessage]()
-    var tags = [String]()
+    
+    var detectedAttendees = [NFCNDEFMessage]() // Array of attendee ID's
+    var tags = [String]() // Available tags pulled from back-end will be stored here
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        /// - TODO: Pull fresh list of available tags from back-end
+    }
     
     @IBAction func scanButtonWasPressed(_ sender: Any) {
         session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
