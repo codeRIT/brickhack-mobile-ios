@@ -1,5 +1,8 @@
 # brickhack-mobile-ios
 
+## Project
+Since we're using CocoaPods, you must open the project using `.xcworkspace`, not `.xcodeproj`.
+
 ## Dependencies
 We're using CocoaPods as the dependency manager.
 
