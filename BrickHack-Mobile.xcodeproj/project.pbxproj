@@ -14,6 +14,8 @@
 		31C5F546219B29CD00E3E1AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F544219B29CD00E3E1AF /* Main.storyboard */; };
 		31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F547219B29CF00E3E1AF /* Assets.xcassets */; };
 		31E3920B219F7F0400F7A3BE /* ScanTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E3920A219F7F0400F7A3BE /* ScanTagViewController.swift */; };
+		E36C5E31DB116970062D0E34 /* libPods-BrickHack-Mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3F93D1194360B3A6AF0BBF /* libPods-BrickHack-Mobile.a */; };
+		FC82CF1C21ACD3FB008959FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FC82CF1B21ACD3FB008959FC /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,10 @@
 		31C5F54C219B29CF00E3E1AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BrickHack-Mobile.entitlements"; sourceTree = "<group>"; };
 		31E3920A219F7F0400F7A3BE /* ScanTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanTagViewController.swift; sourceTree = "<group>"; };
+		4B032D8BEE4C35AD15B70740 /* Pods-BrickHack-Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.release.xcconfig"; sourceTree = "<group>"; };
+		8F58836E57756CCE100D5245 /* Pods-BrickHack-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
+		EF3F93D1194360B3A6AF0BBF /* libPods-BrickHack-Mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BrickHack-Mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC82CF1B21ACD3FB008959FC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E36C5E31DB116970062D0E34 /* libPods-BrickHack-Mobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,8 +50,11 @@
 		31C5F534219B29CD00E3E1AF = {
 			isa = PBXGroup;
 			children = (
+				FC82CF1B21ACD3FB008959FC /* Podfile */,
 				31C5F53F219B29CD00E3E1AF /* BrickHack-Mobile */,
 				31C5F53E219B29CD00E3E1AF /* Products */,
+				93578C82329AE657FC55BAB7 /* Pods */,
+				D145AD8C6A31D29C0ED1D9B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +82,23 @@
 			path = "BrickHack-Mobile";
 			sourceTree = "<group>";
 		};
+		93578C82329AE657FC55BAB7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8F58836E57756CCE100D5245 /* Pods-BrickHack-Mobile.debug.xcconfig */,
+				4B032D8BEE4C35AD15B70740 /* Pods-BrickHack-Mobile.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D145AD8C6A31D29C0ED1D9B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF3F93D1194360B3A6AF0BBF /* libPods-BrickHack-Mobile.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -79,9 +106,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31C5F54F219B29CF00E3E1AF /* Build configuration list for PBXNativeTarget "BrickHack-Mobile" */;
 			buildPhases = (
+				2FA15D0E2B06FA81B83AD56B /* [CP] Check Pods Manifest.lock */,
 				31C5F539219B29CD00E3E1AF /* Sources */,
 				31C5F53A219B29CD00E3E1AF /* Frameworks */,
 				31C5F53B219B29CD00E3E1AF /* Resources */,
+				84905D4D94BA0CFCFAE55267 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -140,11 +169,61 @@
 			files = (
 				3168F12421A3CC73002141B8 /* Launch Screen.storyboard in Resources */,
 				31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */,
+				FC82CF1C21ACD3FB008959FC /* Podfile in Resources */,
 				31C5F546219B29CD00E3E1AF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2FA15D0E2B06FA81B83AD56B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BrickHack-Mobile-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84905D4D94BA0CFCFAE55267 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile-resources.sh",
+				"${PODS_ROOT}/Apollo/scripts/check-and-run-apollo-cli.sh",
+				"${PODS_ROOT}/Apollo/scripts/check-and-run-apollo-codegen.sh",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/check-and-run-apollo-cli.sh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/check-and-run-apollo-codegen.sh",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		31C5F539219B29CD00E3E1AF /* Sources */ = {
@@ -290,12 +369,13 @@
 		};
 		31C5F550219B29CF00E3E1AF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F58836E57756CCE100D5245 /* Pods-BrickHack-Mobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "BrickHack-Mobile/BrickHack-Mobile.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RWVM42P68T;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "BrickHack-Mobile/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -311,12 +391,13 @@
 		};
 		31C5F551219B29CF00E3E1AF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B032D8BEE4C35AD15B70740 /* Pods-BrickHack-Mobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "BrickHack-Mobile/BrickHack-Mobile.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RWVM42P68T;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "BrickHack-Mobile/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
