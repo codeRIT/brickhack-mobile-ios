@@ -1,6 +1,6 @@
 # brickhack-mobile-ios
 
-# Dependencies
+## Dependencies
 We're using CocoaPods as the dependency manager.
 
 Installing CocoPods:
