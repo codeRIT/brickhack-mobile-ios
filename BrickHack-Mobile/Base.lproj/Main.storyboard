@@ -376,6 +376,9 @@
                                         <state key="normal" title="CHANGE TAG">
                                             <color key="titleColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="changeTagButtonWasPressed:" destination="lS0-GA-ySl" eventType="touchUpInside" id="f1v-7S-xwI"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dinner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="eK7-HD-gs6">
                                         <rect key="frame" x="8" y="21" width="340" height="55"/>
@@ -418,10 +421,13 @@
                         <color key="backgroundColor" red="0.21340060234069824" green="0.27734452486038208" blue="0.34392774105072021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="cdG-9c-2ut"/>
                     </view>
+                    <connections>
+                        <outlet property="labelCurrentTag" destination="eK7-HD-gs6" id="Lly-G4-nDp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h7f-hC-6Al" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3658" y="-873"/>
+            <point key="canvasLocation" x="3657.971014492754" y="-873.21428571428567"/>
         </scene>
     </scenes>
     <resources>
@@ -429,7 +435,7 @@
         <image name="Line" width="289" height="2"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pn3-nN-JGB"/>
+        <segue reference="oIB-X6-Jrt"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

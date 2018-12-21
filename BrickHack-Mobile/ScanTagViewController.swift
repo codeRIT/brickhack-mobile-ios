@@ -16,6 +16,7 @@ class ScanTagViewController: UIViewController, NFCNDEFReaderSessionDelegate {
     
     var detectedAttendees = [NFCNDEFMessage]() // Array of attendee ID's
     var tags = [String]() // Available tags pulled from back-end will be stored here
+    @IBOutlet weak var labelCurrentTag: UILabel! // Current tag selected label
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,12 @@ class ScanTagViewController: UIViewController, NFCNDEFReaderSessionDelegate {
         session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
         session?.alertMessage = "Hold the top of your iPhone near the wristband to scan."
         session?.begin()
+    }
+    
+    @IBAction func changeTagButtonWasPressed(_ sender: Any) {
+        let tagPicker = UIPickerView()
+        tagPicker.delegate = self
+        labelCurrentTag.inputView = tagPicker
     }
     
     /// - Tag: processingTagData
@@ -62,5 +69,19 @@ class ScanTagViewController: UIViewController, NFCNDEFReaderSessionDelegate {
         // A new session instance is required to read new tags.
         self.session = nil
     }
+    
+}
+
+// Class extension for tag picker-related funtions
+extension ScanTagViewController: UIPickerViewDataSource, UIPickerViewDelegate{
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        <#code#>
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        <#code#>
+    }
+    
     
 }
