@@ -9,30 +9,37 @@
 import UIKit
 import CoreNFC
 
-class ScanTagViewController: UIViewController, NFCNDEFReaderSessionDelegate {
+class ScanTagViewController: UIViewController {
     
-    let reuseIdentifier = "reuseIdentifier"
     var session: NFCNDEFReaderSession?
-    
     var detectedAttendees = [NFCNDEFMessage]() // Array of attendee ID's
-    var tags = [String]() // Available tags pulled from back-end will be stored here
+    var tags: Array<String>? // Available tags pulled from back-end will be stored here
+    var currentTag: String?
     @IBOutlet weak var labelCurrentTag: UILabel! // Current tag selected label
+    @IBOutlet weak var changeTagTextField: UITextField!
+    @IBOutlet weak var scanTagButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /// - TODO: Pull fresh list of available tags from back-end
+        if tags == nil{
+            changeTagTextField.isEnabled = false
+            scanTagButton.isEnabled = false
+        }else{
+            createTagPicker()
+            createToolbar()
+            /// - TODO: Pull fresh list of available tags from back-end
+        }
     }
+}
+
+// Class extension for NFC-related functions
+extension ScanTagViewController: NFCNDEFReaderSessionDelegate{
     
     @IBAction func scanButtonWasPressed(_ sender: Any) {
+        dismissPicker()
         session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
         session?.alertMessage = "Hold the top of your iPhone near the wristband to scan."
         session?.begin()
-    }
-    
-    @IBAction func changeTagButtonWasPressed(_ sender: Any) {
-        let tagPicker = UIPickerView()
-        tagPicker.delegate = self
-        labelCurrentTag.inputView = tagPicker
     }
     
     /// - Tag: processingTagData
@@ -65,23 +72,48 @@ class ScanTagViewController: UIViewController, NFCNDEFReaderSessionDelegate {
                 }
             }
         }
-        
         // A new session instance is required to read new tags.
         self.session = nil
     }
-    
 }
 
 // Class extension for tag picker-related funtions
 extension ScanTagViewController: UIPickerViewDataSource, UIPickerViewDelegate{
     
+    func createTagPicker(){
+        let picker = UIPickerView()
+        picker.delegate = self
+        changeTagTextField.inputView = picker
+    }
+    
+    func createToolbar(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let donebutton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ScanTagViewController.dismissPicker))
+        
+        toolBar.setItems([donebutton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        changeTagTextField.inputAccessoryView = toolBar
+    }
+    
+    @objc func dismissPicker(){
+        view.endEditing(true)
+    }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        <#code#>
+        return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        <#code#>
+        return (tags?.count)!
     }
     
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return tags?[row]
+    }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        currentTag = tags?[row]
+        labelCurrentTag.text = tags?[row]
+    }
 }

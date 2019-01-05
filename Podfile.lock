@@ -1,18 +1,26 @@
 PODS:
+  - Alamofire (4.8.0)
   - Apollo (0.9.4):
     - Apollo/Core (= 0.9.4)
   - Apollo/Core (0.9.4)
+  - p2.OAuth2 (4.0.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
   - Apollo (~> 0.9.0)
+  - p2.OAuth2 (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Apollo
+    - p2.OAuth2
 
 SPEC CHECKSUMS:
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   Apollo: 450856adbdebcdf28c3c671f81732ac3f9944065
+  p2.OAuth2: fdc2effef37793a8f775dd4760bc4c1ea906c956
 
-PODFILE CHECKSUM: 30857ead75d18bda6cd82804d10431b6871c5d9e
+PODFILE CHECKSUM: f0ab85f4fef076539fe8fcf4fe069a78e67420ab
 
 COCOAPODS: 1.5.3
