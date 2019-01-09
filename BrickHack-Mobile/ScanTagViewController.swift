@@ -15,11 +15,13 @@ class ScanTagViewController: UIViewController {
     var detectedAttendees = [NFCNDEFMessage]() // Array of attendee ID's
     var tags: Array<String>? // Available tags pulled from back-end will be stored here
     var currentTag: String?
+    let availableTagsAPI = "https://staging.brickhack.io/manage/trackable_tags.json"
     @IBOutlet weak var labelCurrentTag: UILabel! // Current tag selected label
     @IBOutlet weak var changeTagTextField: UITextField!
     @IBOutlet weak var scanTagButton: UIButton!
     
     override func viewDidLoad() {
+        tags = ["Entered venue", "Left venue"]
         super.viewDidLoad()
         if tags == nil{
             changeTagTextField.isEnabled = false
