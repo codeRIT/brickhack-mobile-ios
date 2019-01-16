@@ -12,16 +12,12 @@ class TrackableEventCell: UITableViewCell {
 
     @IBOutlet weak var trackableEventLabel: UILabel!
     @IBOutlet weak var updatedAtLabel: UILabel!
+    let dateFormatter = DateFormatter()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func setTrackableEventData(label: String, updatedAt: Date){
+        dateFormatter.dateFormat = "h:mm a"
+        trackableEventLabel.text = label
+        updatedAtLabel.text = dateFormatter.string(from: updatedAt)
     }
 
 }
