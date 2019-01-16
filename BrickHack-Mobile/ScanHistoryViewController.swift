@@ -14,11 +14,22 @@ class ScanHistoryViewController: UIViewController {
 
     var oauth2: OAuth2ImplicitGrant?
     var sessionManager: SessionManager?
+    var scanHistory: [TrackableEvent] = []
     var currentUser: Int?
     let currentUserAPI = "https://staging.brickhack.io/oauth/token/info"
     
     
     override func viewDidLoad() {
+        var loadingView = UIAlertController(title: nil, message: "Loading scans...", preferredStyle: UIAlertController.Style.alert)
+        
+        var spinner = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        spinner.hidesWhenStopped = true
+        spinner.style = UIActivityIndicatorView.Style.gray
+        spinner.startAnimating()
+        
+        loadingView.view.addSubview(spinner)
+        present(loadingView, animated: true, completion: nil)
+        
         sessionManager = SessionManager()
         let retrier = OAuth2RetryHandler(oauth2: oauth2!)
         sessionManager!.adapter = retrier

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		21BEA9C216BEFB0D956DA447 /* Pods_BrickHack_Mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */; };
 		312F542821EFB9F4005613F7 /* TrackableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542721EFB9F4005613F7 /* TrackableEvent.swift */; };
+		312F542A21EFC43D005613F7 /* TrackableEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542921EFC43D005613F7 /* TrackableEventCell.swift */; };
 		316F237B21EFA81800FD1FEF /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; };
 		316F237E21EFA82100FD1FEF /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		316F238021EFA99D00FD1FEF /* ScanHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */; };
@@ -77,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		312F542721EFB9F4005613F7 /* TrackableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableEvent.swift; sourceTree = "<group>"; };
+		312F542921EFC43D005613F7 /* TrackableEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableEventCell.swift; sourceTree = "<group>"; };
 		316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = "<group>"; };
 		316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHistoryViewController.swift; sourceTree = "<group>"; };
 		31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */,
 				31C50F3721E0067600C9983D /* OAuth2RetryHandler.swift */,
 				312F542721EFB9F4005613F7 /* TrackableEvent.swift */,
+				312F542921EFC43D005613F7 /* TrackableEventCell.swift */,
 				31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */,
 				31C5F544219B29CD00E3E1AF /* Main.storyboard */,
 				31C5F547219B29CF00E3E1AF /* Assets.xcassets */,
@@ -356,6 +359,7 @@
 				31C50F3821E0067600C9983D /* OAuth2RetryHandler.swift in Sources */,
 				316F238021EFA99D00FD1FEF /* ScanHistoryViewController.swift in Sources */,
 				312F542821EFB9F4005613F7 /* TrackableEvent.swift in Sources */,
+				312F542A21EFC43D005613F7 /* TrackableEventCell.swift in Sources */,
 				31C50F3121DEE54500C9983D /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
