@@ -6,7 +6,7 @@
 //  Copyright © 2016 Ossus. All rights reserved.
 //
 import Foundation
-import p2_OAuth2
+import OAuth2
 import Alamofire
 
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import p2_OAuth2
+import OAuth2
 import Alamofire
 
 class LoginViewController: UIViewController {
@@ -16,9 +16,9 @@ class LoginViewController: UIViewController {
     let networkReachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.apple.com")
     
     var oauth2 = OAuth2ImplicitGrant(settings: [
-        "client_id": "",
+        "client_id": "a46ad487beade18ee2868fb9b6a6de69950f3a5bd7b2d5eb3fb62e35f53c120e",
         "authorize_uri": "https://staging.brickhack.io/oauth/authorize",
-        "redirect_uris": [""],
+        "redirect_uris": ["brickhack-ios://oauth/callback"],
         "scope": ""] as OAuth2JSON)
 
     @IBAction func initializeOAuth(_ sender: UIButton) {

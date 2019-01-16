@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreNFC
+import OAuth2
 
 class ScanTagViewController: UIViewController {
     
@@ -15,6 +16,7 @@ class ScanTagViewController: UIViewController {
     var detectedAttendees = [NFCNDEFMessage]() // Array of attendee ID's
     var tags: Array<String>? // Available tags pulled from back-end will be stored here
     var currentTag: String?
+    var oauth2: OAuth2ImplicitGrant?
     let availableTagsAPI = "https://staging.brickhack.io/manage/trackable_tags.json"
     @IBOutlet weak var labelCurrentTag: UILabel! // Current tag selected label
     @IBOutlet weak var changeTagTextField: UITextField!
