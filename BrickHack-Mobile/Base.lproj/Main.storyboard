@@ -111,7 +111,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="checked-out"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="47"/>
-                                                <color key="textColor" red="0.26869434120000002" green="0.32467210289999998" blue="0.3788297772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -132,7 +132,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="volunteers"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="47"/>
-                                                <color key="textColor" red="0.26869434120000002" green="0.32467210289999998" blue="0.3788297772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -151,7 +151,7 @@
                                             <bool key="isElement" value="NO"/>
                                         </accessibility>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                        <color key="textColor" red="0.26869434120000002" green="0.32467210289999998" blue="0.3788297772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VOLUNTEERS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="F1S-Gd-t2w">
@@ -161,7 +161,7 @@
                                             <bool key="isElement" value="NO"/>
                                         </accessibility>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                                        <color key="textColor" red="0.26869434120000002" green="0.32467210289999998" blue="0.3788297772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CHECKED-OUT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="lhd-nf-7PZ">
@@ -171,7 +171,7 @@
                                             <bool key="isElement" value="NO"/>
                                         </accessibility>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                                        <color key="textColor" red="0.26869434120000002" green="0.32467210289999998" blue="0.3788297772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B2E-nM-PY3">
@@ -183,7 +183,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="checked-in"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="57"/>
-                                                <color key="textColor" red="0.26869434120000002" green="0.32467210289999998" blue="0.3788297772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -212,9 +212,10 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgH-mH-hCw">
                                         <rect key="frame" x="36" y="135" width="282" height="52"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <state key="normal" title="Scan History">
-                                            <color key="titleColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -230,11 +231,15 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SM3-ly-WdY">
                                         <rect key="frame" x="37" y="64" width="282" height="53"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <color key="tintColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Scan">
-                                            <color key="titleColor" red="0.94947928190231323" green="0.51474243402481079" blue="0.15786239504814148" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -414,7 +419,7 @@
         <image name="Line" width="289" height="2"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yuH-cq-rlz"/>
+        <segue reference="lew-lT-4hQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
