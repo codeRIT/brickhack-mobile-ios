@@ -3,20 +3,24 @@ PODS:
   - Apollo (0.9.4):
     - Apollo/Core (= 0.9.4)
   - Apollo/Core (0.9.4)
+  - VYNFCKit (0.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - Apollo (~> 0.9.0)
+  - VYNFCKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Apollo
+    - VYNFCKit
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   Apollo: 450856adbdebcdf28c3c671f81732ac3f9944065
+  VYNFCKit: 86a9b711fd1f34f6f7128a2a883cd58dbd781b9d
 
-PODFILE CHECKSUM: 6edba5c9786a9f1a236d7ec80430213097f8352f
+PODFILE CHECKSUM: 8bd75d32b6996c4476449b3f87fc3f66e33b4474
 
 COCOAPODS: 1.5.3

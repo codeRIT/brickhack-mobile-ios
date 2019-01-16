@@ -225,7 +225,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.matchToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="dWh-TB-5Vb" kind="show" id="lew-lT-4hQ"/>
+                                            <action selector="scanHistoryWasPressed:" destination="D1f-v2-RH4" eventType="touchUpInside" id="M8H-Uz-NPz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SM3-ly-WdY">
@@ -248,7 +248,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.matchToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="JiL-0h-DF9" kind="show" id="kXG-Jr-1Op"/>
+                                            <action selector="scanWasPressed:" destination="D1f-v2-RH4" eventType="touchUpInside" id="YNe-8V-OBQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -283,6 +283,8 @@
                         <outlet property="volunteerLabel" destination="F1S-Gd-t2w" id="coH-UI-1Vf"/>
                         <outlet property="volunteerValue" destination="DUi-EE-dYF" id="FGO-5E-lsv"/>
                         <segue destination="Gjk-JW-45W" kind="unwind" identifier="logoutSegue" unwindAction="unwindToLoginWithSegue:" id="UJd-o8-eTa"/>
+                        <segue destination="JiL-0h-DF9" kind="show" identifier="scanViewSegue" id="wpJ-FC-9nY"/>
+                        <segue destination="dWh-TB-5Vb" kind="show" identifier="homeToScanHistorySegue" id="a3g-eY-Ypm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aaz-n9-JJu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,7 +423,7 @@
         <image name="Line" width="289" height="2"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yuH-cq-rlz"/>
+        <segue reference="a3g-eY-Ypm"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

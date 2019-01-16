@@ -4,4 +4,5 @@
 target 'BrickHack-Mobile' do
     pod 'Apollo', '~> 0.9.0'
     pod 'Alamofire', '~> 4.0'
+    pod 'VYNFCKit'
 end
