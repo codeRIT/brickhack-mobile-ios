@@ -392,7 +392,7 @@
         <!--Scan History-->
         <scene sceneID="Gtv-fO-Bdh">
             <objects>
-                <viewController id="dWh-TB-5Vb" sceneMemberID="viewController">
+                <viewController id="dWh-TB-5Vb" customClass="ScanHistoryViewController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="16v-9q-8a6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
