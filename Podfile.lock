@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.8.0)
+  - Alamofire (4.8.1)
   - Apollo (0.9.4):
     - Apollo/Core (= 0.9.4)
   - Apollo/Core (0.9.4)
@@ -17,10 +17,10 @@ SPEC REPOS:
     - VYNFCKit
 
 SPEC CHECKSUMS:
-  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Apollo: 450856adbdebcdf28c3c671f81732ac3f9944065
   VYNFCKit: 86a9b711fd1f34f6f7128a2a883cd58dbd781b9d
 
-PODFILE CHECKSUM: 8bd75d32b6996c4476449b3f87fc3f66e33b4474
+PODFILE CHECKSUM: 99a6d38bd5d1b214cd890d9fe87964cc37175c7a
 
 COCOAPODS: 1.5.3

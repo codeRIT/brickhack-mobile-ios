@@ -10,6 +10,7 @@ import UIKit
 import CoreNFC
 import OAuth2
 import Alamofire
+import VYNFCKit
 
 class ScanTagViewController: UIViewController {
     
@@ -71,7 +72,6 @@ extension ScanTagViewController: NFCNDEFReaderSessionDelegate{
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
         DispatchQueue.main.async {
             for message in messages {
-                /*
                 for payload in message.records {
                     guard let parsedPayload = VYNFCNDEFPayloadParser.parse(payload) else {
                         continue
@@ -86,7 +86,7 @@ extension ScanTagViewController: NFCNDEFReaderSessionDelegate{
                         text = "Parsed but unhandled payload type"
                     }
                     NSLog("%@", text)
-                }*/
+                }
             }
         }
     }
