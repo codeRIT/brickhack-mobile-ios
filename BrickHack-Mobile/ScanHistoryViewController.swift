@@ -16,7 +16,7 @@ class ScanHistoryViewController: UIViewController {
     var sessionManager: SessionManager?
     var currentUser: Int?
     let currentUserAPI = "https://staging.brickhack.io/oauth/token/info"
-    let tagsAPI = ""
+    
     
     override func viewDidLoad() {
         sessionManager = SessionManager()
@@ -27,7 +27,7 @@ class ScanHistoryViewController: UIViewController {
             let _  = self.sessionManager
             let dict = response.result.value as! [String: Any]
             self.currentUser = dict["resource_owner_id"] as? Int
-            
+            self.getTagHistory()
         }
         
         super.viewDidLoad()
@@ -35,15 +35,18 @@ class ScanHistoryViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func getTagHistory(){
+        let tagsAPI = "https://staging.brickhack.io/manage/trackable_events.json?trackable_event[user_id]=\(currentUser!)"
+        
+        sessionManager = SessionManager()
+        let retrier = OAuth2RetryHandler(oauth2: oauth2!)
+        sessionManager!.adapter = retrier
+        sessionManager!.retrier = retrier
+        sessionManager!.request(tagsAPI).validate().responseJSON{ response in
+            let _  = self.sessionManager
+            let dict = response.result.value as! Array<[String: Any]>
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        }
     }
-    */
 
 }
