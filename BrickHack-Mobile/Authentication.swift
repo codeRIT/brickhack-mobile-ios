@@ -10,6 +10,7 @@ import UIKit
 import OAuth2
 import Alamofire
 
+// Define global constants for API routes
 let environment = "https://staging.brickhack.io"
 let authorizeRoute = "\(environment)/oauth/authorize"
 let currentUserRoute = "\(environment)/oauth/token/info"
@@ -17,18 +18,20 @@ let todaysStatsDataRoute = "\(environment)/manage/dashboard/todays_stats_data"
 let trackableTagsRoute = "\(environment)/manage/trackable_tags.json"
 let trackableEventsRoute = "\(environment)/manage/trackable_events.json"
 let trackableEventsRouteByUserRoute = "\(environment)/manage/trackable_events.json?trackable_event[user_id]="
-let networkReachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.apple.com")
+// Define a NetworkReachabilityManager so the app can determine if the user has a connection before attempting to connect to the internet
+let networkReachabilityManager = Alamofire.NetworkReachabilityManager(host: environment)
 
 final class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton?
-
+    // Creates an OAuth2ImplicitGrant object that will be passed between view controllers
     var oauth2 = OAuth2ImplicitGrant(settings: [
         "client_id": "a46ad487beade18ee2868fb9b6a6de69950f3a5bd7b2d5eb3fb62e35f53c120e",
         "authorize_uri": authorizeRoute,
         "redirect_uris": ["brickhack-ios://oauth/callback"],
         "scope": ""] as OAuth2JSON)
 
+    // Initiates the OAuth process if no valid token found
     @IBAction func initializeOAuth(_ sender: UIButton) {
         if hasInternetAccess(){
             if oauth2.isAuthorizing {
@@ -60,6 +63,7 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    // Used to catch any errors or cancellations during the authorization process
     func didCancelOrFail(_ error: Error?, sender: UIButton) {
         DispatchQueue.main.async {
             if let error = error {
@@ -69,6 +73,7 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    // Once the view appears and a valid token exists, take the user directly into the app without having to press login
     override func viewDidAppear(_ animated: Bool) {
         if hasInternetAccess(){
             if oauth2.hasUnexpiredAccessToken(){
@@ -77,15 +82,16 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    // Resets login button text back to default after displaying "AUTHORIZING..."
     func resetLoginButton(_ sender: UIButton){
         sender.setTitle("LOGIN WITH BRICKHACK.IO »", for: UIControl.State.normal)
         sender.isEnabled = true
     }
     
-    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
-        
-    }
+    // Needed to escape UINavigationController when "Logout" is tapped
+    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {}
     
+    // Prepares the next view by supplying it with the OAuth2ImplicitGrant before segue initiates
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "authSuccessSegue"){
             let navigationController  = segue.destination as! UINavigationController
@@ -94,6 +100,7 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    // Used to determine if the device currently has access to the internet and can establish a connection to the environment
     func hasInternetAccess() -> Bool{
         if networkReachabilityManager?.isReachable ?? false{
             return true
@@ -102,6 +109,7 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    // Displays a network issue alert if device isn't connected to the internet or can't connect to environment
     func displayNoNetworkAlert(){
         let alertController = UIAlertController(
             title: "Network Issue",
