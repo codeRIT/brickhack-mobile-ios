@@ -10,6 +10,8 @@ import UIKit
 import OAuth2
 import Alamofire
 
+let environment = "https://staging.brickhack.io"
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton?
@@ -17,7 +19,7 @@ class LoginViewController: UIViewController {
     
     var oauth2 = OAuth2ImplicitGrant(settings: [
         "client_id": "a46ad487beade18ee2868fb9b6a6de69950f3a5bd7b2d5eb3fb62e35f53c120e",
-        "authorize_uri": "https://staging.brickhack.io/oauth/authorize",
+        "authorize_uri": "\(environment)/oauth/authorize",
         "redirect_uris": ["brickhack-ios://oauth/callback"],
         "scope": ""] as OAuth2JSON)
 

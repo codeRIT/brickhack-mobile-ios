@@ -19,8 +19,8 @@ class ScanTagViewController: UIViewController {
     var currentTag: (Int, String)?
     var oauth2: OAuth2ImplicitGrant?
     var sessionManager: SessionManager?
-    let tagsAPI = "https://staging.brickhack.io/manage/trackable_tags.json"
-    let submitTagAPI = "https://staging.brickhack.io/manage/trackable_events.json"
+    let tagsAPI = "\(environment)/manage/trackable_tags.json"
+    let submitTagAPI = "\(environment)/manage/trackable_events.json"
     @IBOutlet weak var labelCurrentTag: UILabel! // Current tag selected label
     @IBOutlet weak var changeTagTextField: UITextField!
     @IBOutlet weak var scanTagButton: UIButton!

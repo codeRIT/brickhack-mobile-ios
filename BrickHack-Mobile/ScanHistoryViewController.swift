@@ -18,8 +18,8 @@ class ScanHistoryViewController: UIViewController {
     var currentUser: Int?
     var loadingView: UIAlertController?
     var tags : [Int:String] = [:]
-    let currentUserAPI = "https://staging.brickhack.io/oauth/token/info"
-    let tagsAPI = "https://staging.brickhack.io/manage/trackable_tags.json"
+    let currentUserAPI = "\(environment)/oauth/token/info"
+    let tagsAPI = "\(environment)/manage/trackable_tags.json"
     
     @IBOutlet weak var scanHistoryTable: UITableView!
     
@@ -51,7 +51,7 @@ class ScanHistoryViewController: UIViewController {
     }
     
     func getTagHistory(){
-        let userTagsAPI = "https://staging.brickhack.io/manage/trackable_events.json?trackable_event[user_id]=\(currentUser!)"
+        let userTagsAPI = "\(environment)/manage/trackable_events.json?trackable_event[user_id]=\(currentUser!)"
         
         sessionManager = SessionManager()
         let retrier = OAuth2RetryHandler(oauth2: oauth2!)
