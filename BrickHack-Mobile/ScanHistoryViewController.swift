@@ -62,21 +62,25 @@ final class ScanHistoryViewController: UIViewController {
             let _  = self.sessionManager
             let dict = response.result.value as? Array<[String: Any]> ?? [[:]]
 
-            for i in 0...(dict.count-1){
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                
-                let bandID = dict[i]["band_id"] as? String ?? ""
-                let createdAt = dateFormatter.date(from: dict[i]["created_at"] as? String ?? "")
-                let id = dict[i]["id"] as? Int ?? 0
-                let trackableTagID = dict[i]["trackable_tag_id"] as! Int
-                let user_id = self.currentUser!
-                let updatedAt = dateFormatter.date(from: dict[i]["updated_at"] as? String ?? "")
-                
-                let trackableEvent = TrackableEvent(bandID: bandID, createdAt: createdAt!, id: id, trackableTagID: trackableTagID, userID: user_id, updatedAt: updatedAt!)
-                self.scanHistory.append(trackableEvent)
+            if(dict.count > 0){ // Case where there are no scans
+                for i in 0...(dict.count-1){
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                    
+                    let bandID = dict[i]["band_id"] as? String ?? ""
+                    let createdAt = dateFormatter.date(from: dict[i]["created_at"] as? String ?? "")
+                    let id = dict[i]["id"] as? Int ?? 0
+                    let trackableTagID = dict[i]["trackable_tag_id"] as! Int
+                    let user_id = self.currentUser!
+                    let updatedAt = dateFormatter.date(from: dict[i]["updated_at"] as? String ?? "")
+                    
+                    let trackableEvent = TrackableEvent(bandID: bandID, createdAt: createdAt!, id: id, trackableTagID: trackableTagID, userID: user_id, updatedAt: updatedAt!)
+                    self.scanHistory.append(trackableEvent)
+                }
+                self.getTagData()
+            }else{
+                self.loadingView!.dismiss(animated: false, completion: nil)
             }
-            self.getTagData()
         }
     }
     

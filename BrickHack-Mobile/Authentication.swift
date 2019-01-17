@@ -11,7 +11,7 @@ import OAuth2
 import Alamofire
 
 // Define global constants for API routes
-let environment = "https://staging.brickhack.io"
+let environment = "https://brickhack.io"
 let authorizeRoute = "\(environment)/oauth/authorize"
 let currentUserRoute = "\(environment)/oauth/token/info"
 let todaysStatsDataRoute = "\(environment)/manage/dashboard/todays_stats_data"
@@ -26,7 +26,7 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton?
     // Creates an OAuth2ImplicitGrant object that will be passed between view controllers
     var oauth2 = OAuth2ImplicitGrant(settings: [
-        "client_id": "a46ad487beade18ee2868fb9b6a6de69950f3a5bd7b2d5eb3fb62e35f53c120e",
+        "client_id": "745251411cbd86b08c69c7c504f83a319ea60bc0253e6ad9e9953f536d2c3003",
         "authorize_uri": authorizeRoute,
         "redirect_uris": ["brickhack-ios://oauth/callback"],
         "scope": ""] as OAuth2JSON)
