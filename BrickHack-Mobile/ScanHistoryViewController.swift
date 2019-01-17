@@ -26,7 +26,7 @@ class ScanHistoryViewController: UIViewController {
     override func viewDidLoad() {
         loadingView = UIAlertController(title: nil, message: "Loading scans...", preferredStyle: UIAlertController.Style.alert)
         
-        var spinner = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        let spinner = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         spinner.hidesWhenStopped = true
         spinner.style = UIActivityIndicatorView.Style.gray
         spinner.startAnimating()
