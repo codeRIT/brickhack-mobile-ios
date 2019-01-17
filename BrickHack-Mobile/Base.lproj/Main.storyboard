@@ -106,7 +106,7 @@
                                         <rect key="frame" x="10" y="44" width="103" height="105"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="212" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="1TU-hf-ThW">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="1TU-hf-ThW">
                                                 <rect key="frame" x="0.0" y="0.0" width="103" height="105"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="checked-out"/>
@@ -127,7 +127,7 @@
                                         <rect key="frame" x="243" y="44" width="103" height="105"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="27" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="DUi-EE-dYF">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="DUi-EE-dYF">
                                                 <rect key="frame" x="0.0" y="0.0" width="103" height="105"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="volunteers"/>
@@ -144,7 +144,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.matchToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CHECKED-IN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="vdA-rP-ZNM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="APPLICATIONS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="vdA-rP-ZNM">
                                         <rect key="frame" x="118" y="122" width="120" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration">
@@ -154,7 +154,7 @@
                                         <color key="textColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VOLUNTEERS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="F1S-Gd-t2w">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DENIALS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="F1S-Gd-t2w">
                                         <rect key="frame" x="243" y="149" width="103" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration">
@@ -164,8 +164,8 @@
                                         <color key="textColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CHECKED-OUT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="lhd-nf-7PZ">
-                                        <rect key="frame" x="10" y="149" width="103" height="22"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CONFIRMATIONS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="lhd-nf-7PZ">
+                                        <rect key="frame" x="7" y="149" width="109" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <bool key="isElement" value="NO"/>
@@ -178,7 +178,7 @@
                                         <rect key="frame" x="118" y="23" width="120" height="101"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="393" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="a8R-wu-Zbw">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="a8R-wu-Zbw">
                                                 <rect key="frame" x="-1" y="0.0" width="122" height="101"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="checked-in"/>
@@ -276,12 +276,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="checkedInLabel" destination="vdA-rP-ZNM" id="Roa-OU-gh0"/>
-                        <outlet property="checkedInValue" destination="a8R-wu-Zbw" id="QEF-i1-el2"/>
-                        <outlet property="checkedOutLabel" destination="lhd-nf-7PZ" id="qbo-DY-qHc"/>
-                        <outlet property="checkedOutValue" destination="1TU-hf-ThW" id="BxB-W0-ax7"/>
-                        <outlet property="volunteerLabel" destination="F1S-Gd-t2w" id="coH-UI-1Vf"/>
-                        <outlet property="volunteerValue" destination="DUi-EE-dYF" id="FGO-5E-lsv"/>
+                        <outlet property="applicationsLabel" destination="vdA-rP-ZNM" id="yga-8F-ow8"/>
+                        <outlet property="applicationsValue" destination="a8R-wu-Zbw" id="CJz-Ld-15y"/>
+                        <outlet property="confirmationsLabel" destination="lhd-nf-7PZ" id="ZPL-jd-RtZ"/>
+                        <outlet property="confirmationsValue" destination="1TU-hf-ThW" id="FMz-WU-kgC"/>
+                        <outlet property="denialsLabel" destination="F1S-Gd-t2w" id="8qH-tl-XkO"/>
+                        <outlet property="denialsValue" destination="DUi-EE-dYF" id="LFu-nI-hKc"/>
                         <segue destination="Gjk-JW-45W" kind="unwind" identifier="logoutSegue" unwindAction="unwindToLoginWithSegue:" id="UJd-o8-eTa"/>
                         <segue destination="JiL-0h-DF9" kind="show" identifier="scanViewSegue" id="wpJ-FC-9nY"/>
                         <segue destination="dWh-TB-5Vb" kind="show" identifier="homeToScanHistorySegue" id="a3g-eY-Ypm"/>
@@ -456,7 +456,7 @@
         <image name="Line" width="289" height="2"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yuH-cq-rlz"/>
+        <segue reference="a3g-eY-Ypm"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

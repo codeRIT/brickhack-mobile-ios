@@ -92,7 +92,7 @@ class ScanHistoryViewController: UIViewController {
                 let name = dict[i]["name"] as! String
                 self.tags[id] = name
             }
-            self.scanHistory.sorted(by: {$0.createdAt! > $1.createdAt!})
+            self.scanHistory = self.scanHistory.sorted(by: {$0.createdAt! > $1.createdAt!})
             self.scanHistoryTable.delegate = self
             self.scanHistoryTable.dataSource = self
             self.scanHistoryTable.reloadData()
