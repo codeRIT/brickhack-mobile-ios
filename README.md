@@ -14,6 +14,7 @@ We're using CocoaPods as the dependency manager.
 Installing p2/OAuth2:
 
 `$ cd path/to/brickhack-mobile-ios`
+
 `$ git clone --recursive https://github.com/p2/OAuth2.git`
 
 Installing CocoPods:
