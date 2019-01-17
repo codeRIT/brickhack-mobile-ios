@@ -18,7 +18,7 @@ let trackableTagsRoute = "\(environment)/manage/trackable_tags.json"
 let trackableEventsRoute = "\(environment)/manage/trackable_events.json"
 let trackableEventsRouteByUserRoute = "\(environment)/manage/trackable_events.json?trackable_event[user_id]="
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton?
     let networkReachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.apple.com")

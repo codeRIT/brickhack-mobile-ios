@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TrackableTag{
+final class TrackableTag{
     
     var id: Int
     var name: String

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TrackableEventCell: UITableViewCell {
+final class TrackableEventCell: UITableViewCell {
 
     @IBOutlet weak var trackableEventLabel: UILabel!
     @IBOutlet weak var updatedAtLabel: UILabel!

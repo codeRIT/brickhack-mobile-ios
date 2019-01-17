@@ -12,7 +12,7 @@ import OAuth2
 import Alamofire
 import VYNFCKit
 
-class ScanTagViewController: UIViewController {
+final class ScanTagViewController: UIViewController {
     
     var session: NFCNDEFReaderSession?
     var tags: Array<(Int, String)>? // Available tags pulled from back-end will be stored here

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TrackableEvent{
+final class TrackableEvent{
     
     var bandID: String?
     var createdAt: Date?

@@ -10,14 +10,14 @@ import UIKit
 import OAuth2
 import Alamofire
 
-class ScanHistoryViewController: UIViewController {
+final class ScanHistoryViewController: UIViewController {
 
     var oauth2: OAuth2ImplicitGrant?
     var sessionManager: SessionManager?
     var scanHistory: [TrackableEvent] = []
     var currentUser: Int?
     var loadingView: UIAlertController?
-    var tags : [Int:String] = [:]
+    var tags: [Int:String] = [:]
     
     @IBOutlet weak var scanHistoryTable: UITableView!
     
