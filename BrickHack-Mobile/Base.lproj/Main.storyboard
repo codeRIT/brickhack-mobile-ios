@@ -362,7 +362,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.matchToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="dWh-TB-5Vb" kind="show" id="yuH-cq-rlz"/>
+                                            <action selector="historyButtonWasPressed:" destination="JiL-0h-DF9" eventType="touchUpInside" id="qT8-u1-IoB"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -383,6 +383,7 @@
                         <outlet property="changeTagTextField" destination="byv-dk-mPH" id="AL7-3w-eNq"/>
                         <outlet property="labelCurrentTag" destination="kH1-Bx-Fxy" id="Tkb-HZ-upu"/>
                         <outlet property="scanTagButton" destination="w7F-xh-Gha" id="bsf-i7-ftA"/>
+                        <segue destination="dWh-TB-5Vb" kind="show" identifier="scanTagToScanHistorySegue" id="L2H-aw-PBc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3x7-6K-XQW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -456,7 +457,7 @@
         <image name="Line" width="289" height="2"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a3g-eY-Ypm"/>
+        <segue reference="L2H-aw-PBc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

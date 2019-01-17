@@ -56,6 +56,17 @@ final class ScanTagViewController: UIViewController {
         self.session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
         self.session?.alertMessage = "Hold the top of your iPhone near the wristband to scan."
     }
+    
+    @IBAction func historyButtonWasPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "scanTagToScanHistorySegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "scanTagToScanHistorySegue"){
+            let scanHistory  = segue.destination as? ScanHistoryViewController
+            scanHistory?.oauth2 = self.oauth2!
+        }
+    }
 }
 
 // Class extension for NFC-related functions
