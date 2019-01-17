@@ -21,6 +21,7 @@ final class ScanHistoryViewController: UIViewController {
     
     @IBOutlet weak var scanHistoryTable: UITableView!
     
+    // Presents a loading message to user when getting tags from environment
     override func viewDidLoad() {
         if(hasInternetAccess()){
             loadingView = UIAlertController(title: nil, message: "Loading scans...", preferredStyle: UIAlertController.Style.alert)
@@ -49,6 +50,7 @@ final class ScanHistoryViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    // As AlamoFire is asynchronous, a function is needed to continue the data retrieval process
     func getTagHistory(){
         let usersTags = "\(trackableEventsRouteByUserRoute)\(currentUser!)"
         
@@ -78,6 +80,7 @@ final class ScanHistoryViewController: UIViewController {
         }
     }
     
+    // As AlamoFire is asynchronous, a function is needed to continue the data retrieval process
     func getTagData(){
         sessionManager = SessionManager()
         let retrier = OAuth2RetryHandler(oauth2: oauth2!)
@@ -99,6 +102,7 @@ final class ScanHistoryViewController: UIViewController {
         }
     }
     
+    // Used to determine if the device currently has access to the internet and can establish a connection to the environment
     func hasInternetAccess() -> Bool{
         if networkReachabilityManager?.isReachable ?? false{
             return true
@@ -107,6 +111,7 @@ final class ScanHistoryViewController: UIViewController {
         }
     }
     
+    // Displays a network issue alert if device isn't connected to the internet or can't connect to environment
     func displayNoNetworkAlert(){
         let alertController = UIAlertController(
             title: "Network Issue",
@@ -120,6 +125,7 @@ final class ScanHistoryViewController: UIViewController {
     }
 }
 
+// Class extension for UITableView related functions
 extension ScanHistoryViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scanHistory.count
