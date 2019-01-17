@@ -11,6 +11,12 @@ import OAuth2
 import Alamofire
 
 let environment = "https://staging.brickhack.io"
+let authorizeRoute = "\(environment)/oauth/authorize"
+let currentUserRoute = "\(environment)/oauth/token/info"
+let todaysStatsDataRoute = "\(environment)/manage/dashboard/todays_stats_data"
+let trackableTagsRoute = "\(environment)/manage/trackable_tags.json"
+let trackableEventsRoute = "\(environment)/manage/trackable_events.json"
+let trackableEventsRouteByUserRoute = "\(environment)/manage/trackable_events.json?trackable_event[user_id]="
 
 class LoginViewController: UIViewController {
     
@@ -19,7 +25,7 @@ class LoginViewController: UIViewController {
     
     var oauth2 = OAuth2ImplicitGrant(settings: [
         "client_id": "a46ad487beade18ee2868fb9b6a6de69950f3a5bd7b2d5eb3fb62e35f53c120e",
-        "authorize_uri": "\(environment)/oauth/authorize",
+        "authorize_uri": authorizeRoute,
         "redirect_uris": ["brickhack-ios://oauth/callback"],
         "scope": ""] as OAuth2JSON)
 

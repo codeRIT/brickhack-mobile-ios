@@ -19,8 +19,6 @@ class ScanTagViewController: UIViewController {
     var currentTag: (Int, String)?
     var oauth2: OAuth2ImplicitGrant?
     var sessionManager: SessionManager?
-    let tagsAPI = "\(environment)/manage/trackable_tags.json"
-    let submitTagAPI = "\(environment)/manage/trackable_events.json"
     @IBOutlet weak var labelCurrentTag: UILabel! // Current tag selected label
     @IBOutlet weak var changeTagTextField: UITextField!
     @IBOutlet weak var scanTagButton: UIButton!
@@ -32,7 +30,7 @@ class ScanTagViewController: UIViewController {
         let retrier = OAuth2RetryHandler(oauth2: oauth2!)
         sessionManager!.adapter = retrier
         sessionManager!.retrier = retrier
-        sessionManager!.request(tagsAPI).validate().responseJSON{ response in
+        sessionManager!.request(trackableTagsRoute).validate().responseJSON{ response in
             let _  = self.sessionManager
             let dict = response.result.value as! Array<[String: Any]>
             
@@ -122,7 +120,7 @@ extension ScanTagViewController: NFCNDEFReaderSessionDelegate{
         sessionManager!.adapter = retrier
         sessionManager!.retrier = retrier
         let json: [String: [String: Any]] = ["trackable_event": ["band_id":bandUID, "trackable_tag_id":currentTag!.0]]
-        sessionManager!.request(submitTagAPI, method: .post, parameters: json, encoding: JSONEncoding.default, headers: ["Content-Type" :"application/json"]).responseJSON(){ response in
+        sessionManager!.request(trackableEventsRoute, method: .post, parameters: json, encoding: JSONEncoding.default, headers: ["Content-Type" :"application/json"]).responseJSON(){ response in
             debugPrint(response)
         }
     }

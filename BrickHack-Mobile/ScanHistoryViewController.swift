@@ -18,8 +18,6 @@ class ScanHistoryViewController: UIViewController {
     var currentUser: Int?
     var loadingView: UIAlertController?
     var tags : [Int:String] = [:]
-    let currentUserAPI = "\(environment)/oauth/token/info"
-    let tagsAPI = "\(environment)/manage/trackable_tags.json"
     
     @IBOutlet weak var scanHistoryTable: UITableView!
     
@@ -38,7 +36,7 @@ class ScanHistoryViewController: UIViewController {
         let retrier = OAuth2RetryHandler(oauth2: oauth2!)
         sessionManager!.adapter = retrier
         sessionManager!.retrier = retrier
-        sessionManager!.request(currentUserAPI).validate().responseJSON{ response in
+        sessionManager!.request(currentUserRoute).validate().responseJSON{ response in
             let _  = self.sessionManager
             let dict = response.result.value as! [String: Any]
             self.currentUser = dict["resource_owner_id"] as? Int
@@ -51,13 +49,13 @@ class ScanHistoryViewController: UIViewController {
     }
     
     func getTagHistory(){
-        let userTagsAPI = "\(environment)/manage/trackable_events.json?trackable_event[user_id]=\(currentUser!)"
+        let usersTags = "\(trackableEventsRouteByUserRoute)\(currentUser!)"
         
         sessionManager = SessionManager()
         let retrier = OAuth2RetryHandler(oauth2: oauth2!)
         sessionManager!.adapter = retrier
         sessionManager!.retrier = retrier
-        sessionManager!.request(userTagsAPI).validate().responseJSON{ response in
+        sessionManager!.request(usersTags).validate().responseJSON{ response in
             let _  = self.sessionManager
             let dict = response.result.value as! Array<[String: Any]>
 
@@ -84,7 +82,7 @@ class ScanHistoryViewController: UIViewController {
         let retrier = OAuth2RetryHandler(oauth2: oauth2!)
         sessionManager!.adapter = retrier
         sessionManager!.retrier = retrier
-        sessionManager!.request(tagsAPI).validate().responseJSON{ response in
+        sessionManager!.request(trackableTagsRoute).validate().responseJSON{ response in
             let _  = self.sessionManager
             let dict = response.result.value as! Array<[String: Any]>
             for i in 0...(dict.count-1){
