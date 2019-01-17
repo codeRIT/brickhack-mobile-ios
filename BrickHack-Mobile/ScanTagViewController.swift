@@ -16,15 +16,15 @@ final class ScanTagViewController: UIViewController {
     
     var session: NFCNDEFReaderSession?
     var tags: Array<(Int, String)>? // Available tags pulled from back-end will be stored here
-    var currentTag: (Int, String)?
+    var currentTag: (Int, String)? // Current tag selected by user from UIPickerView
     var oauth2: OAuth2ImplicitGrant?
-    var sessionManager: SessionManager?
+    var sessionManager: SessionManager? // AlamoFire request session
     @IBOutlet weak var labelCurrentTag: UILabel! // Current tag selected label
     @IBOutlet weak var changeTagTextField: UITextField!
     @IBOutlet weak var scanTagButton: UIButton!
     
     override func viewDidLoad() {
-        self.tags = [(-1, "None")]
+        self.tags = [(-1, "None")] // Creates a "None" tag placeholder to allow the user to more easily switch tags
         
         sessionManager = SessionManager()
         let retrier = OAuth2RetryHandler(oauth2: oauth2!)
@@ -61,6 +61,7 @@ final class ScanTagViewController: UIViewController {
 // Class extension for NFC-related functions
 extension ScanTagViewController: NFCNDEFReaderSessionDelegate{
     
+    // Prompts the user with scan module and hides UIPickerView if showing
     @IBAction func scanButtonWasPressed(_ sender: Any) {
         dismissPicker()
         self.session?.begin()
@@ -115,6 +116,7 @@ extension ScanTagViewController: NFCNDEFReaderSessionDelegate{
         self.prepareNFCSession()
     }
     
+    // Submits the tag to the environment after each scan
     func submitTag(bandUID:String){
         let retrier = OAuth2RetryHandler(oauth2: self.oauth2!)
         sessionManager!.adapter = retrier
@@ -129,12 +131,14 @@ extension ScanTagViewController: NFCNDEFReaderSessionDelegate{
 // Class extension for tag picker-related funtions
 extension ScanTagViewController: UIPickerViewDataSource, UIPickerViewDelegate{
     
+    // Creates the UIPickerView for selecting tags
     func createTagPicker(){
         let picker = UIPickerView()
         picker.delegate = self
         changeTagTextField.inputView = picker
     }
     
+    // Creates a toolbar with a "Done" button to allow the user to dismiss the UIPickerView
     func createToolbar(){
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
