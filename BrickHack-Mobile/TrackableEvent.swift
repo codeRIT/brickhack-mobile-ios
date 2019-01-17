@@ -10,12 +10,12 @@ import Foundation
 
 final class TrackableEvent{
     
-    var bandID: String?
-    var createdAt: Date?
-    var id: Int?
-    var trackableTagID: Int?
-    var userID: Int?
-    var updatedAt: Date?
+    var bandID: String
+    var createdAt: Date
+    var id: Int
+    var trackableTagID: Int
+    var userID: Int
+    var updatedAt: Date
     
     init(bandID: String, createdAt: Date, id: Int, trackableTagID: Int, userID: Int, updatedAt: Date){
         self.bandID = bandID

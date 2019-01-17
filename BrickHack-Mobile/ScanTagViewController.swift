@@ -32,11 +32,11 @@ final class ScanTagViewController: UIViewController {
         sessionManager!.retrier = retrier
         sessionManager!.request(trackableTagsRoute).validate().responseJSON{ response in
             let _  = self.sessionManager
-            let dict = response.result.value as! Array<[String: Any]>
+            let dict = response.result.value as? Array<[String: Any]> ?? [[:]]
             
             for i in 0...(dict.count-1){
-                let name = dict[i]["name"] as! String
-                let id = dict[i]["id"] as! Int
+                let name = dict[i]["name"] as? String ?? ""
+                let id = dict[i]["id"] as? Int ?? 0
                 self.tags?.append((id, name))
             }
             

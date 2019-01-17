@@ -17,12 +17,12 @@ let todaysStatsDataRoute = "\(environment)/manage/dashboard/todays_stats_data"
 let trackableTagsRoute = "\(environment)/manage/trackable_tags.json"
 let trackableEventsRoute = "\(environment)/manage/trackable_events.json"
 let trackableEventsRouteByUserRoute = "\(environment)/manage/trackable_events.json?trackable_event[user_id]="
+let networkReachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.apple.com")
 
 final class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton?
-    let networkReachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.apple.com")
-    
+
     var oauth2 = OAuth2ImplicitGrant(settings: [
         "client_id": "a46ad487beade18ee2868fb9b6a6de69950f3a5bd7b2d5eb3fb62e35f53c120e",
         "authorize_uri": authorizeRoute,
@@ -51,6 +51,7 @@ final class LoginViewController: UIViewController {
                     print("Authorization denied.")
                 }else if self.oauth2.hasUnexpiredAccessToken(){
                     print("Authorization successful.")
+                    self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
                     self.resetLoginButton(sender)
                 }
             }
@@ -71,12 +72,8 @@ final class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if hasInternetAccess(){
             if oauth2.hasUnexpiredAccessToken(){
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
-                }
+                self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
             }
-        }else{
-            displayNoNetworkAlert()
         }
     }
     
@@ -98,7 +95,7 @@ final class LoginViewController: UIViewController {
     }
     
     func hasInternetAccess() -> Bool{
-        if self.networkReachabilityManager?.isReachable ?? false{
+        if networkReachabilityManager?.isReachable ?? false{
             return true
         }else{
             return false
