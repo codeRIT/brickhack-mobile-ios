@@ -7,21 +7,98 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3146F5BB219C9DD8009E9D03 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3146F5BA219C9DD8009E9D03 /* HomeViewController.swift */; };
+		21BEA9C216BEFB0D956DA447 /* Pods_BrickHack_Mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */; };
+		312F542821EFB9F4005613F7 /* TrackableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542721EFB9F4005613F7 /* TrackableEvent.swift */; };
+		312F542A21EFC43D005613F7 /* TrackableEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542921EFC43D005613F7 /* TrackableEventCell.swift */; };
+		312F542C21EFDAFC005613F7 /* TrackableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542B21EFDAFC005613F7 /* TrackableTag.swift */; };
+		316F237B21EFA81800FD1FEF /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; };
+		316F237E21EFA82100FD1FEF /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		316F238021EFA99D00FD1FEF /* ScanHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */; };
+		31AC34DE21DDB8D3005A419E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */; };
+		31C50F3121DEE54500C9983D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C50F3021DEE54500C9983D /* HomeViewController.swift */; };
+		31C50F3821E0067600C9983D /* OAuth2RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C50F3721E0067600C9983D /* OAuth2RetryHandler.swift */; };
 		31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F540219B29CD00E3E1AF /* AppDelegate.swift */; };
-		31C5F543219B29CD00E3E1AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F542219B29CD00E3E1AF /* ViewController.swift */; };
+		31C5F543219B29CD00E3E1AF /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F542219B29CD00E3E1AF /* Authentication.swift */; };
 		31C5F546219B29CD00E3E1AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F544219B29CD00E3E1AF /* Main.storyboard */; };
 		31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F547219B29CF00E3E1AF /* Assets.xcassets */; };
+		31E3920B219F7F0400F7A3BE /* ScanTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E3920A219F7F0400F7A3BE /* ScanTagViewController.swift */; };
+		FC82CF1C21ACD3FB008959FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FC82CF1B21ACD3FB008959FC /* Podfile */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		316F237321EFA7D000FD1FEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEE209471942772800736F1A;
+			remoteInfo = OAuth2macOS;
+		};
+		316F237521EFA7D000FD1FEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEDB8624193FAAE500C4EEA1;
+			remoteInfo = OAuth2iOS;
+		};
+		316F237721EFA7D000FD1FEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 659854461C5B3BEA00237D39;
+			remoteInfo = OAuth2tvOS;
+		};
+		316F237921EFA7D000FD1FEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEE209A219427DFE00736F1A;
+			remoteInfo = OAuth2Tests;
+		};
+		316F237C21EFA81D00FD1FEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EEDB8623193FAAE500C4EEA1;
+			remoteInfo = OAuth2iOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		31E5CD4121CD8C1F002E41D2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				316F237E21EFA82100FD1FEF /* OAuth2.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		3146F5BA219C9DD8009E9D03 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		312F542721EFB9F4005613F7 /* TrackableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableEvent.swift; sourceTree = "<group>"; };
+		312F542921EFC43D005613F7 /* TrackableEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableEventCell.swift; sourceTree = "<group>"; };
+		312F542B21EFDAFC005613F7 /* TrackableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableTag.swift; sourceTree = "<group>"; };
+		316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = "<group>"; };
+		316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHistoryViewController.swift; sourceTree = "<group>"; };
+		31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		31B205BE21EFB00700D6ADF7 /* libVYNFCKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libVYNFCKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		31C50F3021DEE54500C9983D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../../../../Desktop/HomeViewController.swift; sourceTree = "<group>"; };
+		31C50F3721E0067600C9983D /* OAuth2RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2RetryHandler.swift; sourceTree = "<group>"; };
 		31C5F53D219B29CD00E3E1AF /* BrickHack-Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BrickHack-Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C5F540219B29CD00E3E1AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		31C5F542219B29CD00E3E1AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		31C5F542219B29CD00E3E1AF /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		31C5F545219B29CD00E3E1AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		31C5F547219B29CF00E3E1AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31C5F54C219B29CF00E3E1AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BrickHack-Mobile.entitlements"; sourceTree = "<group>"; };
+		31E3920A219F7F0400F7A3BE /* ScanTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanTagViewController.swift; sourceTree = "<group>"; };
+		C029FC28202ED2177D811FF7 /* Pods-BrickHack-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
+		DF9A947946DF6E11797CE707 /* Pods-BrickHack-Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.release.xcconfig"; sourceTree = "<group>"; };
+		F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrickHack_Mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC82CF1B21ACD3FB008959FC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +106,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				316F237B21EFA81800FD1FEF /* OAuth2.framework in Frameworks */,
+				21BEA9C216BEFB0D956DA447 /* Pods_BrickHack_Mobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BBD80C15EBF0844F129829A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				31B205BE21EFB00700D6ADF7 /* libVYNFCKit.a */,
+				F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		316F236D21EFA7D000FD1FEF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				316F237421EFA7D000FD1FEF /* OAuth2.framework */,
+				316F237621EFA7D000FD1FEF /* OAuth2.framework */,
+				316F237821EFA7D000FD1FEF /* OAuth2.framework */,
+				316F237A21EFA7D000FD1FEF /* OAuth2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		31C5F534219B29CD00E3E1AF = {
 			isa = PBXGroup;
 			children = (
+				316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */,
+				FC82CF1B21ACD3FB008959FC /* Podfile */,
 				31C5F53F219B29CD00E3E1AF /* BrickHack-Mobile */,
 				31C5F53E219B29CD00E3E1AF /* Products */,
+				EBCD219BEF9877F1BF3921E8 /* Pods */,
+				2BBD80C15EBF0844F129829A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +157,31 @@
 		31C5F53F219B29CD00E3E1AF /* BrickHack-Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				31C50F3021DEE54500C9983D /* HomeViewController.swift */,
 				31C5F540219B29CD00E3E1AF /* AppDelegate.swift */,
-				31C5F542219B29CD00E3E1AF /* ViewController.swift */,
-				3146F5BA219C9DD8009E9D03 /* HomeViewController.swift */,
+				31C5F542219B29CD00E3E1AF /* Authentication.swift */,
+				31E3920A219F7F0400F7A3BE /* ScanTagViewController.swift */,
+				316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */,
+				31C50F3721E0067600C9983D /* OAuth2RetryHandler.swift */,
+				312F542721EFB9F4005613F7 /* TrackableEvent.swift */,
+				312F542921EFC43D005613F7 /* TrackableEventCell.swift */,
+				312F542B21EFDAFC005613F7 /* TrackableTag.swift */,
+				31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */,
 				31C5F544219B29CD00E3E1AF /* Main.storyboard */,
 				31C5F547219B29CF00E3E1AF /* Assets.xcassets */,
 				31C5F54C219B29CF00E3E1AF /* Info.plist */,
+				31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */,
 			);
 			path = "BrickHack-Mobile";
+			sourceTree = "<group>";
+		};
+		EBCD219BEF9877F1BF3921E8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C029FC28202ED2177D811FF7 /* Pods-BrickHack-Mobile.debug.xcconfig */,
+				DF9A947946DF6E11797CE707 /* Pods-BrickHack-Mobile.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,13 +191,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31C5F54F219B29CF00E3E1AF /* Build configuration list for PBXNativeTarget "BrickHack-Mobile" */;
 			buildPhases = (
+				D42346D14B18A39C5188BC7B /* [CP] Check Pods Manifest.lock */,
 				31C5F539219B29CD00E3E1AF /* Sources */,
 				31C5F53A219B29CD00E3E1AF /* Frameworks */,
 				31C5F53B219B29CD00E3E1AF /* Resources */,
+				31E5CD4121CD8C1F002E41D2 /* Embed Frameworks */,
+				87D50F12240CAD61C5BC1CEE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				316F237D21EFA81D00FD1FEF /* PBXTargetDependency */,
 			);
 			name = "BrickHack-Mobile";
 			productName = "BrickHack-Mobile";
@@ -96,6 +220,14 @@
 				TargetAttributes = {
 					31C5F53C219B29CD00E3E1AF = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.NearFieldCommunicationTagReading = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -110,6 +242,12 @@
 			mainGroup = 31C5F534219B29CD00E3E1AF;
 			productRefGroup = 31C5F53E219B29CD00E3E1AF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 316F236D21EFA7D000FD1FEF /* Products */;
+					ProjectRef = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				31C5F53C219B29CD00E3E1AF /* BrickHack-Mobile */,
@@ -117,30 +255,128 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		316F237421EFA7D000FD1FEF /* OAuth2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuth2.framework;
+			remoteRef = 316F237321EFA7D000FD1FEF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		316F237621EFA7D000FD1FEF /* OAuth2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuth2.framework;
+			remoteRef = 316F237521EFA7D000FD1FEF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		316F237821EFA7D000FD1FEF /* OAuth2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuth2.framework;
+			remoteRef = 316F237721EFA7D000FD1FEF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		316F237A21EFA7D000FD1FEF /* OAuth2Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OAuth2Tests.xctest;
+			remoteRef = 316F237921EFA7D000FD1FEF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		31C5F53B219B29CD00E3E1AF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */,
+				FC82CF1C21ACD3FB008959FC /* Podfile in Resources */,
+				31AC34DE21DDB8D3005A419E /* Launch Screen.storyboard in Resources */,
 				31C5F546219B29CD00E3E1AF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		87D50F12240CAD61C5BC1CEE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework",
+				"${BUILT_PRODUCTS_DIR}/VYNFCKit/VYNFCKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Apollo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VYNFCKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D42346D14B18A39C5188BC7B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BrickHack-Mobile-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		31C5F539219B29CD00E3E1AF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31C5F543219B29CD00E3E1AF /* ViewController.swift in Sources */,
+				31C5F543219B29CD00E3E1AF /* Authentication.swift in Sources */,
 				31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */,
-				3146F5BB219C9DD8009E9D03 /* HomeViewController.swift in Sources */,
+				31E3920B219F7F0400F7A3BE /* ScanTagViewController.swift in Sources */,
+				31C50F3821E0067600C9983D /* OAuth2RetryHandler.swift in Sources */,
+				316F238021EFA99D00FD1FEF /* ScanHistoryViewController.swift in Sources */,
+				312F542821EFB9F4005613F7 /* TrackableEvent.swift in Sources */,
+				312F542A21EFC43D005613F7 /* TrackableEventCell.swift in Sources */,
+				31C50F3121DEE54500C9983D /* HomeViewController.swift in Sources */,
+				312F542C21EFDAFC005613F7 /* TrackableTag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		316F237D21EFA81D00FD1FEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OAuth2iOS;
+			targetProxy = 316F237C21EFA81D00FD1FEF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		31C5F544219B29CD00E3E1AF /* Main.storyboard */ = {
@@ -272,8 +508,11 @@
 		};
 		31C5F550219B29CF00E3E1AF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C029FC28202ED2177D811FF7 /* Pods-BrickHack-Mobile.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "BrickHack-Mobile/BrickHack-Mobile.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RWVM42P68T;
@@ -282,7 +521,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.codeRIT.BrickHack;
+				PRODUCT_BUNDLE_IDENTIFIER = io.BrickHack.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -292,8 +531,11 @@
 		};
 		31C5F551219B29CF00E3E1AF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF9A947946DF6E11797CE707 /* Pods-BrickHack-Mobile.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "BrickHack-Mobile/BrickHack-Mobile.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RWVM42P68T;
@@ -302,7 +544,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.codeRIT.BrickHack;
+				PRODUCT_BUNDLE_IDENTIFIER = io.BrickHack.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
