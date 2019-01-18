@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		21BEA9C216BEFB0D956DA447 /* Pods_BrickHack_Mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */; };
+		311DE50121F17BA2003F476B /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; };
+		311DE50221F17BA8003F476B /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		312F542821EFB9F4005613F7 /* TrackableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542721EFB9F4005613F7 /* TrackableEvent.swift */; };
 		312F542A21EFC43D005613F7 /* TrackableEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542921EFC43D005613F7 /* TrackableEventCell.swift */; };
 		312F542C21EFDAFC005613F7 /* TrackableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542B21EFDAFC005613F7 /* TrackableTag.swift */; };
-		316F237B21EFA81800FD1FEF /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; };
-		316F237E21EFA82100FD1FEF /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		316F238021EFA99D00FD1FEF /* ScanHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */; };
 		31AC34DE21DDB8D3005A419E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */; };
 		31C50F3121DEE54500C9983D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C50F3021DEE54500C9983D /* HomeViewController.swift */; };
@@ -26,6 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		311DE4FF21F17B9B003F476B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EEDB8623193FAAE500C4EEA1;
+			remoteInfo = OAuth2iOS;
+		};
 		316F237321EFA7D000FD1FEF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
@@ -54,13 +61,6 @@
 			remoteGlobalIDString = EEE209A219427DFE00736F1A;
 			remoteInfo = OAuth2Tests;
 		};
-		316F237C21EFA81D00FD1FEF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = EEDB8623193FAAE500C4EEA1;
-			remoteInfo = OAuth2iOS;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,7 +70,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				316F237E21EFA82100FD1FEF /* OAuth2.framework in Embed Frameworks */,
+				311DE50221F17BA8003F476B /* OAuth2.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				316F237B21EFA81800FD1FEF /* OAuth2.framework in Frameworks */,
+				311DE50121F17BA2003F476B /* OAuth2.framework in Frameworks */,
 				21BEA9C216BEFB0D956DA447 /* Pods_BrickHack_Mobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,7 +201,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				316F237D21EFA81D00FD1FEF /* PBXTargetDependency */,
+				311DE50021F17B9B003F476B /* PBXTargetDependency */,
 			);
 			name = "BrickHack-Mobile";
 			productName = "BrickHack-Mobile";
@@ -371,10 +371,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		316F237D21EFA81D00FD1FEF /* PBXTargetDependency */ = {
+		311DE50021F17B9B003F476B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OAuth2iOS;
-			targetProxy = 316F237C21EFA81D00FD1FEF /* PBXContainerItemProxy */;
+			targetProxy = 311DE4FF21F17B9B003F476B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

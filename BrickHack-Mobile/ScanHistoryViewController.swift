@@ -25,14 +25,13 @@ final class ScanHistoryViewController: UIViewController {
     override func viewDidLoad() {
         if(hasInternetAccess()){
             loadingView = UIAlertController(title: nil, message: "Loading scans...", preferredStyle: UIAlertController.Style.alert)
-            
+
             let spinner = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
             spinner.hidesWhenStopped = true
             spinner.style = UIActivityIndicatorView.Style.gray
             spinner.startAnimating()
             loadingView!.view.addSubview(spinner)
-            present(loadingView!, animated: true, completion: nil)
-            
+            self.present(self.loadingView!, animated: true, completion: nil)
             sessionManager = SessionManager()
             let retrier = OAuth2RetryHandler(oauth2: oauth2!)
             sessionManager!.adapter = retrier
@@ -41,7 +40,7 @@ final class ScanHistoryViewController: UIViewController {
                 let _  = self.sessionManager
                 let dict = response.result.value as? [String: Any]
                 self.currentUser = dict?["resource_owner_id"] as? Int ?? 0
-                self.getTagHistory()
+                self.getTagHistory(loadingView: self.loadingView!)
             }
         }else{
             self.displayNoNetworkAlert()
@@ -51,7 +50,7 @@ final class ScanHistoryViewController: UIViewController {
     }
     
     // As AlamoFire is asynchronous, a function is needed to continue the data retrieval process
-    func getTagHistory(){
+    func getTagHistory(loadingView: UIAlertController){
         let usersTags = "\(trackableEventsRouteByUserRoute)\(currentUser!)"
         
         sessionManager = SessionManager()
@@ -61,7 +60,11 @@ final class ScanHistoryViewController: UIViewController {
         sessionManager!.request(usersTags).validate().responseJSON{ response in
             let _  = self.sessionManager
             let dict = response.result.value as? Array<[String: Any]> ?? [[:]]
-
+            
+            let hideLoadView = { () -> Void in
+                loadingView.dismiss(animated: false, completion: nil)
+            }
+            
             if(dict.count > 0){ // Case where there are no scans
                 for i in 0...(dict.count-1){
                     let dateFormatter = DateFormatter()
@@ -79,7 +82,11 @@ final class ScanHistoryViewController: UIViewController {
                 }
                 self.getTagData()
             }else{
-                self.loadingView!.dismiss(animated: false, completion: nil)
+                DispatchQueue.global().asyncAfter(deadline: .now() + 0.5, execute: {
+                    DispatchQueue.main.async {
+                        hideLoadView()
+                    }
+                })
             }
         }
     }
