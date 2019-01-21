@@ -14,6 +14,7 @@
 		312F542A21EFC43D005613F7 /* TrackableEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542921EFC43D005613F7 /* TrackableEventCell.swift */; };
 		312F542C21EFDAFC005613F7 /* TrackableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542B21EFDAFC005613F7 /* TrackableTag.swift */; };
 		316F238021EFA99D00FD1FEF /* ScanHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */; };
+		31A6A37821F6681100D9C085 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31A6A37321F6665D00D9C085 /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		31AC34DE21DDB8D3005A419E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */; };
 		31C50F3121DEE54500C9983D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C50F3021DEE54500C9983D /* HomeViewController.swift */; };
 		31C50F3821E0067600C9983D /* OAuth2RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C50F3721E0067600C9983D /* OAuth2RetryHandler.swift */; };
@@ -83,6 +84,7 @@
 		312F542B21EFDAFC005613F7 /* TrackableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableTag.swift; sourceTree = "<group>"; };
 		316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = "<group>"; };
 		316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHistoryViewController.swift; sourceTree = "<group>"; };
+		31A6A37321F6665D00D9C085 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
 		31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		31B205BE21EFB00700D6ADF7 /* libVYNFCKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libVYNFCKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C50F3021DEE54500C9983D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../../../../Desktop/HomeViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31A6A37821F6681100D9C085 /* CoreNFC.framework in Frameworks */,
 				311DE50121F17BA2003F476B /* OAuth2.framework in Frameworks */,
 				21BEA9C216BEFB0D956DA447 /* Pods_BrickHack_Mobile.framework in Frameworks */,
 			);
@@ -117,6 +120,7 @@
 		2BBD80C15EBF0844F129829A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				31A6A37321F6665D00D9C085 /* CoreNFC.framework */,
 				31B205BE21EFB00700D6ADF7 /* libVYNFCKit.a */,
 				F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */,
 			);
