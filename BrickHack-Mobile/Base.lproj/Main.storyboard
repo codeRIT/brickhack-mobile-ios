@@ -18,17 +18,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BH-logo" translatesAutoresizingMaskIntoConstraints="NO" id="rwn-wb-gg1">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BH-logo" translatesAutoresizingMaskIntoConstraints="NO" id="rwn-wb-gg1">
                                 <rect key="frame" x="112" y="95" width="190" height="185"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="185" id="wdY-OG-KNW"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmd-U4-Zfm">
                                 <rect key="frame" x="60" y="716" width="295" height="47"/>
                                 <color key="backgroundColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="Qj2-Hx-R4G"/>
+                                    <constraint firstAttribute="height" constant="47" id="wm9-TG-OS8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                 <state key="normal" title="LOGIN WITH BRICKHACK.IO »">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,9 +49,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.21747174859046936" green="0.277332603931427" blue="0.34390062093734741" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="tmd-U4-Zfm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dkb-Ym-ya7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tmd-U4-Zfm" secondAttribute="bottom" constant="99" id="k2r-Mo-WaB"/>
-                            <constraint firstItem="tmd-U4-Zfm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="nZn-UW-Cdl"/>
+                            <constraint firstItem="rwn-wb-gg1" firstAttribute="centerX" secondItem="tmd-U4-Zfm" secondAttribute="centerX" id="0ie-HV-NMV"/>
+                            <constraint firstItem="rwn-wb-gg1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="51" id="93v-AL-wb1"/>
+                            <constraint firstItem="tmd-U4-Zfm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="71" id="A7m-wK-Zqf"/>
+                            <constraint firstItem="rwn-wb-gg1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SjB-9i-rZ3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tmd-U4-Zfm" secondAttribute="bottom" constant="37" id="Xkn-z9-d6q"/>
+                            <constraint firstItem="rwn-wb-gg1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="112" id="hpB-GQ-DK7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -95,7 +100,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pDQ-Bb-qj7">
                                 <rect key="frame" x="29" y="180" width="356" height="199"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6p3-dF-50q">
                                         <rect key="frame" x="10" y="44" width="103" height="105"/>
@@ -202,7 +207,7 @@
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qdq-4j-HUf">
                                 <rect key="frame" x="29" y="527" width="356" height="251"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgH-mH-hCw">
                                         <rect key="frame" x="36" y="135" width="282" height="52"/>
@@ -452,7 +457,7 @@
         <image name="Line" width="289" height="2"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a3g-eY-Ypm"/>
+        <segue reference="L2H-aw-PBc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
