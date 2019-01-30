@@ -338,7 +338,7 @@
                                             <action selector="scanButtonWasPressed:" destination="JiL-0h-DF9" eventType="touchUpInside" id="igS-jB-TgZ"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="CHANGE TAG" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="byv-dk-mPH">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="CHOOSE TAG" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="byv-dk-mPH">
                                         <rect key="frame" x="45" y="106" width="304" height="21"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -457,7 +457,7 @@
         <image name="Line" width="289" height="2"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a3g-eY-Ypm"/>
+        <segue reference="L2H-aw-PBc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
