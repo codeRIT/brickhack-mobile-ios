@@ -46,7 +46,6 @@ final class HomeViewController: UIViewController {
             self.applicationsValue.text = String(applications)
             self.denialsValue.text = String(denials)
         }
-        print(oauth2!.refreshToken)
         confirmationsGroup.accessibilityLabel = "\(confirmationsValue.text ?? "Unable to fetch number") + \(confirmationsLabel.text ?? "cconfirmations")"
         confirmationsGroup.accessibilityFrameInContainerSpace = confirmationsValue.frame.union(confirmationsLabel.frame)
         elements.append(confirmationsGroup)

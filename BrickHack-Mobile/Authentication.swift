@@ -46,7 +46,7 @@ final class LoginViewController: UIViewController {
             oauth2.authConfig.authorizeEmbedded = true
             oauth2.authConfig.authorizeContext = self
             
-            oauth2.logger = OAuth2DebugLogger(.trace)
+            //oauth2.logger = OAuth2DebugLogger(.trace)
             
             oauth2.authorize(){responce, error in
                 print("Authorizing...")
