@@ -11,11 +11,11 @@
 		312F542821EFB9F4005613F7 /* TrackableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542721EFB9F4005613F7 /* TrackableEvent.swift */; };
 		312F542A21EFC43D005613F7 /* TrackableEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542921EFC43D005613F7 /* TrackableEventCell.swift */; };
 		312F542C21EFDAFC005613F7 /* TrackableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542B21EFDAFC005613F7 /* TrackableTag.swift */; };
+		31602385220A116000F73F58 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31602384220A116000F73F58 /* HomeViewController.swift */; };
 		316F237B21EFA81800FD1FEF /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; };
 		316F237E21EFA82100FD1FEF /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		316F238021EFA99D00FD1FEF /* ScanHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */; };
 		31AC34DE21DDB8D3005A419E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */; };
-		31C50F3121DEE54500C9983D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C50F3021DEE54500C9983D /* HomeViewController.swift */; };
 		31C50F3821E0067600C9983D /* OAuth2RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C50F3721E0067600C9983D /* OAuth2RetryHandler.swift */; };
 		31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F540219B29CD00E3E1AF /* AppDelegate.swift */; };
 		31C5F543219B29CD00E3E1AF /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F542219B29CD00E3E1AF /* Authentication.swift */; };
@@ -81,11 +81,11 @@
 		312F542721EFB9F4005613F7 /* TrackableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableEvent.swift; sourceTree = "<group>"; };
 		312F542921EFC43D005613F7 /* TrackableEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableEventCell.swift; sourceTree = "<group>"; };
 		312F542B21EFDAFC005613F7 /* TrackableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableTag.swift; sourceTree = "<group>"; };
+		31602384220A116000F73F58 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = "<group>"; };
 		316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHistoryViewController.swift; sourceTree = "<group>"; };
 		31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		31B205BE21EFB00700D6ADF7 /* libVYNFCKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libVYNFCKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		31C50F3021DEE54500C9983D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../../../../Desktop/HomeViewController.swift; sourceTree = "<group>"; };
 		31C50F3721E0067600C9983D /* OAuth2RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2RetryHandler.swift; sourceTree = "<group>"; };
 		31C5F53D219B29CD00E3E1AF /* BrickHack-Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BrickHack-Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C5F540219B29CD00E3E1AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 		31C5F53F219B29CD00E3E1AF /* BrickHack-Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				31C50F3021DEE54500C9983D /* HomeViewController.swift */,
+				31602384220A116000F73F58 /* HomeViewController.swift */,
 				31C5F540219B29CD00E3E1AF /* AppDelegate.swift */,
 				31C5F542219B29CD00E3E1AF /* Authentication.swift */,
 				31E3920A219F7F0400F7A3BE /* ScanTagViewController.swift */,
@@ -361,9 +361,9 @@
 				31E3920B219F7F0400F7A3BE /* ScanTagViewController.swift in Sources */,
 				31C50F3821E0067600C9983D /* OAuth2RetryHandler.swift in Sources */,
 				316F238021EFA99D00FD1FEF /* ScanHistoryViewController.swift in Sources */,
+				31602385220A116000F73F58 /* HomeViewController.swift in Sources */,
 				312F542821EFB9F4005613F7 /* TrackableEvent.swift in Sources */,
 				312F542A21EFC43D005613F7 /* TrackableEventCell.swift in Sources */,
-				31C50F3121DEE54500C9983D /* HomeViewController.swift in Sources */,
 				312F542C21EFDAFC005613F7 /* TrackableTag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -123,6 +123,15 @@ final class ScanHistoryViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
         }
     }
+    
+    func deleteScan(id: Int){
+        sessionManager = SessionManager()
+        let retrier = OAuth2RetryHandler(oauth2: oauth2!)
+        sessionManager!.adapter = retrier
+        sessionManager!.retrier = retrier
+        print(editTrackableEventRoute + String(id) + ".json")
+        sessionManager!.request(editTrackableEventRoute + String(id) + ".json", method: .delete)
+    }
 }
 
 // Class extension for UITableView related functions
@@ -137,5 +146,16 @@ extension ScanHistoryViewController: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackableEventCell") as! TrackableEventCell
         cell.setTrackableEventData(label: tags[trackableEvent.trackableTagID] ?? "Deleted Tag", updatedAt: trackableEvent.updatedAt)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            self.deleteScan(id: self.scanHistory[indexPath.row].id)
+            self.scanHistory.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        return [delete]
     }
 }
