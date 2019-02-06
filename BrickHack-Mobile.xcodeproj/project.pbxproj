@@ -14,8 +14,6 @@
 		312F542A21EFC43D005613F7 /* TrackableEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542921EFC43D005613F7 /* TrackableEventCell.swift */; };
 		312F542C21EFDAFC005613F7 /* TrackableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542B21EFDAFC005613F7 /* TrackableTag.swift */; };
 		31602385220A116000F73F58 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31602384220A116000F73F58 /* HomeViewController.swift */; };
-		316F237B21EFA81800FD1FEF /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; };
-		316F237E21EFA82100FD1FEF /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		316F238021EFA99D00FD1FEF /* ScanHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */; };
 		31A6A37821F6681100D9C085 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31A6A37321F6665D00D9C085 /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		31AC34DE21DDB8D3005A419E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */; };
