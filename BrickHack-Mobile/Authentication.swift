@@ -17,6 +17,7 @@ let currentUserRoute = "\(environment)/oauth/token/info"
 let todaysStatsDataRoute = "\(environment)/manage/dashboard/todays_stats_data"
 let trackableTagsRoute = "\(environment)/manage/trackable_tags.json"
 let trackableEventsRoute = "\(environment)/manage/trackable_events.json"
+let editTrackableEventRoute = "\(environment)/manage/trackable_events/"
 let trackableEventsRouteByUserRoute = "\(environment)/manage/trackable_events.json?trackable_event[user_id]="
 // Define a NetworkReachabilityManager so the app can determine if the user has a connection before attempting to connect to the internet
 let networkReachabilityManager = Alamofire.NetworkReachabilityManager(host: environment)
@@ -44,7 +45,9 @@ final class LoginViewController: UIViewController {
             
             oauth2.authConfig.authorizeEmbedded = true
             oauth2.authConfig.authorizeContext = self
-            
+          
+            //oauth2.logger = OAuth2DebugLogger(.trace)
+          
             oauth2.authorize(){responce, error in
                 print("Authorizing...")
                 if error != nil{
