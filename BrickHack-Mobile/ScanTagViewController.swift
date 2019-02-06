@@ -75,7 +75,20 @@ extension ScanTagViewController: NFCNDEFReaderSessionDelegate{
     // Prompts the user with scan module and hides UIPickerView if showing
     @IBAction func scanButtonWasPressed(_ sender: Any) {
         dismissPicker()
-        self.session?.begin()
+        if NFCNDEFReaderSession.readingAvailable{
+            self.session?.begin()
+        }else{
+            let alertController = UIAlertController(
+                title: "Feature Not Supported",
+                message: "This iPhone does not support NFC reading functionality.",
+                preferredStyle: .alert
+            )
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            DispatchQueue.main.async {
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+        
     }
     
     /// - Tag: processingTagData

@@ -25,14 +25,13 @@ final class ScanHistoryViewController: UIViewController {
     override func viewDidLoad() {
         if(hasInternetAccess()){
             loadingView = UIAlertController(title: nil, message: "Loading scans...", preferredStyle: UIAlertController.Style.alert)
-            
+
             let spinner = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
             spinner.hidesWhenStopped = true
             spinner.style = UIActivityIndicatorView.Style.gray
             spinner.startAnimating()
             loadingView!.view.addSubview(spinner)
-            present(loadingView!, animated: true, completion: nil)
-            
+            self.present(self.loadingView!, animated: true, completion: nil)
             sessionManager = SessionManager()
             let retrier = OAuth2RetryHandler(oauth2: oauth2!)
             sessionManager!.adapter = retrier
@@ -41,7 +40,7 @@ final class ScanHistoryViewController: UIViewController {
                 let _  = self.sessionManager
                 let dict = response.result.value as? [String: Any]
                 self.currentUser = dict?["resource_owner_id"] as? Int ?? 0
-                self.getTagHistory()
+                self.getTagHistory(loadingView: self.loadingView!)
             }
         }else{
             self.displayNoNetworkAlert()
@@ -51,7 +50,7 @@ final class ScanHistoryViewController: UIViewController {
     }
     
     // As AlamoFire is asynchronous, a function is needed to continue the data retrieval process
-    func getTagHistory(){
+    func getTagHistory(loadingView: UIAlertController){
         let usersTags = "\(trackableEventsRouteByUserRoute)\(currentUser!)"
         
         sessionManager = SessionManager()
@@ -61,22 +60,34 @@ final class ScanHistoryViewController: UIViewController {
         sessionManager!.request(usersTags).validate().responseJSON{ response in
             let _  = self.sessionManager
             let dict = response.result.value as? Array<[String: Any]> ?? [[:]]
-
-            for i in 0...(dict.count-1){
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                
-                let bandID = dict[i]["band_id"] as? String ?? ""
-                let createdAt = dateFormatter.date(from: dict[i]["created_at"] as? String ?? "")
-                let id = dict[i]["id"] as? Int ?? 0
-                let trackableTagID = dict[i]["trackable_tag_id"] as! Int
-                let user_id = self.currentUser!
-                let updatedAt = dateFormatter.date(from: dict[i]["updated_at"] as? String ?? "")
-                
-                let trackableEvent = TrackableEvent(bandID: bandID, createdAt: createdAt!, id: id, trackableTagID: trackableTagID, userID: user_id, updatedAt: updatedAt!)
-                self.scanHistory.append(trackableEvent)
+            
+            let hideLoadView = { () -> Void in
+                loadingView.dismiss(animated: false, completion: nil)
             }
-            self.getTagData()
+            
+            if(dict.count > 0){ // Case where there are no scans
+                for i in 0...(dict.count-1){
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                    
+                    let bandID = dict[i]["band_id"] as? String ?? ""
+                    let createdAt = dateFormatter.date(from: dict[i]["created_at"] as? String ?? "")
+                    let id = dict[i]["id"] as? Int ?? 0
+                    let trackableTagID = dict[i]["trackable_tag_id"] as! Int
+                    let user_id = self.currentUser!
+                    let updatedAt = dateFormatter.date(from: dict[i]["updated_at"] as? String ?? "")
+                    
+                    let trackableEvent = TrackableEvent(bandID: bandID, createdAt: createdAt!, id: id, trackableTagID: trackableTagID, userID: user_id, updatedAt: updatedAt!)
+                    self.scanHistory.append(trackableEvent)
+                }
+                self.getTagData()
+            }else{
+                DispatchQueue.global().asyncAfter(deadline: .now() + 0.5, execute: {
+                    DispatchQueue.main.async {
+                        hideLoadView()
+                    }
+                })
+            }
         }
     }
     
