@@ -20,12 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if "brickhack-ios" == url.scheme{
-            if let vc = window?.rootViewController as? LoginViewController {
-                vc.oauth2.handleRedirectURL(url)
-                return true
-            }
-        }
+
+        // @TODO: Handle deeplink
+//        if "brickhack-ios" == url.scheme{
+//            if let vc = window?.rootViewController as? LoginViewController {
+//                vc.oauth2.handleRedirectURL(url)
+//                return true
+//            }
+//        }
         return false
     }
 

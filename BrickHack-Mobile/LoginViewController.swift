@@ -1,17 +1,22 @@
 //
-//  HomeViewController.swift
+//  LoginViewController.swift
 //  BrickHack-Mobile
 //
-//  Created by Peter Kos on 09/27/19.
+//  Created by Peter Kos on 9/27/19.
 //  Copyright © 2019 codeRIT. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class LoginViewController: UIViewController {
+
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
+
 
 }

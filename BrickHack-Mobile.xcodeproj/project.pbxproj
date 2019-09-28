@@ -3,66 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		21BEA9C216BEFB0D956DA447 /* Pods_BrickHack_Mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */; };
-		311DE50121F17BA2003F476B /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; };
-		311DE50221F17BA8003F476B /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 316F237621EFA7D000FD1FEF /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		312F542821EFB9F4005613F7 /* TrackableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542721EFB9F4005613F7 /* TrackableEvent.swift */; };
-		312F542A21EFC43D005613F7 /* TrackableEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542921EFC43D005613F7 /* TrackableEventCell.swift */; };
-		312F542C21EFDAFC005613F7 /* TrackableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312F542B21EFDAFC005613F7 /* TrackableTag.swift */; };
 		31602385220A116000F73F58 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31602384220A116000F73F58 /* HomeViewController.swift */; };
-		316F238021EFA99D00FD1FEF /* ScanHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */; };
 		31A6A37821F6681100D9C085 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31A6A37321F6665D00D9C085 /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		31AC34DE21DDB8D3005A419E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */; };
-		31C50F3821E0067600C9983D /* OAuth2RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C50F3721E0067600C9983D /* OAuth2RetryHandler.swift */; };
 		31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F540219B29CD00E3E1AF /* AppDelegate.swift */; };
-		31C5F543219B29CD00E3E1AF /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F542219B29CD00E3E1AF /* Authentication.swift */; };
 		31C5F546219B29CD00E3E1AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F544219B29CD00E3E1AF /* Main.storyboard */; };
 		31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F547219B29CF00E3E1AF /* Assets.xcassets */; };
-		31E3920B219F7F0400F7A3BE /* ScanTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E3920A219F7F0400F7A3BE /* ScanTagViewController.swift */; };
+		D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C07884233EDBA300089193 /* LoginViewController.swift */; };
 		FC82CF1C21ACD3FB008959FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FC82CF1B21ACD3FB008959FC /* Podfile */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		311DE4FF21F17B9B003F476B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = EEDB8623193FAAE500C4EEA1;
-			remoteInfo = OAuth2iOS;
-		};
-		316F237321EFA7D000FD1FEF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EEE209471942772800736F1A;
-			remoteInfo = OAuth2macOS;
-		};
-		316F237521EFA7D000FD1FEF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EEDB8624193FAAE500C4EEA1;
-			remoteInfo = OAuth2iOS;
-		};
-		316F237721EFA7D000FD1FEF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 659854461C5B3BEA00237D39;
-			remoteInfo = OAuth2tvOS;
-		};
-		316F237921EFA7D000FD1FEF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EEE209A219427DFE00736F1A;
-			remoteInfo = OAuth2Tests;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		31E5CD4121CD8C1F002E41D2 /* Embed Frameworks */ = {
@@ -71,7 +25,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				311DE50221F17BA8003F476B /* OAuth2.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,25 +32,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		312F542721EFB9F4005613F7 /* TrackableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableEvent.swift; sourceTree = "<group>"; };
-		312F542921EFC43D005613F7 /* TrackableEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableEventCell.swift; sourceTree = "<group>"; };
-		312F542B21EFDAFC005613F7 /* TrackableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableTag.swift; sourceTree = "<group>"; };
 		31602384220A116000F73F58 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = "<group>"; };
-		316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHistoryViewController.swift; sourceTree = "<group>"; };
 		31A6A37321F6665D00D9C085 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
 		31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		31B205BE21EFB00700D6ADF7 /* libVYNFCKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libVYNFCKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		31C50F3721E0067600C9983D /* OAuth2RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2RetryHandler.swift; sourceTree = "<group>"; };
 		31C5F53D219B29CD00E3E1AF /* BrickHack-Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BrickHack-Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C5F540219B29CD00E3E1AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		31C5F542219B29CD00E3E1AF /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		31C5F545219B29CD00E3E1AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		31C5F547219B29CF00E3E1AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31C5F54C219B29CF00E3E1AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BrickHack-Mobile.entitlements"; sourceTree = "<group>"; };
-		31E3920A219F7F0400F7A3BE /* ScanTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanTagViewController.swift; sourceTree = "<group>"; };
 		C029FC28202ED2177D811FF7 /* Pods-BrickHack-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
+		D7C07884233EDBA300089193 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DF9A947946DF6E11797CE707 /* Pods-BrickHack-Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.release.xcconfig"; sourceTree = "<group>"; };
 		F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrickHack_Mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC82CF1B21ACD3FB008959FC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -109,7 +55,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				31A6A37821F6681100D9C085 /* CoreNFC.framework in Frameworks */,
-				311DE50121F17BA2003F476B /* OAuth2.framework in Frameworks */,
 				21BEA9C216BEFB0D956DA447 /* Pods_BrickHack_Mobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,21 +72,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		316F236D21EFA7D000FD1FEF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				316F237421EFA7D000FD1FEF /* OAuth2.framework */,
-				316F237621EFA7D000FD1FEF /* OAuth2.framework */,
-				316F237821EFA7D000FD1FEF /* OAuth2.framework */,
-				316F237A21EFA7D000FD1FEF /* OAuth2Tests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		31C5F534219B29CD00E3E1AF = {
 			isa = PBXGroup;
 			children = (
-				316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */,
 				FC82CF1B21ACD3FB008959FC /* Podfile */,
 				31C5F53F219B29CD00E3E1AF /* BrickHack-Mobile */,
 				31C5F53E219B29CD00E3E1AF /* Products */,
@@ -163,15 +96,9 @@
 			children = (
 				31602384220A116000F73F58 /* HomeViewController.swift */,
 				31C5F540219B29CD00E3E1AF /* AppDelegate.swift */,
-				31C5F542219B29CD00E3E1AF /* Authentication.swift */,
-				31E3920A219F7F0400F7A3BE /* ScanTagViewController.swift */,
-				316F237F21EFA99D00FD1FEF /* ScanHistoryViewController.swift */,
-				31C50F3721E0067600C9983D /* OAuth2RetryHandler.swift */,
-				312F542721EFB9F4005613F7 /* TrackableEvent.swift */,
-				312F542921EFC43D005613F7 /* TrackableEventCell.swift */,
-				312F542B21EFDAFC005613F7 /* TrackableTag.swift */,
 				31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */,
 				31C5F544219B29CD00E3E1AF /* Main.storyboard */,
+				D7C07884233EDBA300089193 /* LoginViewController.swift */,
 				31C5F547219B29CF00E3E1AF /* Assets.xcassets */,
 				31C5F54C219B29CF00E3E1AF /* Info.plist */,
 				31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */,
@@ -205,7 +132,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				311DE50021F17B9B003F476B /* PBXTargetDependency */,
 			);
 			name = "BrickHack-Mobile";
 			productName = "BrickHack-Mobile";
@@ -246,49 +172,12 @@
 			mainGroup = 31C5F534219B29CD00E3E1AF;
 			productRefGroup = 31C5F53E219B29CD00E3E1AF /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 316F236D21EFA7D000FD1FEF /* Products */;
-					ProjectRef = 316F236C21EFA7D000FD1FEF /* OAuth2.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				31C5F53C219B29CD00E3E1AF /* BrickHack-Mobile */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		316F237421EFA7D000FD1FEF /* OAuth2.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OAuth2.framework;
-			remoteRef = 316F237321EFA7D000FD1FEF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		316F237621EFA7D000FD1FEF /* OAuth2.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OAuth2.framework;
-			remoteRef = 316F237521EFA7D000FD1FEF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		316F237821EFA7D000FD1FEF /* OAuth2.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OAuth2.framework;
-			remoteRef = 316F237721EFA7D000FD1FEF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		316F237A21EFA7D000FD1FEF /* OAuth2Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = OAuth2Tests.xctest;
-			remoteRef = 316F237921EFA7D000FD1FEF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		31C5F53B219B29CD00E3E1AF /* Resources */ = {
@@ -311,24 +200,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework",
-				"${BUILT_PRODUCTS_DIR}/VYNFCKit/VYNFCKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Apollo.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VYNFCKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D42346D14B18A39C5188BC7B /* [CP] Check Pods Manifest.lock */ = {
@@ -360,27 +240,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31C5F543219B29CD00E3E1AF /* Authentication.swift in Sources */,
+				D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */,
 				31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */,
-				31E3920B219F7F0400F7A3BE /* ScanTagViewController.swift in Sources */,
-				31C50F3821E0067600C9983D /* OAuth2RetryHandler.swift in Sources */,
-				316F238021EFA99D00FD1FEF /* ScanHistoryViewController.swift in Sources */,
 				31602385220A116000F73F58 /* HomeViewController.swift in Sources */,
-				312F542821EFB9F4005613F7 /* TrackableEvent.swift in Sources */,
-				312F542A21EFC43D005613F7 /* TrackableEventCell.swift in Sources */,
-				312F542C21EFDAFC005613F7 /* TrackableTag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		311DE50021F17B9B003F476B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OAuth2iOS;
-			targetProxy = 311DE4FF21F17B9B003F476B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		31C5F544219B29CD00E3E1AF /* Main.storyboard */ = {

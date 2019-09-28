@@ -1,26 +1,31 @@
 PODS:
   - Alamofire (4.8.1)
-  - Apollo (0.9.4):
-    - Apollo/Core (= 0.9.4)
-  - Apollo/Core (0.9.4)
+  - Apollo (0.16.0):
+    - Apollo/Core (= 0.16.0)
+  - Apollo/Core (0.16.0)
+  - p2.OAuth2 (4.2.0)
   - VYNFCKit (0.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
-  - Apollo (~> 0.9.0)
+  - Apollo (~> 0.16.0)
+  - p2.OAuth2 (~> 4.2)
   - VYNFCKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
-    - Apollo
     - VYNFCKit
+  trunk:
+    - Apollo
+    - p2.OAuth2
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  Apollo: 450856adbdebcdf28c3c671f81732ac3f9944065
+  Apollo: ad9ce2008f88fce57c062aa4853364b7927355c8
+  p2.OAuth2: d5ea9b928fc5d10d088d419db6f3380578b6f866
   VYNFCKit: 86a9b711fd1f34f6f7128a2a883cd58dbd781b9d
 
-PODFILE CHECKSUM: 99a6d38bd5d1b214cd890d9fe87964cc37175c7a
+PODFILE CHECKSUM: 0a6fcdf62d2072226ca7ac0a0d734e1f884a9bf0
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.1
