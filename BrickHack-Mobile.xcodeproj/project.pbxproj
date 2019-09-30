@@ -14,6 +14,7 @@
 		31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F540219B29CD00E3E1AF /* AppDelegate.swift */; };
 		31C5F546219B29CD00E3E1AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F544219B29CD00E3E1AF /* Main.storyboard */; };
 		31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F547219B29CF00E3E1AF /* Assets.xcassets */; };
+		D79AA2B823425DFA009C469D /* APIRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AA2B723425DFA009C469D /* APIRoutes.swift */; };
 		D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C07884233EDBA300089193 /* LoginViewController.swift */; };
 		FC82CF1C21ACD3FB008959FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FC82CF1B21ACD3FB008959FC /* Podfile */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,7 @@
 		31C5F54C219B29CF00E3E1AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BrickHack-Mobile.entitlements"; sourceTree = "<group>"; };
 		C029FC28202ED2177D811FF7 /* Pods-BrickHack-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
+		D79AA2B723425DFA009C469D /* APIRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoutes.swift; sourceTree = "<group>"; };
 		D7C07884233EDBA300089193 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DF9A947946DF6E11797CE707 /* Pods-BrickHack-Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.release.xcconfig"; sourceTree = "<group>"; };
 		F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrickHack_Mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +103,7 @@
 				D7C07884233EDBA300089193 /* LoginViewController.swift */,
 				31C5F547219B29CF00E3E1AF /* Assets.xcassets */,
 				31C5F54C219B29CF00E3E1AF /* Info.plist */,
+				D79AA2B723425DFA009C469D /* APIRoutes.swift */,
 				31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */,
 			);
 			path = "BrickHack-Mobile";
@@ -242,6 +245,7 @@
 			files = (
 				D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */,
 				31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */,
+				D79AA2B823425DFA009C469D /* APIRoutes.swift in Sources */,
 				31602385220A116000F73F58 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

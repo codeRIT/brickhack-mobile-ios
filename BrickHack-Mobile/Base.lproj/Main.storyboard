@@ -34,6 +34,9 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.matchToBounds" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="titleLabel.adjustsFontSizeToFitWidth" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="initializeOAuth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8oy-dY-rua"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BH-logo" translatesAutoresizingMaskIntoConstraints="NO" id="rwn-wb-gg1">
                                 <rect key="frame" x="57" y="78" width="300" height="185"/>
@@ -96,6 +99,7 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="loginButton" destination="tmd-U4-Zfm" id="DNt-fA-7pQ"/>
                         <segue destination="R0P-al-MVU" kind="show" identifier="authSuccessSegue" id="WQS-F6-Rby"/>
                     </connections>
                 </viewController>

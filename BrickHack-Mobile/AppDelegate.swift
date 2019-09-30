@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -21,13 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 
-        // @TODO: Handle deeplink
-//        if "brickhack-ios" == url.scheme{
-//            if let vc = window?.rootViewController as? LoginViewController {
-//                vc.oauth2.handleRedirectURL(url)
-//                return true
-//            }
-//        }
+        if "brickhack-ios" == url.scheme {
+            if let vc = window?.rootViewController as? LoginViewController {
+                vc.oauth2.handleRedirectURL(url)
+                return true
+            }
+        }
         return false
     }
 
