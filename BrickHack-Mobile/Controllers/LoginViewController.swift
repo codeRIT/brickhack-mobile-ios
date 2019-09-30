@@ -12,8 +12,11 @@ import p2_OAuth2
 
 class LoginViewController: UIViewController {
 
+    // MARK: IB Properties
     @IBOutlet weak var loginButton: UIButton?
 
+
+    // MARK: IB Actions
     // Initiates the OAuth process if no valid token found
     @IBAction func initializeOAuth(_ sender: UIButton) {
 
@@ -100,7 +103,11 @@ class LoginViewController: UIViewController {
     // Pass oauth instance forward
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "authSuccessSegue") {
-            // @TODO: Pass oauth to menu view
+            // @TODO: Pass oauth to menu view, *through Nav Controller*
+            if let homeVC = segue.destination as? HomeViewController {
+//                homeVC.oauth2 = self.oauth2
+
+            }
         }
     }
 

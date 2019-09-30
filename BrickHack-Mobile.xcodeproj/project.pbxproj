@@ -96,17 +96,41 @@
 		31C5F53F219B29CD00E3E1AF /* BrickHack-Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				31602384220A116000F73F58 /* HomeViewController.swift */,
 				31C5F540219B29CD00E3E1AF /* AppDelegate.swift */,
-				31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */,
 				31C5F544219B29CD00E3E1AF /* Main.storyboard */,
-				D7C07884233EDBA300089193 /* LoginViewController.swift */,
+				D79AA2BB234268D2009C469D /* Views */,
+				D79AA2BA234268CA009C469D /* Models */,
+				D79AA2B9234268C2009C469D /* Controllers */,
 				31C5F547219B29CF00E3E1AF /* Assets.xcassets */,
-				31C5F54C219B29CF00E3E1AF /* Info.plist */,
-				D79AA2B723425DFA009C469D /* APIRoutes.swift */,
 				31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */,
+				31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */,
+				31C5F54C219B29CF00E3E1AF /* Info.plist */,
 			);
 			path = "BrickHack-Mobile";
+			sourceTree = "<group>";
+		};
+		D79AA2B9234268C2009C469D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				31602384220A116000F73F58 /* HomeViewController.swift */,
+				D7C07884233EDBA300089193 /* LoginViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D79AA2BA234268CA009C469D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D79AA2B723425DFA009C469D /* APIRoutes.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D79AA2BB234268D2009C469D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		EBCD219BEF9877F1BF3921E8 /* Pods */ = {
