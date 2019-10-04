@@ -118,11 +118,20 @@ class LoginViewController: UIViewController {
     }
 
     func getUserData() {
-        let sessionManager = SessionManager()
-        // @FIXME: OAuth2RetryHandler
 
-        sessionManager.request(Routes.currentUser).validate().response { response in
-            print("Got a response!")
+        // Request user info
+        var request = URLRequest(url: URL(string: Routes.currentUser)!)
+
+        // @FIXME: Concrete error handling here
+        // @TODO: 401 redirect cycle vs. this implementation? This seems to work fine
+        do {
+            try request.sign(with: OAuth2DataLoader(oauth2: oauthGrant).oauth2)
+        } catch {
+            print("Unable to grab user data from server.")
+            return
+        }
+
+        Alamofire.request(request).validate().responseJSON { (response) in
             print(response)
         }
     }
