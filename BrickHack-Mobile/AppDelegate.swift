@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if "brickhack-ios" == url.scheme {
             if let vc = window?.rootViewController as? LoginViewController {
-                vc.oauth2.handleRedirectURL(url)
+                vc.oauthGrant.handleRedirectURL(url)
                 return true
             }
         }

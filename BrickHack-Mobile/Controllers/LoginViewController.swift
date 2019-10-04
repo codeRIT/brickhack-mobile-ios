@@ -8,6 +8,7 @@
 
 import UIKit
 import p2_OAuth2
+import Alamofire
 
 
 class LoginViewController: UIViewController {
@@ -25,8 +26,8 @@ class LoginViewController: UIViewController {
             return
         }
 
-        guard !oauth2.isAuthorizing else {
-            oauth2.abortAuthorization()
+        guard !oauthGrant.isAuthorizing else {
+            oauthGrant.abortAuthorization()
             return
         }
 
@@ -36,10 +37,10 @@ class LoginViewController: UIViewController {
         sender.setTitle("Authorizing", for: UIControl.State.normal)
         sender.isEnabled = false
 
-        oauth2.authConfig.authorizeEmbedded = true
-        oauth2.authConfig.authorizeContext = self
+        oauthGrant.authConfig.authorizeEmbedded = true
+        oauthGrant.authConfig.authorizeContext = self
 
-        oauth2.authorize() { response, error in
+        oauthGrant.authorize() { response, error in
             print("Authorizing...")
 
             // @TODO: Case-by-case error handling would be great here.
@@ -50,7 +51,7 @@ class LoginViewController: UIViewController {
                 return
             }
 
-            if self.oauth2.hasUnexpiredAccessToken() {
+            if self.oauthGrant.hasUnexpiredAccessToken() {
                 print("Authorization successful.")
 
                 // If login is successful, continue to main app
@@ -69,21 +70,21 @@ class LoginViewController: UIViewController {
     // MARK: Properties
 
     // @TODO: Convert to OAuth2PasswordGrant to use native login
-    var oauth2 = OAuth2ImplicitGrant(settings: [
+    var oauthGrant = OAuth2ImplicitGrant(settings: [
         "client_id": "745251411cbd86b08c69c7c504f83a319ea60bc0253e6ad9e9953f536d2c3003",
         "authorize_uri": Routes.authorize,
         "redirect_uris": ["brickhack-ios://oauth/callback"],
         "scope": ""] as OAuth2JSON)
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-
     // Once the view appears and a valid token exists, take the user directly into the app without having to press login
     override func viewDidAppear(_ animated: Bool) {
-        if hasInternetAccess(){
-            if oauth2.hasUnexpiredAccessToken(){
+        if hasInternetAccess() {
+            if oauthGrant.hasUnexpiredAccessToken() {
                 self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
             }
         }
@@ -95,19 +96,34 @@ class LoginViewController: UIViewController {
     // Resets login button text back to default after displaying "authorizing"
     // @TODO: Maybe move to SVProgressHud, or a status label?
     // (Not a fan of changing UI like this; may break accessibility)
-    func resetLoginButton(_ sender: UIButton){
+    func resetLoginButton(_ sender: UIButton) {
         sender.setTitle("Login", for: UIControl.State.normal)
         sender.isEnabled = true
     }
 
-    // Pass oauth instance forward
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "authSuccessSegue") {
-            // @TODO: Pass oauth to menu view, *through Nav Controller*
-            if let homeVC = segue.destination as? HomeViewController {
-//                homeVC.oauth2 = self.oauth2
+
+            // Pass oauth instance forward, grab user data
+            if let homeVC = segue.destination.children.first as? HomeViewController {
+
+                // Get user data
+//                homeVC.userData = getUserData()
+                getUserData()
+                homeVC.oauthGrant = self.oauthGrant
 
             }
+        }
+    }
+
+    func getUserData() {
+        let sessionManager = SessionManager()
+        // @FIXME: OAuth2RetryHandler
+
+        sessionManager.request(Routes.currentUser).validate().response { response in
+            print("Got a response!")
+            print(response)
         }
     }
 
