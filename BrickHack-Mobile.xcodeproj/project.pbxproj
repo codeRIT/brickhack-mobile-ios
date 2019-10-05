@@ -16,6 +16,7 @@
 		31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F547219B29CF00E3E1AF /* Assets.xcassets */; };
 		D79AA2B823425DFA009C469D /* APIRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AA2B723425DFA009C469D /* APIRoutes.swift */; };
 		D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C07884233EDBA300089193 /* LoginViewController.swift */; };
+		D7D4B037234813A70001DFC5 /* AlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D4B036234813A70001DFC5 /* AlertMessage.swift */; };
 		FC82CF1C21ACD3FB008959FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FC82CF1B21ACD3FB008959FC /* Podfile */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		C029FC28202ED2177D811FF7 /* Pods-BrickHack-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		D79AA2B723425DFA009C469D /* APIRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoutes.swift; sourceTree = "<group>"; };
 		D7C07884233EDBA300089193 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D7D4B036234813A70001DFC5 /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertMessage.swift; path = "BrickHack-Mobile/AlertMessage.swift"; sourceTree = SOURCE_ROOT; };
 		DF9A947946DF6E11797CE707 /* Pods-BrickHack-Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.release.xcconfig"; sourceTree = "<group>"; };
 		F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrickHack_Mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC82CF1B21ACD3FB008959FC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -129,6 +131,7 @@
 		D79AA2BB234268D2009C469D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D7D4B036234813A70001DFC5 /* AlertMessage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */,
+				D7D4B037234813A70001DFC5 /* AlertMessage.swift in Sources */,
 				31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */,
 				D79AA2B823425DFA009C469D /* APIRoutes.swift in Sources */,
 				31602385220A116000F73F58 /* HomeViewController.swift in Sources */,

@@ -9,6 +9,7 @@
 import UIKit
 import p2_OAuth2
 import Alamofire
+import SwiftMessages
 
 
 class LoginViewController: UIViewController {
@@ -85,7 +86,7 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if hasInternetAccess() {
             if oauthGrant.hasUnexpiredAccessToken() {
-                self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
+//                self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
             }
         }
     }
@@ -122,17 +123,22 @@ class LoginViewController: UIViewController {
         // Request user info
         var request = URLRequest(url: URL(string: Routes.currentUser)!)
 
-        // @FIXME: Concrete error handling here
-        // @TODO: 401 redirect cycle vs. this implementation? This seems to work fine
+        // @TODO: 401 redirect cycle vs. this implementation?
+        // Current plan is to use this token throughout the app, and guaruntee authorization
+        // from this point forward.
         do {
             try request.sign(with: OAuth2DataLoader(oauth2: oauthGrant).oauth2)
         } catch {
-            print("Unable to grab user data from server.")
+            print("User login sign request error: \(error.localizedDescription)")
+            MessageHandler.showAlertMessage(withTitle: "Login Error",
+                                            body: "Unable to grab user data from server.",
+                                            type: .error)
             return
         }
 
         Alamofire.request(request).validate().responseJSON { (response) in
             print(response)
+            // @TODO: Return data to flow
         }
     }
 

@@ -7,4 +7,5 @@ target 'BrickHack-Mobile' do
     pod 'Alamofire', '~> 4.0'
     pod 'p2.OAuth2', '~> 4.2'
     pod 'VYNFCKit'
+    pod 'SwiftMessages'
 end
