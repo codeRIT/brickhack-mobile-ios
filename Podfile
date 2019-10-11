@@ -8,4 +8,6 @@ target 'BrickHack-Mobile' do
     pod 'p2.OAuth2', '~> 4.2'
     pod 'VYNFCKit'
     pod 'SwiftMessages'
+    pod 'SwiftyJSON'
+    pod 'SVProgressHUD'
 end
