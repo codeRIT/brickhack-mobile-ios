@@ -9,7 +9,10 @@
 import UIKit
 import p2_OAuth2
 import Alamofire
+import PromiseKit
 import SwiftMessages
+import SwiftyJSON
+import SVProgressHUD
 
 
 class LoginViewController: UIViewController {
@@ -56,10 +59,7 @@ class LoginViewController: UIViewController {
                 print("Authorization successful.")
 
                 // If login is successful, continue to main app
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
-                    self.resetLoginButton(sender)
-                }
+                self.loginFlow()
             }
         }
     }
@@ -83,6 +83,7 @@ class LoginViewController: UIViewController {
     }
 
     // Once the view appears and a valid token exists, take the user directly into the app without having to press login
+    // @TODO: Add UI feedback for this; success MessageHandler?
     override func viewDidAppear(_ animated: Bool) {
         if hasInternetAccess() {
             if oauthGrant.hasUnexpiredAccessToken() {
@@ -109,18 +110,68 @@ class LoginViewController: UIViewController {
             // Pass oauth instance forward, grab user data
             if let homeVC = segue.destination.children.first as? HomeViewController {
 
+                // Show loading indicator for user feedback
+                SVProgressHUD.show()
+
                 // Get user data
-//                homeVC.userData = getUserData()
-                getUserData()
+//                homeVC.userData = [getUserData()]
+
                 homeVC.oauthGrant = self.oauthGrant
 
             }
         }
     }
 
-    func getUserData() {
+    // MARK: User data & login flow
 
-        // Request user info
+    func loginFlow() {
+
+        // Generate signed request
+        let request = signURLRequest()
+
+        guard let validRequest = request else {
+            MessageHandler.showAlertMessage(withTitle: "Auth error", body: "Unable to sign auth request.", type: .error)
+            return
+        }
+
+        // "native" promise flow, now that non-error checking is done
+        getUserID(withRequest: validRequest)
+
+        // @TODO: Now, get user name info that we have the id.
+
+    }
+
+
+    func getUserID(withRequest request: URLRequest) -> Promise<Int> {
+
+        // @TODO: Wrap oauth pattern in Promise
+
+
+        return Promise { seal in
+            // Perform AF Request
+            Alamofire.request(request).responseJSON { response in
+
+                // Attempt to parse request
+                switch response.result {
+                    case .success(let json):
+                        // Attempt to parse json
+                        guard let json = json  as? [String: Any] else {
+                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
+                        }
+
+                        // Return only the user data from json (we don't need other params on this request)
+                        // @TODO: error check if property exists
+                        seal.fulfill(json["resource_owner_id"] as! Int)
+                    case .failure(let error):
+                        seal.reject(error)
+                }
+            }
+        }
+
+    }
+
+    func signURLRequest() -> URLRequest? {
+
         var request = URLRequest(url: URL(string: Routes.currentUser)!)
 
         // @TODO: 401 redirect cycle vs. this implementation?
@@ -133,14 +184,14 @@ class LoginViewController: UIViewController {
             MessageHandler.showAlertMessage(withTitle: "Login Error",
                                             body: "Unable to grab user data from server.",
                                             type: .error)
-            return
+            return nil
         }
 
-        Alamofire.request(request).validate().responseJSON { (response) in
-            print(response)
-            // @TODO: Return data to flow
-        }
+        return request
     }
+
+
+    //  MARK: Helper functions
 
     // Check if the device currently has access to the internet, and can establish a connection to the environment
     func hasInternetAccess() -> Bool {

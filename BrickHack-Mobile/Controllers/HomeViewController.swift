@@ -12,7 +12,7 @@ import p2_OAuth2
 class HomeViewController: UIViewController {
 
     var oauthGrant: OAuth2ImplicitGrant!
-//    var userData: [Any]?
+    var userData: [Any]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
         super.viewDidAppear(animated)
 
         print(oauthGrant.clientName ?? "No Client Name")
-//        print(userData ?? "No user data")
+        print(userData ?? "No user data")
     }
 
 }
