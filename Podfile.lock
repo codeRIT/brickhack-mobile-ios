@@ -4,6 +4,18 @@ PODS:
     - Apollo/Core (= 0.16.0)
   - Apollo/Core (0.16.0)
   - p2.OAuth2 (4.2.0)
+  - PromiseKit (6.11.0):
+    - PromiseKit/CorePromise (= 6.11.0)
+    - PromiseKit/Foundation (= 6.11.0)
+    - PromiseKit/UIKit (= 6.11.0)
+  - PromiseKit/Alamofire (6.11.0):
+    - Alamofire (~> 4.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/CorePromise (6.11.0)
+  - PromiseKit/Foundation (6.11.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.11.0):
+    - PromiseKit/CorePromise
   - SVProgressHUD (2.2.5)
   - SwiftMessages (7.0.1):
     - SwiftMessages/App (= 7.0.1)
@@ -15,6 +27,8 @@ DEPENDENCIES:
   - Alamofire (~> 4.0)
   - Apollo (~> 0.16.0)
   - p2.OAuth2 (~> 4.2)
+  - PromiseKit (~> 6.8)
+  - PromiseKit/Alamofire (~> 6.0)
   - SVProgressHUD
   - SwiftMessages
   - SwiftyJSON
@@ -27,6 +41,7 @@ SPEC REPOS:
   trunk:
     - Apollo
     - p2.OAuth2
+    - PromiseKit
     - SVProgressHUD
     - SwiftMessages
     - SwiftyJSON
@@ -35,11 +50,12 @@ SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Apollo: ad9ce2008f88fce57c062aa4853364b7927355c8
   p2.OAuth2: d5ea9b928fc5d10d088d419db6f3380578b6f866
+  PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   VYNFCKit: 86a9b711fd1f34f6f7128a2a883cd58dbd781b9d
 
-PODFILE CHECKSUM: 3dadb80db6424ea61106beecdc9c40d404bd6bca
+PODFILE CHECKSUM: 520ddfad59b132ca268ef0ffff8a82062ee62c43
 
 COCOAPODS: 1.8.1

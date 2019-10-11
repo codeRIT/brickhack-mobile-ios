@@ -10,4 +10,6 @@ target 'BrickHack-Mobile' do
     pod 'SwiftMessages'
     pod 'SwiftyJSON'
     pod 'SVProgressHUD'
+	pod "PromiseKit", "~> 6.8"
+	pod 'PromiseKit/Alamofire', '~> 6.0'
 end
