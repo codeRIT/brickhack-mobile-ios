@@ -135,9 +135,6 @@ class LoginViewController: UIViewController {
 
     func loginFlow() {
 
-        // Show spinner
-        SVProgressHUD.show()
-
         // Generate signed request for userID
         let idRequest = signURLRequest(withRoute: Routes.currentUser)
         guard let signedIDRequest = idRequest else {
@@ -159,6 +156,14 @@ class LoginViewController: UIViewController {
             MessageHandler.showAlertMessage(withTitle: "Networking Error",
                                             body: "Error grabbing user id from server",
                                             type: .error)
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+            }
+        }
+
+        // Show spinner before network activity
+        DispatchQueue.main.async {
+            SVProgressHUD.show()
         }
 
         // Networking!
@@ -196,8 +201,7 @@ class LoginViewController: UIViewController {
                 return
             }
 
-
-            // @FIXME: Store in UserDefaults
+            // Save userID
             UserDefaults.standard.set(userID, forKey: "userID")
             print("userID: \(userID)")
 
