@@ -8,9 +8,6 @@ PODS:
     - PromiseKit/CorePromise (= 6.11.0)
     - PromiseKit/Foundation (= 6.11.0)
     - PromiseKit/UIKit (= 6.11.0)
-  - PromiseKit/Alamofire (6.11.0):
-    - Alamofire (~> 4.0)
-    - PromiseKit/CorePromise
   - PromiseKit/CorePromise (6.11.0)
   - PromiseKit/Foundation (6.11.0):
     - PromiseKit/CorePromise
@@ -28,7 +25,7 @@ DEPENDENCIES:
   - Apollo (~> 0.16.0)
   - p2.OAuth2 (~> 4.2)
   - PromiseKit (~> 6.8)
-  - PromiseKit/Alamofire (~> 6.0)
+  - PromiseKit/Foundation (~> 6.0)
   - SVProgressHUD
   - SwiftMessages
   - SwiftyJSON
@@ -56,6 +53,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   VYNFCKit: 86a9b711fd1f34f6f7128a2a883cd58dbd781b9d
 
-PODFILE CHECKSUM: 520ddfad59b132ca268ef0ffff8a82062ee62c43
+PODFILE CHECKSUM: f33f20089c667490515bde3b6e02f2c819b6eb74
 
 COCOAPODS: 1.8.1
