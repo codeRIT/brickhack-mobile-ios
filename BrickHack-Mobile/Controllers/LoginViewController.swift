@@ -61,8 +61,7 @@ class LoginViewController: UIViewController {
         }
     }
 
-    // Needed to escape UINavigationController when "Logout" is tapped
-    // @TODO may not implement
+    // Need to escape UINavigationController when "Logout" is tapped
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) {}
 
 
@@ -298,6 +297,18 @@ class LoginViewController: UIViewController {
         DispatchQueue.main.async {
             self.present(alertController, animated: true, completion: nil)
         }
+    }
+
+    func logout() {
+
+        // Clear tokens
+        oauthGrant.forgetTokens()
+
+        // Clear cookies in webview
+        let storage = HTTPCookieStorage.shared
+        storage.cookies?.forEach() { storage.deleteCookie($0) }
+
+        print("Logged out user.")
     }
 
 }

@@ -25,4 +25,12 @@ class HomeViewController: UIViewController {
         print("userID: \(userID!)")
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if let loginVC = segue.destination as? LoginViewController {
+            // Logout user before loading view
+            loginVC.logout()
+        }
+    }
+
 }
