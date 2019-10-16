@@ -56,7 +56,9 @@ class LoginViewController: UIViewController {
                 print("Authorization successful.")
 
                 // If login is successful, continue to main app
+                // @FIXME: "NavController on SFViewController, whose view is not in the window hierarchy!"
                 self.loginFlow()
+
             }
         }
     }
@@ -208,48 +210,6 @@ class LoginViewController: UIViewController {
             // Segue to main app
             self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
 
-
-
-            // Now that we have the user ID, append it and
-            // request the user info.
-            signedNameRequest.url?.appendPathComponent("\(userID).json")
-            URLSession.shared.dataTask(with: signedNameRequest) { (data, response, error) in
-
-                guard error == nil else {
-                    print("Error getting userID")
-                    networkErrorCheck(error!)
-                    return
-                }
-
-                guard let data = data else {
-                    print("Error getting data")
-                    networkErrorCheck(error!)
-                    return
-                }
-
-                // @FIXME: Debugging
-                print("AT END:")
-                print(signedNameRequest)
-                print(response)
-
-                let contents = String(data: data, encoding: .ascii)
-                print(contents)
-
-                // Convert server data to JSON
-                var json: JSON
-                do {
-                    json = try JSON(data: data, options: .allowFragments)
-                } catch {
-                    print(error)
-                    print("Oops")
-                    return
-                }
-
-                print(json)
-
-            }.resume()
-
-
         }.resume()
 
 
@@ -307,6 +267,9 @@ class LoginViewController: UIViewController {
         // Clear cookies in webview
         let storage = HTTPCookieStorage.shared
         storage.cookies?.forEach() { storage.deleteCookie($0) }
+
+        // Clear saved userID
+        UserDefaults.standard.removeObject(forKey: "userID")
 
         print("Logged out user.")
     }
