@@ -21,8 +21,8 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        print(oauthGrant.clientName ?? "No Client Name")
-        print("userID: \(userID)")
+        print("clientID: \(oauthGrant.clientId!)")
+        print("userID: \(userID!)")
     }
 
 }

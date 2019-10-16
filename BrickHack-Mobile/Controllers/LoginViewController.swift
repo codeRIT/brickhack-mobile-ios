@@ -8,9 +8,6 @@
 
 import UIKit
 import p2_OAuth2
-import Alamofire
-import PromiseKit
-import SwiftMessages
 import SwiftyJSON
 import SVProgressHUD
 
@@ -92,10 +89,12 @@ class LoginViewController: UIViewController {
     // @TODO: Add UI feedback for this; success MessageHandler?
     override func viewDidAppear(_ animated: Bool) {
         if hasInternetAccess() {
-            if oauthGrant.hasUnexpiredAccessToken() {
+
+            // Only continue if authenticated, AND user data is persisted
+            if oauthGrant.hasUnexpiredAccessToken() && userID != nil {
 
                 // Continue to main app if authorized, don't show spinner
-//                self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
+                self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
             }
         }
     }
@@ -140,7 +139,6 @@ class LoginViewController: UIViewController {
 
         // Generate signed request for userID
         let idRequest = signURLRequest(withRoute: Routes.currentUser)
-
         guard let signedIDRequest = idRequest else {
             MessageHandler.showAlertMessage(withTitle: "Auth error", body: "Unable to sign user ID auth request.", type: .error)
             return
@@ -149,7 +147,6 @@ class LoginViewController: UIViewController {
         // Generate signed request for username
         // (user id is added in promise)
         let nameRequest = signURLRequest(withRoute: Routes.questionnaire)
-
         guard var signedNameRequest = nameRequest else {
             MessageHandler.showAlertMessage(withTitle: "Auth error", body: "Unable to sign user name auth request.", type: .error)
             return
