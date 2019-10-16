@@ -68,6 +68,7 @@ class LoginViewController: UIViewController {
     // @TODO may not implement
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) {}
 
+
     // MARK: Properties
 
     // @TODO: Convert to OAuth2PasswordGrant to use native login
@@ -76,6 +77,11 @@ class LoginViewController: UIViewController {
         "authorize_uri": Routes.authorize,
         "redirect_uris": ["brickhack-ios://oauth/callback"],
         "scope": ""] as OAuth2JSON)
+    var userID: Int? {
+        get {
+            return UserDefaults.standard.integer(forKey: "userID")
+        }
+    }
 
 
     override func viewDidLoad() {
@@ -87,6 +93,8 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if hasInternetAccess() {
             if oauthGrant.hasUnexpiredAccessToken() {
+
+                // Continue to main app if authorized, don't show spinner
 //                self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
             }
         }
@@ -110,12 +118,13 @@ class LoginViewController: UIViewController {
             // Pass oauth instance forward, grab user data
             if let homeVC = segue.destination.children.first as? HomeViewController {
 
-                // Show loading indicator for user feedback
-                SVProgressHUD.show()
+                // @FIXME: Move loading here to account for grabbing of this data
+                guard userID != nil else {
+                    print("Invalid userID")
+                    return
+                }
 
-                // Get user data
-//                homeVC.userData = [getUserData()]
-
+                homeVC.userID = userID
                 homeVC.oauthGrant = self.oauthGrant
 
             }
@@ -125,6 +134,9 @@ class LoginViewController: UIViewController {
     // MARK: User data & login flow
 
     func loginFlow() {
+
+        // Show spinner
+        SVProgressHUD.show()
 
         // Generate signed request for userID
         let idRequest = signURLRequest(withRoute: Routes.currentUser)
@@ -186,8 +198,21 @@ class LoginViewController: UIViewController {
                 return
             }
 
-            
+
+            // @FIXME: Store in UserDefaults
+            UserDefaults.standard.set(userID, forKey: "userID")
             print("userID: \(userID)")
+
+            // Hide spinner
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+            }
+
+            // @FIXME: Bypass name functionality for now
+            // Segue to main app
+            self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
+
+
 
             // Now that we have the user ID, append it and
             // request the user info.
