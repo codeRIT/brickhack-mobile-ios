@@ -126,57 +126,122 @@ class LoginViewController: UIViewController {
 
     func loginFlow() {
 
-        // Generate signed request
-        let request = signURLRequest()
+        // Generate signed request for userID
+        let idRequest = signURLRequest(withRoute: Routes.currentUser)
 
-        guard let validRequest = request else {
-            MessageHandler.showAlertMessage(withTitle: "Auth error", body: "Unable to sign auth request.", type: .error)
+        guard let signedIDRequest = idRequest else {
+            MessageHandler.showAlertMessage(withTitle: "Auth error", body: "Unable to sign user ID auth request.", type: .error)
             return
         }
 
-        // "native" promise flow, now that non-error checking is done
-        getUserID(withRequest: validRequest)
+        // Generate signed request for username
+        // (user id is added in promise)
+        let nameRequest = signURLRequest(withRoute: Routes.questionnaire)
 
-        // @TODO: Now, get user name info that we have the id.
-
-    }
-
-
-    func getUserID(withRequest request: URLRequest) -> Promise<Int> {
-
-        // @TODO: Wrap oauth pattern in Promise
-
-
-        return Promise { seal in
-            // Perform AF Request
-            Alamofire.request(request).responseJSON { response in
-
-                // Attempt to parse request
-                switch response.result {
-                    case .success(let json):
-                        // Attempt to parse json
-                        guard let json = json  as? [String: Any] else {
-                            return seal.reject(AFError.responseValidationFailed(reason: .dataFileNil))
-                        }
-
-                        // Return only the user data from json (we don't need other params on this request)
-                        // @TODO: error check if property exists
-                        seal.fulfill(json["resource_owner_id"] as! Int)
-                    case .failure(let error):
-                        seal.reject(error)
-                }
-            }
+        guard var signedNameRequest = nameRequest else {
+            MessageHandler.showAlertMessage(withTitle: "Auth error", body: "Unable to sign user name auth request.", type: .error)
+            return
         }
 
+        // Function for error checking
+        func networkErrorCheck(_ error: Error) {
+            print(error.localizedDescription)
+            MessageHandler.showAlertMessage(withTitle: "Networking Error",
+                                            body: "Error grabbing user id from server",
+                                            type: .error)
+        }
+
+        // Networking!
+        URLSession.shared.dataTask(with: signedIDRequest) { (data, response, error) in
+
+            guard error == nil else {
+                print("Error getting userID")
+                networkErrorCheck(error!)
+                return
+            }
+
+            guard let data = data else {
+                print("Error getting data")
+                networkErrorCheck(error!)
+                return
+            }
+
+            // Convert server data to JSON
+            var json: [String: Any]
+            do {
+                json = try JSON(data: data).dictionaryObject!
+            } catch {
+                print("Invalid server json: \(error)")
+                networkErrorCheck(error)
+                return
+            }
+
+            // Grab our integer from it
+            let userIDConverted = json["resource_owner_id"] as? Int
+
+            // Check cast
+            guard let userID = userIDConverted else {
+                print("Error casting userID to int")
+                networkErrorCheck(error!)
+                return
+            }
+
+            
+            print("userID: \(userID)")
+
+            // Now that we have the user ID, append it and
+            // request the user info.
+            signedNameRequest.url?.appendPathComponent("\(userID).json")
+            URLSession.shared.dataTask(with: signedNameRequest) { (data, response, error) in
+
+                guard error == nil else {
+                    print("Error getting userID")
+                    networkErrorCheck(error!)
+                    return
+                }
+
+                guard let data = data else {
+                    print("Error getting data")
+                    networkErrorCheck(error!)
+                    return
+                }
+
+                // @FIXME: Debugging
+                print("AT END:")
+                print(signedNameRequest)
+                print(response)
+
+                let contents = String(data: data, encoding: .ascii)
+                print(contents)
+
+                // Convert server data to JSON
+                var json: JSON
+                do {
+                    json = try JSON(data: data, options: .allowFragments)
+                } catch {
+                    print(error)
+                    print("Oops")
+                    return
+                }
+
+                print(json)
+
+            }.resume()
+
+
+        }.resume()
+
+
+
+
     }
 
-    func signURLRequest() -> URLRequest? {
+    // Signs a route request with a current/valid auth key.
+    func signURLRequest(withRoute route: String) -> URLRequest? {
 
-        var request = URLRequest(url: URL(string: Routes.currentUser)!)
+        var request = URLRequest(url: URL(string: route)!)
 
         // @TODO: 401 redirect cycle vs. this implementation?
-        // Current plan is to use this token throughout the app, and guaruntee authorization
-        // from this point forward.
         do {
             try request.sign(with: OAuth2DataLoader(oauth2: oauthGrant).oauth2)
         } catch {

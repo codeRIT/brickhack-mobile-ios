@@ -18,6 +18,7 @@ struct Routes {
     static let environment           = "https://apply.brickhack.io"
     static let authorize             = "\(environment)/oauth/authorize"
     static let currentUser           = "\(environment)/oauth/token/info"
+    static let questionnaire         = "\(environment)/manage/questionnaires" // :id
     static let todaysStatsData       = "\(environment)/manage/dashboard/todays_stats_data"
     static let trackableTags         = "\(environment)/manage/trackable_tags.json"
     static let trackableEvents       = "\(environment)/manage/trackable_events.json"
