@@ -32,12 +32,6 @@ class LoginViewController: UIViewController {
             return
         }
 
-        // Update UI
-        // @TODO: Maybe move to SVProgressHud, or a status label?
-        // (Not a fan of changing UI like this; may break accessibility)
-        sender.setTitle("Authorizing", for: UIControl.State.normal)
-        sender.isEnabled = false
-
         oauthGrant.authConfig.authorizeEmbedded = true
         oauthGrant.authConfig.authorizeContext = self
 
@@ -48,7 +42,6 @@ class LoginViewController: UIViewController {
             guard error == nil else {
                 print("Authorization denied.")
                 print("Error: \(error!)")
-                self.resetLoginButton(sender)
                 return
             }
 
@@ -75,7 +68,9 @@ class LoginViewController: UIViewController {
         "authorize_uri": Routes.authorize,
         "redirect_uris": ["brickhack-ios://oauth/callback"],
         "scope": ""] as OAuth2JSON)
-    var userID: Int? {
+
+    // Nonexistent value is 0 by default, maybe wrap somehow to nil?
+    var userID: Int {
         get {
             return UserDefaults.standard.integer(forKey: "userID")
         }
@@ -92,7 +87,7 @@ class LoginViewController: UIViewController {
         if hasInternetAccess() {
 
             // Only continue if authenticated, AND user data is persisted
-            if oauthGrant.hasUnexpiredAccessToken() && userID != nil {
+            if oauthGrant.hasUnexpiredAccessToken() && userID != 0 {
 
                 // Continue to main app if authorized, don't show spinner
                 self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
@@ -103,15 +98,6 @@ class LoginViewController: UIViewController {
 
     // MARK: Functions
 
-    // Resets login button text back to default after displaying "authorizing"
-    // @TODO: Maybe move to SVProgressHud, or a status label?
-    // (Not a fan of changing UI like this; may break accessibility)
-    func resetLoginButton(_ sender: UIButton) {
-        sender.setTitle("Login", for: UIControl.State.normal)
-        sender.isEnabled = true
-    }
-
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "authSuccessSegue") {
 
@@ -119,7 +105,7 @@ class LoginViewController: UIViewController {
             if let homeVC = segue.destination.children.first as? HomeViewController {
 
                 // @FIXME: Move loading here to account for grabbing of this data
-                guard userID != nil else {
+                guard userID != 0 else {
                     print("Invalid userID")
                     return
                 }
