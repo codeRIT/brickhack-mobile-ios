@@ -226,6 +226,10 @@ class LoginViewController: UIViewController {
         return request
     }
 
+    // Set dark status bar
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     //  MARK: Helper functions
 

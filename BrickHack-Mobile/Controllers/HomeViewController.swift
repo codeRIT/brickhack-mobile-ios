@@ -33,4 +33,9 @@ class HomeViewController: UIViewController {
         }
     }
 
+    // Set dark status bar
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
 }
