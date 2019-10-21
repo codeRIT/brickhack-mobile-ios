@@ -78,9 +78,18 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iv1-Zv-SvM">
+                                <rect key="frame" x="145.5" y="452" width="123" height="30"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                <state key="normal" title="Forgot password?"/>
+                                <connections>
+                                    <action selector="forgotPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5vj-wn-2EK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.21747174859046936" green="0.277332603931427" blue="0.34390062093734741" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="iv1-Zv-SvM" firstAttribute="top" secondItem="vX8-Rs-Gz4" secondAttribute="bottom" constant="14" id="1FR-D8-cia"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IPj-yw-kZs" secondAttribute="trailing" constant="40" id="Kfo-vW-SCg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rwn-wb-gg1" secondAttribute="trailing" constant="57" id="UZt-jc-QiJ"/>
                             <constraint firstItem="izF-RF-rIs" firstAttribute="top" secondItem="rwn-wb-gg1" secondAttribute="bottom" constant="20.000000000000028" id="YWw-7z-ymZ"/>
@@ -92,6 +101,7 @@
                             <constraint firstItem="2v2-bu-HaB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="myU-Ez-dFY"/>
                             <constraint firstItem="rwn-wb-gg1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="34" id="qwa-Hh-cnc"/>
                             <constraint firstItem="tmd-U4-Zfm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="107" id="wua-Ui-igR"/>
+                            <constraint firstItem="iv1-Zv-SvM" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yeM-Qx-dFN"/>
                             <constraint firstItem="rwn-wb-gg1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yhN-dX-EBO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2v2-bu-HaB" secondAttribute="trailing" constant="40" id="zFt-iA-LRg"/>
                         </constraints>

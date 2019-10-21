@@ -24,6 +24,7 @@ struct Routes {
     static let trackableEvents       = "\(environment)/manage/trackable_events.json"
     static let editTrackableEvent    = "\(environment)/manage/trackable_events/"
     static let trackableEventsByUser = "\(environment)/manage/trackable_events.json?trackable_event[user_id]="
+    static let resetPassword         = "\(environment)/users/password/new"
 
 }
 

@@ -10,6 +10,7 @@ import UIKit
 import p2_OAuth2
 import SwiftyJSON
 import SVProgressHUD
+import SafariServices
 
 
 class LoginViewController: UIViewController {
@@ -55,6 +56,12 @@ class LoginViewController: UIViewController {
             }
         }
     }
+
+    @IBAction func forgotPassword(_ sender: Any) {
+        let safariVC = SFSafariViewController(url: URL(string: Routes.resetPassword)!)
+        self.present(safariVC, animated: true, completion: nil)
+    }
+
 
     // Need to escape UINavigationController when "Logout" is tapped
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) {}
