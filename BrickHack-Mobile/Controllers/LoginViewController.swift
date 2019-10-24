@@ -20,29 +20,32 @@ class LoginViewController: UIViewController {
 
 
     // MARK: IB Actions
+
     // Initiates the OAuth process if no valid token found
     @IBAction func initializeOAuth(_ sender: UIButton) {
 
+        // Check for internet
         guard hasInternetAccess() else {
-            displayNoNetworkAlert()
+            MessageHandler.showConnectionError()
             return
         }
 
-        guard !oauthGrant.isAuthorizing else {
-            oauthGrant.abortAuthorization()
-            return
-        }
-
+        // Set authorization method
         oauthGrant.authConfig.authorizeEmbedded = true
         oauthGrant.authConfig.authorizeContext = self
 
+        // Authorize the user
         oauthGrant.authorize() { response, error in
+
             print("Authorizing...")
 
-            // @TODO: Case-by-case error handling would be great here.
+            // Check if auth error
             guard error == nil else {
-                print("Authorization denied.")
-                print("Error: \(error!)")
+
+                // Only show error if not error 29 (user-cancelled login)
+                if (!error!.localizedDescription.contains("29")) {
+                    MessageHandler.showAuthorizationDeniedError(withText: error!)
+                }
                 return
             }
 
@@ -62,21 +65,19 @@ class LoginViewController: UIViewController {
         self.present(safariVC, animated: true, completion: nil)
     }
 
-
     // Need to escape UINavigationController when "Logout" is tapped
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) {}
 
 
     // MARK: Properties
 
-    // @TODO: Convert to OAuth2PasswordGrant to use native login
     var oauthGrant = OAuth2ImplicitGrant(settings: [
         "client_id": "745251411cbd86b08c69c7c504f83a319ea60bc0253e6ad9e9953f536d2c3003",
         "authorize_uri": Routes.authorize,
         "redirect_uris": ["brickhack-ios://oauth/callback"],
         "scope": ""] as OAuth2JSON)
 
-    // Nonexistent value is 0 by default, maybe wrap somehow to nil?
+    // @TODO: Nonexistent value is 0 by default, maybe wrap somehow to nil?
     var userID: Int {
         get {
             return UserDefaults.standard.integer(forKey: "userID")
@@ -89,11 +90,10 @@ class LoginViewController: UIViewController {
     }
 
     // Once the view appears and a valid token exists, take the user directly into the app without having to press login
-    // @TODO: Add UI feedback for this; success MessageHandler?
     override func viewDidAppear(_ animated: Bool) {
         if hasInternetAccess() {
 
-            // Only continue if authenticated, AND user data is persisted
+            // Only continue automatically if authenticated, AND user data is persisted
             if oauthGrant.hasUnexpiredAccessToken() && userID != 0 {
 
                 // Continue to main app if authorized, don't show spinner
@@ -111,18 +111,21 @@ class LoginViewController: UIViewController {
             // Pass oauth instance forward, grab user data
             if let homeVC = segue.destination.children.first as? HomeViewController {
 
-                // @FIXME: Move loading here to account for grabbing of this data
+                // Check if valid user (on error, user will reauth)
                 guard userID != 0 else {
                     print("Invalid userID")
+                    MessageHandler.showInvalidUserError()
                     return
                 }
 
+                // Pass forward user model data
                 homeVC.userID = userID
                 homeVC.oauthGrant = self.oauthGrant
 
             }
         }
     }
+
 
     // MARK: User data & login flow
 
@@ -131,27 +134,20 @@ class LoginViewController: UIViewController {
         // Generate signed request for userID
         let idRequest = signURLRequest(withRoute: Routes.currentUser)
         guard let signedIDRequest = idRequest else {
-            MessageHandler.showAlertMessage(withTitle: "Auth error", body: "Unable to sign user ID auth request.", type: .error)
+            DispatchQueue.main.async {
+                MessageHandler.showAuthSigningError()
+            }
             return
         }
 
         // Generate signed request for username
-        // (user id is added in promise)
+        // (user id is added in network chain)
         let nameRequest = signURLRequest(withRoute: Routes.questionnaire)
         guard var signedNameRequest = nameRequest else {
-            MessageHandler.showAlertMessage(withTitle: "Auth error", body: "Unable to sign user name auth request.", type: .error)
-            return
-        }
-
-        // Function for error checking
-        func networkErrorCheck(_ error: Error) {
-            print(error.localizedDescription)
-            MessageHandler.showAlertMessage(withTitle: "Networking Error",
-                                            body: "Error grabbing user id from server",
-                                            type: .error)
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+                MessageHandler.showAuthSigningError()
             }
+            return
         }
 
         // Show spinner before network activity
@@ -160,17 +156,22 @@ class LoginViewController: UIViewController {
         }
 
         // Networking!
+        // First, grab the user id from teh server.
         URLSession.shared.dataTask(with: signedIDRequest) { (data, response, error) in
 
             guard error == nil else {
-                print("Error getting userID")
-                networkErrorCheck(error!)
+                DispatchQueue.main.async {
+                    MessageHandler.showNetworkError(withText: error!.localizedDescription)
+                    SVProgressHUD.dismiss()
+                }
                 return
             }
 
             guard let data = data else {
-                print("Error getting data")
-                networkErrorCheck(error!)
+                DispatchQueue.main.async {
+                    MessageHandler.showNetworkError(withText: error!.localizedDescription)
+                    SVProgressHUD.dismiss()
+                }
                 return
             }
 
@@ -179,8 +180,10 @@ class LoginViewController: UIViewController {
             do {
                 json = try JSON(data: data).dictionaryObject!
             } catch {
-                print("Invalid server json: \(error)")
-                networkErrorCheck(error)
+                DispatchQueue.main.async {
+                    MessageHandler.showNetworkError(withText: error.localizedDescription)
+                    SVProgressHUD.dismiss()
+                }
                 return
             }
 
@@ -189,8 +192,10 @@ class LoginViewController: UIViewController {
 
             // Check cast
             guard let userID = userIDConverted else {
-                print("Error casting userID to int")
-                networkErrorCheck(error!)
+                DispatchQueue.main.async {
+                    MessageHandler.showNetworkError(withText: error!.localizedDescription)
+                    SVProgressHUD.dismiss()
+                }
                 return
             }
 
@@ -198,19 +203,78 @@ class LoginViewController: UIViewController {
             UserDefaults.standard.set(userID, forKey: "userID")
             print("userID: \(userID)")
 
-            // Hide spinner
-            DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
-            }
-
             // @FIXME: Bypass name functionality for now
             // Segue to main app
             self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
 
+            // Now that we have the user ID, append it and
+            // request the user info.
+            signedNameRequest.url?.appendPathComponent("\(userID).json")
+            signedNameRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+            // Note: spinner is still visible!
+            URLSession.shared.dataTask(with: signedNameRequest) { (data, response, error) in
+
+                guard error == nil else {
+                    DispatchQueue.main.async {
+                        MessageHandler.showNetworkError(withText: error!.localizedDescription)
+                        SVProgressHUD.dismiss()
+                    }
+                    return
+                }
+
+                guard let data = data else {
+                    DispatchQueue.main.async {
+                        MessageHandler.showUserDataParsingError()
+                        SVProgressHUD.dismiss()
+                    }
+                    return
+                }
+
+                // Check response code
+                if let httpResponse = response as? HTTPURLResponse {
+                    DispatchQueue.main.async {
+                        print("STATUS STRING")
+                        MessageHandler.showNetworkError(withText: httpResponse.statusString)
+                        SVProgressHUD.dismiss()
+                    }
+                    return
+                }
+
+                // Convert server data to JSON
+                var json: JSON
+
+                do {
+                    json = try JSON(data: data, options: .allowFragments)
+                } catch {
+                    DispatchQueue.main.async {
+                        MessageHandler.showUserDataParsingError(withText: "Unable to convert JSON")
+                        SVProgressHUD.dismiss()
+                    }
+                    return
+                }
+
+                // @FIXME
+                // Hello, Developer.
+                // At this point, the code should have errored out.
+                // The backend has not implemented the functionality needed for the preivous code to work.
+                // But, just in case something happens, this should do it.
+                DispatchQueue.main.async {
+                    MessageHandler.showUserDataParsingError()
+                    SVProgressHUD.dismiss()
+                }
+
+                return
+
+
+                // This is some debugging code for the time being, that will not be reached:
+                let contents = String(data: data, encoding: .ascii)
+                print(json)
+                print(contents!)
+                print("JSON data:")
+
+            }.resume()
         }.resume()
-
-
-
 
     }
 
@@ -223,10 +287,9 @@ class LoginViewController: UIViewController {
         do {
             try request.sign(with: OAuth2DataLoader(oauth2: oauthGrant).oauth2)
         } catch {
-            print("User login sign request error: \(error.localizedDescription)")
-            MessageHandler.showAlertMessage(withTitle: "Login Error",
-                                            body: "Unable to grab user data from server.",
-                                            type: .error)
+            DispatchQueue.main.async {
+                MessageHandler.showAuthSigningError()
+            }
             return nil
         }
 
@@ -238,6 +301,7 @@ class LoginViewController: UIViewController {
         return .lightContent
     }
 
+
     //  MARK: Helper functions
 
     // Check if the device currently has access to the internet, and can establish a connection to the environment
@@ -247,17 +311,6 @@ class LoginViewController: UIViewController {
         }
 
         return isReachable
-    }
-
-    // Displays a network issue alert if device isn't connected to the internet or can't connect to environment
-    func displayNoNetworkAlert() {
-        let alertController = UIAlertController(title: "Network Issue",
-                                                message: "An issue occured with your network. Please be sure you are connected to the internet.",
-                                                preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true, completion: nil)
-        }
     }
 
     func logout() {
