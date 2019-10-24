@@ -113,7 +113,6 @@ class LoginViewController: UIViewController {
 
                 // Check if valid user (on error, user will reauth)
                 guard userID != 0 else {
-                    print("Invalid userID")
                     MessageHandler.showInvalidUserError()
                     return
                 }
@@ -234,7 +233,6 @@ class LoginViewController: UIViewController {
                 // Check response code
                 if let httpResponse = response as? HTTPURLResponse {
                     DispatchQueue.main.async {
-                        print("STATUS STRING")
                         MessageHandler.showNetworkError(withText: httpResponse.statusString)
                         SVProgressHUD.dismiss()
                     }
