@@ -24,7 +24,10 @@ class MainTabBarController: UITabBarController, UserDataHandler {
         // with sending the data *forward*, rather than to whom.
         // (For some reason, not in prepareForSegue here.)
         for childVC in children {
-            if var userDataVC = childVC as? UserDataHandler {
+
+            // Navigate through 0th navigation controller
+            // (TabBar -> NavigationVC_0 -> VC0)
+            if var userDataVC = childVC.children.first as? UserDataHandler {
                 userDataVC.userID = userID
                 userDataVC.oauthGrant = oauthGrant
             }
