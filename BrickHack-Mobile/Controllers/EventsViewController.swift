@@ -9,7 +9,8 @@
 import UIKit
 import p2_OAuth2
 
-class HomeViewController: UIViewController {
+// @TODO: Rename to "EventsViewController" maybe?
+class EventsViewController: UIViewController, UserDataHandler {
 
     var oauthGrant: OAuth2ImplicitGrant!
     var userID: Int!
@@ -18,16 +19,10 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        print("HomeVC: userID of \(userID.description)")
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
+        // Logout segue -- logout user before loading login view
         if let loginVC = segue.destination as? LoginViewController {
-            // Logout user before loading view
             loginVC.logout()
         }
     }

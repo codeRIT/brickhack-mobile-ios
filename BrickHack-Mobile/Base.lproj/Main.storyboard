@@ -144,7 +144,7 @@
         <!--Events-->
         <scene sceneID="Udu-fV-S7q">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" id="D1f-v2-RH4" customClass="HomeViewController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" id="D1f-v2-RH4" customClass="EventsViewController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GJ3-nO-zVH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -184,6 +184,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="N8d-Op-MT5"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="89W-zR-joi">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="tintColor"/>
@@ -229,7 +230,7 @@
         <image name="info.circle" catalog="system" width="64" height="60"/>
         <image name="list.bullet.below.rectangle" catalog="system" width="64" height="56"/>
         <namedColor name="backgroundColor">
-            <color red="0.21568627450980393" green="0.27843137254901962" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.21600000560283661" green="0.27799999713897705" blue="0.3449999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="tintColor">
             <color red="0.21176470588235294" green="0.27843137254901962" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

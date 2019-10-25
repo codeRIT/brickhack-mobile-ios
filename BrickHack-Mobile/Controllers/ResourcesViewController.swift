@@ -9,7 +9,7 @@
 import UIKit
 import p2_OAuth2
 
-class ResourcesViewController: UIViewController, UserDataProtocol {
+class ResourcesViewController: UIViewController, UserDataHandler {
 
     var userID: Int!
     var oauthGrant: OAuth2ImplicitGrant!
@@ -17,19 +17,5 @@ class ResourcesViewController: UIViewController, UserDataProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("ResourcesVC: userID of \(userID.description)")
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

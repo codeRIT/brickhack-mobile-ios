@@ -17,7 +17,7 @@ import SafariServices
 // Note that LoginViewController does not conform to this protocol despite handling user data,
 // as it needs a computed property to get/set the userID, while all other classes do not require
 // this functionality.
-protocol UserDataProtocol {
+protocol UserDataHandler {
     var userID: Int! { get set }
     var oauthGrant: OAuth2ImplicitGrant! { get set }
     // @TODO: Add user data info upon backend implementation
@@ -120,6 +120,7 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "authSuccessSegue") {
 
+            // Check for MainTabBarController (skip through nav controller)
             if let tabVC = segue.destination.children.first! as? MainTabBarController {
 
                 // Check if valid user (on error, user will reauth)
@@ -128,12 +129,9 @@ class LoginViewController: UIViewController {
                     return
                 }
 
-                print("passing userID of \(userID) to tab bar")
-
-                // Pass data to the navigation controller, which will handle its own children
+                // Pass data to the tab bar controller, which will handle passing its own children
                 tabVC.userID = userID
                 tabVC.oauthGrant = oauthGrant
-
             }
         }
     }

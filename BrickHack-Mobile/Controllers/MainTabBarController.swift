@@ -9,7 +9,7 @@
 import UIKit
 import p2_OAuth2
 
-class MainTabBarController: UITabBarController, UserDataProtocol {
+class MainTabBarController: UITabBarController, UserDataHandler {
 
     var userID: Int!
     var oauthGrant: OAuth2ImplicitGrant!
@@ -17,32 +17,17 @@ class MainTabBarController: UITabBarController, UserDataProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        print("loaded!")
-
+        // This class serves to exist as a mediator between the LoginViewController
+        // and the child view controllers from this TabBarController (bypassing NavigationViewController from LVC).
+        // In particular, the user data will be passed forward into each child view controller *here*,
+        // rather than risking bloat in the LoginViewController, which should only be concenred
+        // with sending the data *forward*, rather than to whom.
+        // (For some reason, not in prepareForSegue here.)
         for childVC in children {
-            print("iterating")
-            if var userDataVC = childVC as? UserDataProtocol {
-                print("pasing user id of \(userID) ")
+            if var userDataVC = childVC as? UserDataHandler {
                 userDataVC.userID = userID
                 userDataVC.oauthGrant = oauthGrant
             }
         }
-
-
-
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        print("appeared!")
-    }
-    
-
-    // This class serves to exist as a mediator between the LoginViewController
-    // and the child view controllers from this NavigationViewController.
-    // In particular, the user data will be passed forward into each child view controller *here*,
-    // rather than risking bloat in the LoginViewController, which should only be concenred
-    // with sending the data *forward*, rather than to whom.
-
-
 }
