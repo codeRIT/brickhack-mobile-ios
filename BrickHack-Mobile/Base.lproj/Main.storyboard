@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -87,7 +88,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.21747174859046936" green="0.277332603931427" blue="0.34390062093734741" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
                         <constraints>
                             <constraint firstItem="iv1-Zv-SvM" firstAttribute="top" secondItem="vX8-Rs-Gz4" secondAttribute="bottom" constant="14" id="1FR-D8-cia"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IPj-yw-kZs" secondAttribute="trailing" constant="40" id="Kfo-vW-SCg"/>
@@ -124,7 +125,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qb2-70-hJm">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.21340060229999999" green="0.2773445249" blue="0.34392774110000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" name="tintColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
@@ -133,25 +134,35 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="D1f-v2-RH4" kind="relationship" relationship="rootViewController" id="rbm-gl-v4H"/>
+                        <segue destination="89y-zz-Veh" kind="relationship" relationship="rootViewController" id="rbm-gl-v4H"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WUg-Ao-b8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1758" y="133"/>
         </scene>
-        <!--BrickHack Manager-->
+        <!--Events-->
         <scene sceneID="Udu-fV-S7q">
             <objects>
                 <viewController modalTransitionStyle="flipHorizontal" id="D1f-v2-RH4" customClass="HomeViewController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GJ3-nO-zVH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sia-xs-aJx">
+                                <rect key="frame" x="175" y="435" width="65" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.21340060229999999" green="0.2773445249" blue="0.34392774110000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <accessibility key="accessibilityConfiguration" hint="checked-out"/>
                         <viewLayoutGuide key="safeArea" id="DgF-Zc-fiO"/>
                     </view>
-                    <navigationItem key="navigationItem" title="BrickHack Manager" id="F0d-nn-mOt">
+                    <tabBarItem key="tabBarItem" title="Events" selectedImage="list.bullet.below.rectangle" catalog="system" id="ycF-Lr-Yl8"/>
+                    <navigationItem key="navigationItem" title="Events" id="F0d-nn-mOt">
                         <barButtonItem key="backBarButtonItem" title="Back" id="WSQ-Qh-CMs"/>
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="XIL-Z1-fpf">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -164,11 +175,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aaz-n9-JJu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YN7-JW-ZjW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2615.1999999999998" y="132.26600985221674"/>
+            <point key="canvasLocation" x="3697" y="133"/>
+        </scene>
+        <!--Main Tab Bar Controller-->
+        <scene sceneID="ycg-eU-Sq6">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="89y-zz-Veh" customClass="MainTabBarController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="N8d-Op-MT5"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="89W-zR-joi">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="tintColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="D1f-v2-RH4" kind="relationship" relationship="viewControllers" id="6UM-PM-E3R"/>
+                        <segue destination="I7b-88-FfT" kind="relationship" relationship="viewControllers" id="QAr-EM-KXt"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PqK-SM-yt7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2742" y="133"/>
+        </scene>
+        <!--Resources-->
+        <scene sceneID="98g-Uh-cLM">
+            <objects>
+                <viewController id="I7b-88-FfT" customClass="ResourcesViewController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wpm-T2-2od">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Resources" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcL-VA-8Jk">
+                                <rect key="frame" x="158" y="435" width="100" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="backgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="3Zt-aA-4B8"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Resources" selectedImage="info.circle" catalog="system" id="PCX-wm-a3L"/>
+                    <navigationItem key="navigationItem" title="Resources" id="Cgc-uZ-bqS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ku-3d-egN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4614" y="133"/>
         </scene>
     </scenes>
     <resources>
         <image name="BH-logo" width="546" height="533"/>
+        <image name="info.circle" catalog="system" width="64" height="60"/>
+        <image name="list.bullet.below.rectangle" catalog="system" width="64" height="56"/>
+        <namedColor name="backgroundColor">
+            <color red="0.21568627450980393" green="0.27843137254901962" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tintColor">
+            <color red="0.21176470588235294" green="0.27843137254901962" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

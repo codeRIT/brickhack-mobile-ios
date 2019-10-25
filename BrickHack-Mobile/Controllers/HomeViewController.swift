@@ -21,8 +21,7 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        print("clientID: \(oauthGrant.clientId!)")
-        print("userID: \(userID!)")
+        print("HomeVC: userID of \(userID.description)")
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
