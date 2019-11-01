@@ -82,5 +82,20 @@ class TagScanViewController: UIViewController,
         return scanCell
     }
 
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
+        // Action to delete scans
+        // Postcondition: can only remove scans of the user (should not be issue?)
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
+
+            // Remove corresponding row and reload table
+            self.scans.remove(at: indexPath.row)
+            tableView.reloadData()
+
+            // @TODO: Networking and error checking; call false on completion if error occured
+            completion(true)
+        }
+
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 }
