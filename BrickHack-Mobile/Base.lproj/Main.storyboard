@@ -172,6 +172,7 @@
                     <connections>
                         <segue destination="QgK-cG-lEP" kind="relationship" relationship="viewControllers" id="Ech-VZ-svw"/>
                         <segue destination="5O7-bl-icT" kind="relationship" relationship="viewControllers" id="vX6-aa-x7h"/>
+                        <segue destination="mMy-Ui-oOg" kind="relationship" relationship="viewControllers" id="PCk-nO-Wn3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PqK-SM-yt7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -205,6 +206,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ku-3d-egN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4813.04347826087" y="577.90178571428567"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="1qC-mM-q0P">
+            <objects>
+                <navigationController id="mMy-Ui-oOg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="0aU-bK-crf"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tAp-xV-Tsx">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="tintColor"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="nkU-T1-PoK" kind="relationship" relationship="rootViewController" id="FFs-pz-OYA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ifo-3F-fGm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3901" y="1279"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9v4-Fc-13a">
@@ -246,6 +265,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCn-5a-fa2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3902.898550724638" y="577.90178571428567"/>
+        </scene>
+        <!--Tag Scan View Controller-->
+        <scene sceneID="NZp-ao-3Ai">
+            <objects>
+                <viewController id="nkU-T1-PoK" customClass="TagScanViewController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y3u-Mj-X0J">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1n-Sl-EQY">
+                                <rect key="frame" x="113" y="200" width="188" height="58"/>
+                                <color key="backgroundColor" red="0.94947928189999997" green="0.51474243399999997" blue="0.15786239499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Scan Tag"/>
+                                <connections>
+                                    <action selector="startScan:" destination="nkU-T1-PoK" eventType="touchUpInside" id="o9L-Nc-Mjv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="DHV-EK-edu" firstAttribute="bottom" secondItem="e1n-Sl-EQY" secondAttribute="bottom" constant="555" id="d4n-bt-6HY"/>
+                            <constraint firstItem="e1n-Sl-EQY" firstAttribute="centerX" secondItem="y3u-Mj-X0J" secondAttribute="centerX" id="haO-Mo-n9g"/>
+                            <constraint firstItem="e1n-Sl-EQY" firstAttribute="top" secondItem="DHV-EK-edu" secondAttribute="top" constant="112" id="lXV-Vz-SYg"/>
+                            <constraint firstItem="e1n-Sl-EQY" firstAttribute="leading" secondItem="DHV-EK-edu" secondAttribute="leading" constant="113" id="muR-8G-UuB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DHV-EK-edu"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2Ye-9s-5Mg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cWQ-Qj-BqK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4811.594202898551" y="1277.6785714285713"/>
         </scene>
     </scenes>
     <resources>

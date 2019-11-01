@@ -14,6 +14,7 @@
 		31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F540219B29CD00E3E1AF /* AppDelegate.swift */; };
 		31C5F546219B29CD00E3E1AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F544219B29CD00E3E1AF /* Main.storyboard */; };
 		31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F547219B29CF00E3E1AF /* Assets.xcassets */; };
+		D712F6B3236BEEAF008FB37F /* TagScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D712F6B2236BEEAF008FB37F /* TagScanViewController.swift */; };
 		D79AA2B823425DFA009C469D /* APIRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AA2B723425DFA009C469D /* APIRoutes.swift */; };
 		D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C07884233EDBA300089193 /* LoginViewController.swift */; };
 		D7C41E2523637D650091C480 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C41E2423637D650091C480 /* MainTabBarController.swift */; };
@@ -47,6 +48,7 @@
 		31C5F54C219B29CF00E3E1AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BrickHack-Mobile.entitlements"; sourceTree = "<group>"; };
 		C029FC28202ED2177D811FF7 /* Pods-BrickHack-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
+		D712F6B2236BEEAF008FB37F /* TagScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagScanViewController.swift; sourceTree = "<group>"; };
 		D79AA2B723425DFA009C469D /* APIRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoutes.swift; sourceTree = "<group>"; };
 		D7C07884233EDBA300089193 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D7C41E2423637D650091C480 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				D7C41E2423637D650091C480 /* MainTabBarController.swift */,
 				31602384220A116000F73F58 /* EventsViewController.swift */,
 				D7C41E26236383300091C480 /* ResourcesViewController.swift */,
+				D712F6B2236BEEAF008FB37F /* TagScanViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				D7C41E27236383300091C480 /* ResourcesViewController.swift in Sources */,
 				31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */,
 				D79AA2B823425DFA009C469D /* APIRoutes.swift in Sources */,
+				D712F6B3236BEEAF008FB37F /* TagScanViewController.swift in Sources */,
 				31602385220A116000F73F58 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

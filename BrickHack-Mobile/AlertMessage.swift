@@ -90,4 +90,13 @@ class MessageHandler {
                          type: .error)
 
     }
+
+    // MARK: Scanning
+
+    static func showScanningUnsupportedError() {
+        print("ERROR: Scanning Unsupported")
+        showAlertMessage(withTitle: "Cannot Scan",
+                         body: "NFC scanning is not supported on this device.",
+                         type: .error)
+    }
 }
