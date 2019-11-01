@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21BEA9C216BEFB0D956DA447 /* Pods_BrickHack_Mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */; };
-		31602385220A116000F73F58 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31602384220A116000F73F58 /* HomeViewController.swift */; };
+		31602385220A116000F73F58 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31602384220A116000F73F58 /* EventsViewController.swift */; };
 		31A6A37821F6681100D9C085 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31A6A37321F6665D00D9C085 /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		31AC34DE21DDB8D3005A419E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */; };
 		31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F540219B29CD00E3E1AF /* AppDelegate.swift */; };
@@ -16,6 +16,8 @@
 		31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F547219B29CF00E3E1AF /* Assets.xcassets */; };
 		D79AA2B823425DFA009C469D /* APIRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AA2B723425DFA009C469D /* APIRoutes.swift */; };
 		D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C07884233EDBA300089193 /* LoginViewController.swift */; };
+		D7C41E2523637D650091C480 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C41E2423637D650091C480 /* MainTabBarController.swift */; };
+		D7C41E27236383300091C480 /* ResourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C41E26236383300091C480 /* ResourcesViewController.swift */; };
 		D7D4B037234813A70001DFC5 /* AlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D4B036234813A70001DFC5 /* AlertMessage.swift */; };
 		FC82CF1C21ACD3FB008959FC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FC82CF1B21ACD3FB008959FC /* Podfile */; };
 /* End PBXBuildFile section */
@@ -34,7 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		31602384220A116000F73F58 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		31602384220A116000F73F58 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		31A6A37321F6665D00D9C085 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
 		31AC34DD21DDB8D3005A419E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		31B205BE21EFB00700D6ADF7 /* libVYNFCKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libVYNFCKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +49,8 @@
 		C029FC28202ED2177D811FF7 /* Pods-BrickHack-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		D79AA2B723425DFA009C469D /* APIRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoutes.swift; sourceTree = "<group>"; };
 		D7C07884233EDBA300089193 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D7C41E2423637D650091C480 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		D7C41E26236383300091C480 /* ResourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesViewController.swift; sourceTree = "<group>"; };
 		D7D4B036234813A70001DFC5 /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertMessage.swift; path = "BrickHack-Mobile/AlertMessage.swift"; sourceTree = SOURCE_ROOT; };
 		DF9A947946DF6E11797CE707 /* Pods-BrickHack-Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.release.xcconfig"; sourceTree = "<group>"; };
 		F6555C1DC150ED20E523915E /* Pods_BrickHack_Mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrickHack_Mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,8 +118,10 @@
 		D79AA2B9234268C2009C469D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				31602384220A116000F73F58 /* HomeViewController.swift */,
 				D7C07884233EDBA300089193 /* LoginViewController.swift */,
+				D7C41E2423637D650091C480 /* MainTabBarController.swift */,
+				31602384220A116000F73F58 /* EventsViewController.swift */,
+				D7C41E26236383300091C480 /* ResourcesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -271,10 +277,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */,
+				D7C41E2523637D650091C480 /* MainTabBarController.swift in Sources */,
 				D7D4B037234813A70001DFC5 /* AlertMessage.swift in Sources */,
+				D7C41E27236383300091C480 /* ResourcesViewController.swift in Sources */,
 				31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */,
 				D79AA2B823425DFA009C469D /* APIRoutes.swift in Sources */,
-				31602385220A116000F73F58 /* HomeViewController.swift in Sources */,
+				31602385220A116000F73F58 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
