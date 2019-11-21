@@ -9,6 +9,7 @@
 import UIKit
 import p2_OAuth2
 import CoreNFC
+import VYNFCKit
 
 class TagScanViewController: UIViewController,
                              UITableViewDelegate, NFCNDEFReaderSessionDelegate,
@@ -56,13 +57,36 @@ class TagScanViewController: UIViewController,
 
     // MARK: NFCNDEFReaderSessionDelegate
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
-        // @TODO: this
-        // Blocker: tags and scanning capability
+
+        // Show tag error to user if invalid
+        // @TODO: Actually test this thx
+        DispatchQueue.main.async {
+            MessageHandler.showInvalidTagError(withText: error.localizedDescription)
+        }
     }
 
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
         // @TODO: this
         // Blocker: tags and scanning capability
+        print("Incoming NFC messages:")
+        print(messages)
+
+        for message in messages {
+            for payload in message.records {
+                guard let parsedPayload = VYNFCNDEFPayloadParser.parse(payload) else {
+                    // Go to next payload if this one is invalid
+                    continue
+                }
+
+                var text: String
+                if let parsedPayload = parsedPayload as? VYNFCNDEFTextPayload {
+
+                    // @TODO: Send (formatted) tag to server
+
+                    text = "[Text payload]\n" + parsedPayload.text
+                }
+            }
+        }
     }
 
     // MARK: TableView things

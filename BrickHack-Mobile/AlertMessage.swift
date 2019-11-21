@@ -99,4 +99,12 @@ class MessageHandler {
                          body: "NFC scanning is not supported on this device.",
                          type: .error)
     }
+
+    static func showInvalidTagError(withText errorText: String) {
+        print("ERROR: Invalid Tag")
+        print(errorText)
+        showAlertMessage(withTitle: "Invalid Tag",
+                         body: "The tag you are attempting to scan is invalid.",
+                         type: .error)
+    }
 }
