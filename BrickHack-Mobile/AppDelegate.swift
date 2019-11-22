@@ -13,16 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if "brickhack-ios" == url.scheme{
+
+        if "brickhack-ios" == url.scheme {
             if let vc = window?.rootViewController as? LoginViewController {
-                vc.oauth2.handleRedirectURL(url)
+                vc.oauthGrant.handleRedirectURL(url)
                 return true
             }
         }

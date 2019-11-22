@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:OAuth2/OAuth2.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:BrickHack-Mobile.xcodeproj">
    </FileRef>
    <FileRef
