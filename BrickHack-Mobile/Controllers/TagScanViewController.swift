@@ -10,6 +10,7 @@ import UIKit
 import p2_OAuth2
 import CoreNFC
 import VYNFCKit
+import SVProgressHUD
 
 class TagScanViewController: UIViewController,
                              UITableViewDelegate, NFCNDEFReaderSessionDelegate,
@@ -26,7 +27,7 @@ class TagScanViewController: UIViewController,
         }
 
         // Start session
-        nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
+        nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
         nfcSession!.alertMessage = "Hold your iPhone near your event badge."
         nfcSession!.begin()
     }
@@ -58,10 +59,19 @@ class TagScanViewController: UIViewController,
     // MARK: NFCNDEFReaderSessionDelegate
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
 
-        // Show tag error to user if invalid
-        // @TODO: Actually test this thx
+        // Don't show error message if the "issue" is that the first tag was read
+        // @TODO: Fix the sketchy private reference here... maybe cast to NSError?
+        // (https://stackoverflow.com/a/40273317/1431900)
+        if (error._code == NFCReaderError.readerSessionInvalidationErrorFirstNDEFTagRead.rawValue) {
+            return
+        }
+
+        // Show tag error to user if otherwise invalid
         DispatchQueue.main.async {
             MessageHandler.showInvalidTagError(withText: error.localizedDescription)
+            if (SVProgressHUD.isVisible()) {
+                SVProgressHUD.dismiss()
+            }
         }
     }
 
@@ -78,15 +88,18 @@ class TagScanViewController: UIViewController,
                     continue
                 }
 
-                var text: String
                 if let parsedPayload = parsedPayload as? VYNFCNDEFTextPayload {
-
-                    // @TODO: Send (formatted) tag to server
-
-                    text = "[Text payload]\n" + parsedPayload.text
+                    let messageData = "[Text payload]\n" + parsedPayload.text
+                    DispatchQueue.init(label: "NFCMessageNetworkThread").async {
+                        self.sendMessageDataToServer(message: messageData)
+                    }
+                } else {
+                    print("Parsed but unhandled type")
                 }
             }
         }
+
+        print("done with readerSession")
     }
 
     // MARK: TableView things
