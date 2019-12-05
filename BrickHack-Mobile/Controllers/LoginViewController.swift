@@ -215,7 +215,10 @@ class LoginViewController: UIViewController {
 
             // @FIXME: Bypass name functionality for now
             // Segue to main app
-            self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
+            }
+
 
             // Now that we have the user ID, append it and
             // request the user info.
