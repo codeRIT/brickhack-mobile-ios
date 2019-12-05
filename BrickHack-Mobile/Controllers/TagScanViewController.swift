@@ -135,4 +135,54 @@ class TagScanViewController: UIViewController,
 
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+
+    // MARK: Networking
+    func sendMessageDataToServer(message: String) {
+
+        print("Sending message \(message) to server...")
+
+        // Show spinner
+        DispatchQueue.main.async {
+            SVProgressHUD.show()
+        }
+
+
+        // Configure POST request to send tag data to server
+        // @TODO: Sign with headers?
+        let url = URL(string: Routes.trackableEvents)!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue(<#T##value: String?##String?#>, forHTTPHeaderField: <#T##String#>)
+
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+
+            // Check for error
+            guard error == nil else {
+                DispatchQueue.main.async {
+                    MessageHandler.showNetworkError(withText: error!.localizedDescription)
+                    SVProgressHUD.dismiss()
+                }
+                return
+            }
+
+            // Unwrap data
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    MessageHandler.showNetworkError(withText: error!.localizedDescription)
+                    SVProgressHUD.dismiss()
+                }
+                return
+            }
+
+            // SE
+
+
+
+
+
+        }
+
+
+
+    }
 }
