@@ -18,6 +18,7 @@ PODS:
     - SwiftMessages/App (= 7.0.1)
   - SwiftMessages/App (7.0.1)
   - SwiftyJSON (5.0.0)
+  - TimelineTableViewCell (2.2.1)
   - VYNFCKit (0.3.2)
 
 DEPENDENCIES:
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - SVProgressHUD
   - SwiftMessages
   - SwiftyJSON
+  - TimelineTableViewCell
   - VYNFCKit
 
 SPEC REPOS:
@@ -42,6 +44,7 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftMessages
     - SwiftyJSON
+    - TimelineTableViewCell
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -51,8 +54,9 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  TimelineTableViewCell: b2721a3c1f17c4a4950ae442f45cd4e8669a2750
   VYNFCKit: 86a9b711fd1f34f6f7128a2a883cd58dbd781b9d
 
-PODFILE CHECKSUM: f33f20089c667490515bde3b6e02f2c819b6eb74
+PODFILE CHECKSUM: 5dbc104ebbff2e4f2af279558bee8872b5785951
 
 COCOAPODS: 1.8.1

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/peterkos/Code/Github/brickhack-mobile-ios/BrickHack-Mobile/Controllers/ProfileTableViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:BrickHack-Mobile.xcodeproj">
    </FileRef>
    <FileRef
