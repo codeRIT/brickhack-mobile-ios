@@ -131,6 +131,7 @@
                                 </connections>
                             </containerView>
                         </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <accessibility key="accessibilityConfiguration" hint="checked-out"/>
                         <constraints>
                             <constraint firstItem="8Zp-wc-XHQ" firstAttribute="top" secondItem="DgF-Zc-fiO" secondAttribute="top" id="lFz-Vy-XPx"/>
@@ -144,6 +145,7 @@
                     <navigationItem key="navigationItem" title="Events" id="F0d-nn-mOt">
                         <barButtonItem key="backBarButtonItem" title="Back" id="WSQ-Qh-CMs"/>
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="XIL-Z1-fpf">
+                            <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="YN7-JW-ZjW" kind="unwind" unwindAction="unwindToLoginWithSegue:" id="b4w-Z7-cTw"/>
                             </connections>
