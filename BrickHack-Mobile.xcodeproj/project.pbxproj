@@ -14,8 +14,8 @@
 		31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F540219B29CD00E3E1AF /* AppDelegate.swift */; };
 		31C5F546219B29CD00E3E1AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F544219B29CD00E3E1AF /* Main.storyboard */; };
 		31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F547219B29CF00E3E1AF /* Assets.xcassets */; };
-		D714B09023D63EA800FF0326 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D714B08F23D63EA800FF0326 /* ProfileTableViewController.swift */; };
 		D789978223D652ED0058060A /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789978123D652ED0058060A /* ScheduleTableViewController.swift */; };
+		D789978523D6A4DC0058060A /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789978423D6A4DC0058060A /* ProfileTableViewController.swift */; };
 		D79AA2B823425DFA009C469D /* APIRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AA2B723425DFA009C469D /* APIRoutes.swift */; };
 		D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C07884233EDBA300089193 /* LoginViewController.swift */; };
 		D7C41E2523637D650091C480 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C41E2423637D650091C480 /* MainTabBarController.swift */; };
@@ -49,8 +49,8 @@
 		31C5F54C219B29CF00E3E1AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BrickHack-Mobile.entitlements"; sourceTree = "<group>"; };
 		C029FC28202ED2177D811FF7 /* Pods-BrickHack-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
-		D714B08F23D63EA800FF0326 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileTableViewController.swift; path = "/Users/peterkos/Code/Github/brickhack-mobile-ios/BrickHack-Mobile/Controllers/ProfileTableViewController.swift"; sourceTree = "<absolute>"; };
 		D789978123D652ED0058060A /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
+		D789978423D6A4DC0058060A /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileTableViewController.swift; path = "/Users/peterkos/Code/Github/brickhack-mobile-ios/BrickHack-Mobile/Controllers/ProfileTableViewController.swift"; sourceTree = "<absolute>"; };
 		D79AA2B723425DFA009C469D /* APIRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoutes.swift; sourceTree = "<group>"; };
 		D7C07884233EDBA300089193 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D7C41E2423637D650091C480 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 				D7C41E2423637D650091C480 /* MainTabBarController.swift */,
 				31602384220A116000F73F58 /* EventsViewController.swift */,
 				D789978123D652ED0058060A /* ScheduleTableViewController.swift */,
-				D714B08F23D63EA800FF0326 /* ProfileTableViewController.swift */,
+				D789978423D6A4DC0058060A /* ProfileTableViewController.swift */,
 				D7C41E26236383300091C480 /* ResourcesViewController.swift */,
 			);
 			path = Controllers;
@@ -283,11 +283,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D789978223D652ED0058060A /* ScheduleTableViewController.swift in Sources */,
-				D714B09023D63EA800FF0326 /* ProfileTableViewController.swift in Sources */,
 				D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */,
 				D7C41E2523637D650091C480 /* MainTabBarController.swift in Sources */,
 				D7D4B037234813A70001DFC5 /* AlertMessage.swift in Sources */,
 				D7C41E27236383300091C480 /* ResourcesViewController.swift in Sources */,
+				D789978523D6A4DC0058060A /* ProfileTableViewController.swift in Sources */,
 				31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */,
 				D79AA2B823425DFA009C469D /* APIRoutes.swift in Sources */,
 				31602385220A116000F73F58 /* EventsViewController.swift in Sources */,
