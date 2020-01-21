@@ -63,14 +63,20 @@ class ScheduleTableViewController: UITableViewController {
 
                 // Goal: If we have passed the current date, move the first item in section 1 to section 0.
 
-                // Move first element of section 1 to end of section 0
-                let lastIndex = self.sampleData.count - 1
-                let newCurrent = self.sampleData[1]!.first!
+                // Move first element of section 1 to end of section 0,
+                // and update color to show "completed"
+                var newCurrent = self.sampleData[1]!.first!
+                newCurrent.1 = self.backColor
+
+                // Only "fill" timeline point if it's defined for that cell
+                if (newCurrent.0 != nil) {
+                    newCurrent.0 = TimelinePoint(color: self.backColor, filled: true)
+                }
+
+                // Reassign to first section
+                // @TODO: Why??
                 self.sampleData[1]!.removeFirst()
                 self.sampleData[0]!.append(newCurrent)
-
-
-                //@TODO: UPDATE COLOR AND FIX TIME INDEX 
             }
 
             // And of course, reload the table.
@@ -182,20 +188,25 @@ class ScheduleTableViewController: UITableViewController {
         }
 
         // Configure favorite accessory
-        // @TODO: Obvs read/write to/from server, but also:
-        // @TODO: Change local data model, look for a table view delegate
-        // @TODO: Check if margin updates when using forked TimelineTableViewCell eventually
         if favorite {
             cell.accessoryView = UIImageView(image: UIImage(named: "filledStar"))
         } else {
             cell.accessoryView = UIImageView(image: UIImage(named: "emptyStar"))
         }
 
+        // Disable selection per cell
+        cell.selectionStyle = .none
 
-        // Layout
+        // Layout adjustment
         cell.timeline.leftMargin = 30.0
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        // @TODO: Obvs read/write to/from server, but also:
+        // @TODO: Change local data model, look for a table view delegate
+        // @TODO: Check if margin updates when using forked TimelineTableViewCell eventually
     }
 
 }
