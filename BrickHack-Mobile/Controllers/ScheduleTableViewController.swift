@@ -16,12 +16,12 @@ class ScheduleTableViewController: UITableViewController {
 
     // Colors for dataset
     // @TODO: Double check w/ design on these colors
-    let backColor = UIColor(named: "timelineBackColor")!
-    let frontColor = UIColor(named: "primaryColor")!
+    let backColor = UIColor(named: "primaryColor")!
+    let frontColor = UIColor(named: "timelineBackColor")!
 
     // Section 0 represents the previous and current events, colored backColor (except current)
     // Section 1 represents future events, colored frontColor.
-    var sampleData: [Int: [(TimelinePoint, UIColor, String, String)]] = [:]
+    var sampleData: [Int: [(TimelinePoint?, UIColor, String, String)]] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +34,19 @@ class ScheduleTableViewController: UITableViewController {
         // Remove separator lines
         tableView.separatorStyle = .none
 
-        // Instantiate sample data set
-        // @TODO: Finish
+        /*
+         * Static sample data to use.
+         * Some notes:
+         *      a) Set nil point to have smooth, continuous line past that event
+         *      b) Section 0 (up to last event, which is current item) will be HIGHLIGHTED in primary color.
+         *
+         * @TODO: Implement with pulled & parsed data from GSheets
+         */
         self.sampleData = [
             0:[
-            (TimelinePoint(),                                backColor, "12:30", "Description"),
-            (TimelinePoint(),                                backColor, "15:30", "Description."),
-            (TimelinePoint(color: frontColor, filled: true), frontColor, "16:30", "Description."),
+            (TimelinePoint(color: backColor, filled: true),  backColor, "12:30", "Description"),
+            (nil,                                            backColor, "15:30", "Description."),
+            (TimelinePoint(color: backColor, filled: true),  backColor, "16:30", "Description."), // Current item
             ], 1:[
             (TimelinePoint(),                                frontColor, "19:00", "Description."),
             (TimelinePoint(),                                frontColor, "08:30", "Description."),
@@ -89,22 +95,33 @@ class ScheduleTableViewController: UITableViewController {
                        ----------------
          */
 
-        // Colors
+        // Colors, and point (if not nil)
         cell.timeline.backColor = allColor
-        cell.timelinePoint = timelinePoint
+        cell.timelinePoint = timelinePoint ?? TimelinePoint(diameter: 0, color: allColor, filled: true)
         cell.timeline.frontColor = allColor
 
-        // If point is filled, set backcolor to be the old back color
-        if (timelinePoint.isFilled) {
-            cell.timeline.backColor = self.backColor
+        // If point is filled, set FRONTCOLOR to match rest of list, and show bubble.
+        // (point is current bit)
+        if (indexPath.section == 0 && indexPath.row == sampleData[0]!.count - 1) {
+
+            // This is a bit counterintuitive but it works ¯\_(ツ)_/¯
+            cell.timeline.backColor = frontColor
+            cell.bubbleEnabled = true
+            print("Current element: \(title)")
+        } else {
+
+            // Only current item gets button.
+            // @TODO: Check with design on this one.
+            cell.bubbleEnabled = false
         }
 
         // Text content
         cell.titleLabel.text = title
         cell.descriptionLabel.text = description
 
-        // Set label color properly depending on dark mode, or no dark mode option
-        if #available(iOS 13.0, *) {
+        // Set label color properly depending on dark mode, or no dark mode option.
+        // Only change if bubble is not enableld to preserve contrast. Might need tweaking.
+        if #available(iOS 13.0, *), !cell.bubbleEnabled {
             cell.titleLabel.textColor = UIColor.label
         } else {
             cell.titleLabel.textColor = UIColor.black
@@ -112,7 +129,6 @@ class ScheduleTableViewController: UITableViewController {
 
         // Layout
         cell.timeline.leftMargin = 30.0
-        cell.bubbleEnabled = false
 
         return cell
     }
