@@ -11,6 +11,18 @@ import TimelineTableViewCell
 
 class ScheduleTableViewController: UITableViewController {
 
+
+    // MARK: Ivars
+
+    // Colors for dataset
+    // @TODO: Double check w/ design on these colors
+    let backColor = UIColor(named: "timelineBackColor")!
+    let frontColor = UIColor(named: "primaryColor")!
+
+    // Section 0 represents the previous and current events, colored backColor (except current)
+    // Section 1 represents future events, colored frontColor.
+    var sampleData: [Int: [(TimelinePoint, UIColor, String, String)]] = [:]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,8 +34,27 @@ class ScheduleTableViewController: UITableViewController {
         // Remove separator lines
         tableView.separatorStyle = .none
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        // Instantiate sample data set
+        // @TODO: Finish
+        self.sampleData = [
+            0:[
+            (TimelinePoint(),                                backColor, "12:30", "Description"),
+            (TimelinePoint(),                                backColor, "15:30", "Description."),
+            (TimelinePoint(color: frontColor, filled: true), frontColor, "16:30", "Description."),
+            ], 1:[
+            (TimelinePoint(),                                frontColor, "19:00", "Description."),
+            (TimelinePoint(),                                frontColor, "08:30", "Description."),
+            (TimelinePoint(),                                frontColor, "09:30", "Description."),
+            (TimelinePoint(),                                frontColor, "10:00", "Description."),
+            (TimelinePoint(),                                frontColor, "11:30", "Description."),
+            (TimelinePoint(),                                frontColor, "12:30", "Description."),
+            (TimelinePoint(),                                frontColor, "13:00", "Description."),
+            (TimelinePoint(),                                frontColor, "15:00", "Description."),
+            (TimelinePoint(),                                frontColor, "17:30", "Description."),
+            (TimelinePoint(),                                frontColor, "18:30", "Description."),
+            (TimelinePoint(),                                frontColor, "19:30", "Description."),
+            (TimelinePoint(),                                frontColor, "20:00", "Description.")
+            ]]
 
     }
 
@@ -38,36 +69,37 @@ class ScheduleTableViewController: UITableViewController {
         return sampleData[section]?.count ?? 0
     }
 
-    let sampleData: [Int: [(TimelinePoint, UIColor, String, String)]] = [
-        0:[
-        (TimelinePoint(), UIColor.black, "12:30", "Description"),
-        (TimelinePoint(), UIColor.black, "15:30", "Description."),
-        (TimelinePoint(color: UIColor.green, filled: true), UIColor.green, "16:30", "Description."),
-        (TimelinePoint(), UIColor.clear, "19:00", "Description.")
-        ], 1:[
-        (TimelinePoint(), UIColor.lightGray, "08:30", "Description."),
-        (TimelinePoint(), UIColor.lightGray, "09:30", "Description."),
-        (TimelinePoint(), UIColor.lightGray, "10:00", "Description."),
-        (TimelinePoint(), UIColor.lightGray, "11:30", "Description."),
-        (TimelinePoint(color: UIColor.red, filled: true), UIColor.red, "12:30", "Description."),
-        (TimelinePoint(color: UIColor.red, filled: true), UIColor.red, "13:00", "Description."),
-        (TimelinePoint(color: UIColor.red, filled: true), UIColor.lightGray, "15:00", "Description."),
-        (TimelinePoint(), UIColor.lightGray, "17:30", "Description."),
-        (TimelinePoint(), UIColor.lightGray, "18:30", "Description."),
-        (TimelinePoint(), UIColor.lightGray, "19:30", "Description."),
-        (TimelinePoint(), backColor: UIColor.clear, "20:00", "Description.")
-    ]]
-
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineTableViewCell", for: indexPath) as! TimelineTableViewCell
 
-        let (timelinePoint, timelineBackColor, title, description) = sampleData[indexPath.section]![indexPath.row]
+        // Grab from our custom config
+        let (timelinePoint, allColor, title, description) = sampleData[indexPath.section]![indexPath.row]
 
+
+        /*
+        Overview of how cells are drawn
+
+                       ----------------
+         backColor     |
+         tPoint.color  o 12:30 (bold)
+                       |
+         frontColor    | Description
+                       |
+                       ----------------
+         */
+
+        // Colors
+        cell.timeline.backColor = allColor
         cell.timelinePoint = timelinePoint
-        cell.timeline.backColor = timelineBackColor
-        cell.timeline.frontColor = UIColor.darkGray
-        cell.timeline.leftMargin = 30.0
+        cell.timeline.frontColor = allColor
+
+        // If point is filled, set backcolor to be the old back color
+        if (timelinePoint.isFilled) {
+            cell.timeline.backColor = self.backColor
+        }
+
+        // Text content
         cell.titleLabel.text = title
         cell.descriptionLabel.text = description
 
@@ -78,25 +110,11 @@ class ScheduleTableViewController: UITableViewController {
             cell.titleLabel.textColor = UIColor.black
         }
 
-        // Assign primary accent color as timeline line color (defined in asset catalog)
-//        cell.timeline.frontColor = UIColor(named: "primaryColor")!
-
-        // The gray popup square, used to notate the time
-//        cell.titleLabel.text = "9:30am"
+        // Layout
+        cell.timeline.leftMargin = 30.0
         cell.bubbleEnabled = false
 
         return cell
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
