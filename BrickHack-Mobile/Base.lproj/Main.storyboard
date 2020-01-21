@@ -116,37 +116,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Zp-wc-XHQ">
-                                <rect key="frame" x="0.0" y="74" width="375" height="66"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="2aR-zI-khn"/>
+                                    <constraint firstAttribute="height" constant="80" id="2aR-zI-khn"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="g8Z-Z9-XAz" kind="embed" id="6YJ-qq-hy4"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIp-cK-tIz">
-                                <rect key="frame" x="37" y="170" width="149" height="41"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
-                                <color key="textColor" name="primaryColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4I-Sq-rhl">
-                                <rect key="frame" x="0.0" y="227" width="375" height="551"/>
+                                <rect key="frame" x="0.0" y="244" width="375" height="534"/>
                                 <connections>
                                     <segue destination="S2k-45-cUt" kind="embed" id="zvN-Lw-JtR"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIp-cK-tIz">
+                                <rect key="frame" x="37" y="184" width="149" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <color key="textColor" name="primaryColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <accessibility key="accessibilityConfiguration" hint="checked-out"/>
                         <constraints>
                             <constraint firstItem="DgF-Zc-fiO" firstAttribute="bottom" secondItem="r4I-Sq-rhl" secondAttribute="bottom" id="BN2-m4-c1v"/>
-                            <constraint firstItem="r4I-Sq-rhl" firstAttribute="top" secondItem="EIp-cK-tIz" secondAttribute="bottom" constant="16" id="EZX-g0-gWT"/>
                             <constraint firstItem="EIp-cK-tIz" firstAttribute="leading" secondItem="DgF-Zc-fiO" secondAttribute="leading" constant="37" id="Sbf-iJ-jhh"/>
                             <constraint firstItem="r4I-Sq-rhl" firstAttribute="leading" secondItem="DgF-Zc-fiO" secondAttribute="leading" id="W7l-yf-cpg"/>
                             <constraint firstItem="8Zp-wc-XHQ" firstAttribute="top" secondItem="DgF-Zc-fiO" secondAttribute="top" constant="30" id="akc-RA-5my"/>
                             <constraint firstItem="DgF-Zc-fiO" firstAttribute="trailing" secondItem="r4I-Sq-rhl" secondAttribute="trailing" id="hEf-sD-53f"/>
                             <constraint firstItem="EIp-cK-tIz" firstAttribute="top" secondItem="8Zp-wc-XHQ" secondAttribute="bottom" constant="30" id="iEV-uN-BmU"/>
+                            <constraint firstItem="r4I-Sq-rhl" firstAttribute="top" secondItem="EIp-cK-tIz" secondAttribute="bottom" constant="19" id="qjP-wh-bpo"/>
                             <constraint firstItem="DgF-Zc-fiO" firstAttribute="trailing" secondItem="8Zp-wc-XHQ" secondAttribute="trailing" id="yEg-Ye-Njo"/>
                             <constraint firstItem="8Zp-wc-XHQ" firstAttribute="leading" secondItem="DgF-Zc-fiO" secondAttribute="leading" id="ytg-kZ-Zud"/>
                         </constraints>
@@ -176,13 +176,13 @@
             <objects>
                 <tableViewController id="g8Z-Z9-XAz" customClass="ProfileTableViewController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ha2-zv-jvi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
                             <tableViewSection id="feo-F1-UGk">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="85" id="tz9-qS-mNz">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="85" id="tz9-qS-mNz">
                                         <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tz9-qS-mNz" id="AW9-B6-GKe">
@@ -248,7 +248,7 @@
             <objects>
                 <viewController id="aXh-cU-cZb" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4b2-aF-V9H">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="hdK-Am-Svz"/>
@@ -263,7 +263,7 @@
             <objects>
                 <tableViewController id="S2k-45-cUt" customClass="ScheduleTableViewController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mcs-hP-1ut">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="534"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="scheduleCell" id="FAE-qX-Ggn">
