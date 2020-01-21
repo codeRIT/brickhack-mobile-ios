@@ -14,16 +14,11 @@ class EventsViewController: UIViewController { //UserDataHandler {
 
 
     // MARK: UI
-
-    // First, the custom ProfileTableViewCell
-
     
-
-    // Now, the Schedule.
-    // @TODO: Put rest here
 
 
     // General properties
+    // @FIXME When login works
 //    var oauthGrant: OAuth2ImplicitGrant!
 //    var userID: Int!
 

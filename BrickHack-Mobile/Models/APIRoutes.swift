@@ -15,7 +15,7 @@ import Alamofire
 // For local development, route through ngrok,
 // and set App Transpot to allow localhost in info.plist
 struct Routes {
-    static let environment           = "https://apply.brickhack.io"
+    static let environment           = "https://hm.baudouin.io"
     static let authorize             = "\(environment)/oauth/authorize"
     static let currentUser           = "\(environment)/oauth/token/info"
     static let questionnaire         = "\(environment)/manage/questionnaires" // :id

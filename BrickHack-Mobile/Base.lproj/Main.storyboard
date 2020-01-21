@@ -115,12 +115,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sia-xs-aJx">
-                                <rect key="frame" x="155.33333333333334" y="420" width="64.333333333333343" height="26"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Zp-wc-XHQ">
                                 <rect key="frame" x="0.0" y="88" width="375" height="132"/>
                                 <constraints>
@@ -130,13 +124,29 @@
                                     <segue destination="g8Z-Z9-XAz" kind="embed" id="Ngi-8T-rrF"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIp-cK-tIz">
+                                <rect key="frame" x="37" y="254" width="149" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <color key="textColor" name="primaryColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4I-Sq-rhl">
+                                <rect key="frame" x="0.0" y="311" width="375" height="467"/>
+                                <connections>
+                                    <segue destination="S2k-45-cUt" kind="embed" id="zvN-Lw-JtR"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <accessibility key="accessibilityConfiguration" hint="checked-out"/>
                         <constraints>
+                            <constraint firstItem="DgF-Zc-fiO" firstAttribute="bottom" secondItem="r4I-Sq-rhl" secondAttribute="bottom" id="BN2-m4-c1v"/>
+                            <constraint firstItem="r4I-Sq-rhl" firstAttribute="top" secondItem="EIp-cK-tIz" secondAttribute="bottom" constant="16" id="EZX-g0-gWT"/>
+                            <constraint firstItem="EIp-cK-tIz" firstAttribute="leading" secondItem="DgF-Zc-fiO" secondAttribute="leading" constant="37" id="Sbf-iJ-jhh"/>
+                            <constraint firstItem="r4I-Sq-rhl" firstAttribute="leading" secondItem="DgF-Zc-fiO" secondAttribute="leading" id="W7l-yf-cpg"/>
+                            <constraint firstItem="DgF-Zc-fiO" firstAttribute="trailing" secondItem="r4I-Sq-rhl" secondAttribute="trailing" id="hEf-sD-53f"/>
+                            <constraint firstItem="EIp-cK-tIz" firstAttribute="top" secondItem="8Zp-wc-XHQ" secondAttribute="bottom" constant="34" id="iEV-uN-BmU"/>
                             <constraint firstItem="8Zp-wc-XHQ" firstAttribute="top" secondItem="DgF-Zc-fiO" secondAttribute="top" id="lFz-Vy-XPx"/>
-                            <constraint firstItem="sia-xs-aJx" firstAttribute="centerY" secondItem="DgF-Zc-fiO" secondAttribute="centerY" id="qBP-xD-2X5"/>
-                            <constraint firstItem="sia-xs-aJx" firstAttribute="centerX" secondItem="DgF-Zc-fiO" secondAttribute="centerX" id="v2V-g9-mCq"/>
                             <constraint firstItem="DgF-Zc-fiO" firstAttribute="trailing" secondItem="8Zp-wc-XHQ" secondAttribute="trailing" id="yEg-Ye-Njo"/>
                             <constraint firstItem="8Zp-wc-XHQ" firstAttribute="leading" secondItem="DgF-Zc-fiO" secondAttribute="leading" id="ytg-kZ-Zud"/>
                         </constraints>
@@ -147,7 +157,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="XIL-Z1-fpf">
                             <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="YN7-JW-ZjW" kind="unwind" unwindAction="unwindToLoginWithSegue:" id="b4w-Z7-cTw"/>
+                                <segue destination="YN7-JW-ZjW" kind="unwind" unwindAction="unwindToLoginWithSegue:" id="2ws-wp-h3x"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -172,7 +182,7 @@
                         <sections>
                             <tableViewSection id="feo-F1-UGk">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="85" id="tz9-qS-mNz" customClass="ProfileTableViewCell" customModule="BrickHack_Mobile" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="85" id="tz9-qS-mNz">
                                         <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tz9-qS-mNz" id="AW9-B6-GKe">
@@ -229,6 +239,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNf-Aa-cwx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3690" y="-27"/>
+        </scene>
+        <!--Schedule Table View Controller-->
+        <scene sceneID="up2-D5-I0e">
+            <objects>
+                <tableViewController id="S2k-45-cUt" customClass="ScheduleTableViewController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mcs-hP-1ut">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="467"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="FAE-qX-Ggn">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FAE-qX-Ggn" id="jbf-8f-lNS">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="S2k-45-cUt" id="Jvs-z7-Lyu"/>
+                            <outlet property="delegate" destination="S2k-45-cUt" id="uby-5x-qt9"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L6K-Ib-PRg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3690" y="342"/>
         </scene>
     </scenes>
     <resources>
