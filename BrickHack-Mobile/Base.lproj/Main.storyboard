@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d4A-Y1-d1Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D1f-v2-RH4">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -94,7 +94,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zuO-7v-QAY">
             <objects>
-                <navigationController hidesBarsOnSwipe="YES" id="d4A-Y1-d1Y" sceneMemberID="viewController">
+                <navigationController id="d4A-Y1-d1Y" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tnP-ie-Rv8">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -102,9 +102,6 @@
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5R6-IO-GjJ">
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
-                    <connections>
-                        <segue destination="D1f-v2-RH4" kind="relationship" relationship="rootViewController" id="3r0-xW-ZFx"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="60l-ds-psv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -119,22 +116,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Zp-wc-XHQ">
-                                <rect key="frame" x="0.0" y="108" width="375" height="66"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="2aR-zI-khn"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="g8Z-Z9-XAz" kind="embed" id="Ngi-8T-rrF"/>
+                                    <segue destination="g8Z-Z9-XAz" kind="embed" id="6YJ-qq-hy4"/>
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIp-cK-tIz">
-                                <rect key="frame" x="37" y="231" width="149" height="41"/>
+                                <rect key="frame" x="37" y="170" width="149" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <color key="textColor" name="primaryColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4I-Sq-rhl">
-                                <rect key="frame" x="0.0" y="288" width="375" height="490"/>
+                                <rect key="frame" x="0.0" y="227" width="375" height="551"/>
                                 <connections>
                                     <segue destination="S2k-45-cUt" kind="embed" id="zvN-Lw-JtR"/>
                                 </connections>
@@ -147,9 +144,9 @@
                             <constraint firstItem="r4I-Sq-rhl" firstAttribute="top" secondItem="EIp-cK-tIz" secondAttribute="bottom" constant="16" id="EZX-g0-gWT"/>
                             <constraint firstItem="EIp-cK-tIz" firstAttribute="leading" secondItem="DgF-Zc-fiO" secondAttribute="leading" constant="37" id="Sbf-iJ-jhh"/>
                             <constraint firstItem="r4I-Sq-rhl" firstAttribute="leading" secondItem="DgF-Zc-fiO" secondAttribute="leading" id="W7l-yf-cpg"/>
-                            <constraint firstItem="8Zp-wc-XHQ" firstAttribute="top" secondItem="DgF-Zc-fiO" secondAttribute="top" constant="20" id="akc-RA-5my"/>
+                            <constraint firstItem="8Zp-wc-XHQ" firstAttribute="top" secondItem="DgF-Zc-fiO" secondAttribute="top" constant="30" id="akc-RA-5my"/>
                             <constraint firstItem="DgF-Zc-fiO" firstAttribute="trailing" secondItem="r4I-Sq-rhl" secondAttribute="trailing" id="hEf-sD-53f"/>
-                            <constraint firstItem="EIp-cK-tIz" firstAttribute="top" secondItem="8Zp-wc-XHQ" secondAttribute="bottom" constant="57" id="iEV-uN-BmU"/>
+                            <constraint firstItem="EIp-cK-tIz" firstAttribute="top" secondItem="8Zp-wc-XHQ" secondAttribute="bottom" constant="30" id="iEV-uN-BmU"/>
                             <constraint firstItem="DgF-Zc-fiO" firstAttribute="trailing" secondItem="8Zp-wc-XHQ" secondAttribute="trailing" id="yEg-Ye-Njo"/>
                             <constraint firstItem="8Zp-wc-XHQ" firstAttribute="leading" secondItem="DgF-Zc-fiO" secondAttribute="leading" id="ytg-kZ-Zud"/>
                         </constraints>
@@ -224,6 +221,9 @@
                                                 <constraint firstItem="hsb-w8-ZIH" firstAttribute="leading" secondItem="hkF-3N-0ov" secondAttribute="trailing" constant="23" id="uCc-xS-DU4"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="aXh-cU-cZb" kind="showDetail" id="SR2-aC-sBk"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -243,12 +243,27 @@
             </objects>
             <point key="canvasLocation" x="3690" y="-27"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="xmh-eR-hkz">
+            <objects>
+                <viewController id="aXh-cU-cZb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4b2-aF-V9H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="hdK-Am-Svz"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OSu-Wr-JTZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4612" y="-84"/>
+        </scene>
         <!--Schedule Table View Controller-->
         <scene sceneID="up2-D5-I0e">
             <objects>
                 <tableViewController id="S2k-45-cUt" customClass="ScheduleTableViewController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mcs-hP-1ut">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="490"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="scheduleCell" id="FAE-qX-Ggn">
