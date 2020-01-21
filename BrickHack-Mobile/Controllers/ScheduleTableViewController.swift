@@ -21,7 +21,7 @@ class ScheduleTableViewController: UITableViewController {
 
     // Section 0 represents the previous and current events, colored backColor (except current)
     // Section 1 represents future events, colored frontColor.
-    var sampleData: [Int: [(TimelinePoint?, UIColor, String, String)]] = [:]
+    var sampleData: [Int: [(TimelinePoint?, UIColor, String, String, Bool)]] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,22 +44,22 @@ class ScheduleTableViewController: UITableViewController {
          */
         self.sampleData = [
             0:[
-            (TimelinePoint(color: backColor, filled: true),  backColor, "12:30", "Description"),
-            (nil,                                            backColor, "15:30", "Description."),
-            (TimelinePoint(color: backColor, filled: true),  backColor, "16:30", "Description."), // Current item
+            (TimelinePoint(color: backColor, filled: true),  backColor, "12:30", "Description.", true),
+            (nil,                                            backColor, "15:30", "Description.", false),
+            (TimelinePoint(color: backColor, filled: true),  backColor, "16:30", "Description.", false), // Current item
             ], 1:[
-            (TimelinePoint(),                                frontColor, "19:00", "Description."),
-            (TimelinePoint(),                                frontColor, "08:30", "Description."),
-            (TimelinePoint(),                                frontColor, "09:30", "Description."),
-            (TimelinePoint(),                                frontColor, "10:00", "Description."),
-            (TimelinePoint(),                                frontColor, "11:30", "Description."),
-            (TimelinePoint(),                                frontColor, "12:30", "Description."),
-            (TimelinePoint(),                                frontColor, "13:00", "Description."),
-            (TimelinePoint(),                                frontColor, "15:00", "Description."),
-            (TimelinePoint(),                                frontColor, "17:30", "Description."),
-            (TimelinePoint(),                                frontColor, "18:30", "Description."),
-            (TimelinePoint(),                                frontColor, "19:30", "Description."),
-            (TimelinePoint(),                                frontColor, "20:00", "Description.")
+            (TimelinePoint(),                                frontColor, "19:00", "Description.", false),
+            (nil,                                            frontColor, "08:30", "Description.", false),
+            (nil,                                            frontColor, "09:30", "Description.", false),
+            (nil,                                            frontColor, "10:00", "Description.", true),
+            (TimelinePoint(),                                frontColor, "11:30", "Description.", false),
+            (TimelinePoint(),                                frontColor, "12:30", "Description.", false),
+            (TimelinePoint(),                                frontColor, "13:00", "Description.", false),
+            (TimelinePoint(),                                frontColor, "15:00", "Description.", false),
+            (TimelinePoint(),                                frontColor, "17:30", "Description.", false),
+            (TimelinePoint(),                                frontColor, "18:30", "Description.", false),
+            (TimelinePoint(),                                frontColor, "19:30", "Description.", false),
+            (TimelinePoint(),                                frontColor, "20:00", "Description.", false)
             ]]
 
     }
@@ -80,7 +80,7 @@ class ScheduleTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineTableViewCell", for: indexPath) as! TimelineTableViewCell
 
         // Grab from our custom config
-        let (timelinePoint, allColor, title, description) = sampleData[indexPath.section]![indexPath.row]
+        let (timelinePoint, allColor, title, description, favorite) = sampleData[indexPath.section]![indexPath.row]
 
 
         /*
@@ -126,6 +126,17 @@ class ScheduleTableViewController: UITableViewController {
         } else {
             cell.titleLabel.textColor = UIColor.black
         }
+
+        // Configure favorite accessory
+        // @TODO: Obvs read/write to/from server, but also:
+        // @TODO: Change local data model, look for a table view delegate
+        // @TODO: Check if margin updates when using forked TimelineTableViewCell eventually
+        if favorite {
+            cell.accessoryView = UIImageView(image: UIImage(named: "filledStar"))
+        } else {
+            cell.accessoryView = UIImageView(image: UIImage(named: "emptyStar"))
+        }
+
 
         // Layout
         cell.timeline.leftMargin = 30.0
