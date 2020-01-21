@@ -13,6 +13,7 @@ class ScheduleTableViewController: UITableViewController {
 
 
     // MARK: Ivars
+    var scheduleTimer = Timer()
 
     // Colors for dataset
     // @TODO: Double check w/ design on these colors
@@ -33,6 +34,55 @@ class ScheduleTableViewController: UITableViewController {
 
         // Remove separator lines
         tableView.separatorStyle = .none
+
+        // Set timer for timeline refresh function,
+        // which runs each minute (while the screen is visible) and updates the timeline view if necessary.
+        scheduleTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true, block: { timer in
+
+            print("--------------")
+            print("OLD DATA FOR SECTION 0")
+            print(self.sampleData[0]?.last as Any)
+
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+
+            // Don't attempt to convert until data exists
+            guard self.sampleData[1]?.first?.2 != nil else {
+                return
+            }
+
+            // Convert our date string into a date object
+            let dateString = dateFormatter.date(from: self.sampleData[1]!.first!.2)
+
+            guard dateString != nil else {
+                return
+            }
+
+            // Do the comparison
+            if (Date.init(timeIntervalSinceNow: 0) >= dateString!) {
+
+                // Goal: If we have passed the current date, move the first item in section 1 to section 0.
+
+                // Move first element of section 1 to end of section 0
+                let lastIndex = self.sampleData.count - 1
+                let newCurrent = self.sampleData[1]!.first!
+                self.sampleData[1]!.removeFirst()
+                self.sampleData[0]!.append(newCurrent)
+
+
+                //@TODO: UPDATE COLOR AND FIX TIME INDEX 
+            }
+
+            // And of course, reload the table.
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+
+            print("\nNEW DATA FOR SECTION 0")
+            print(self.sampleData[0]!.last!)
+        })
+
+        scheduleTimer.fire()
 
         /*
          * Static sample data to use.
@@ -59,9 +109,13 @@ class ScheduleTableViewController: UITableViewController {
             (TimelinePoint(),                                frontColor, "17:30", "Description.", false),
             (TimelinePoint(),                                frontColor, "18:30", "Description.", false),
             (TimelinePoint(),                                frontColor, "19:30", "Description.", false),
-            (TimelinePoint(),                                frontColor, "20:00", "Description.", false)
-            ]]
+            (TimelinePoint(),                                frontColor, "20:00", "Description.", false) ]]
 
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        // Stop timer when view is not visible
+        scheduleTimer.invalidate()
     }
 
     // MARK: - Table view data source
