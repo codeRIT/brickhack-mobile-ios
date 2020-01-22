@@ -30,7 +30,7 @@ DEPENDENCIES:
   - SVProgressHUD
   - SwiftMessages
   - SwiftyJSON
-  - TimelineTableViewCell
+  - TimelineTableViewCell (from `https://github.com/peterkos/TimelineTableViewCell.git`)
   - VYNFCKit
 
 SPEC REPOS:
@@ -44,7 +44,15 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftMessages
     - SwiftyJSON
-    - TimelineTableViewCell
+
+EXTERNAL SOURCES:
+  TimelineTableViewCell:
+    :git: https://github.com/peterkos/TimelineTableViewCell.git
+
+CHECKOUT OPTIONS:
+  TimelineTableViewCell:
+    :commit: c9a70bd88384c26b8503c538226b85a1bdc460a4
+    :git: https://github.com/peterkos/TimelineTableViewCell.git
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -57,6 +65,6 @@ SPEC CHECKSUMS:
   TimelineTableViewCell: b2721a3c1f17c4a4950ae442f45cd4e8669a2750
   VYNFCKit: 86a9b711fd1f34f6f7128a2a883cd58dbd781b9d
 
-PODFILE CHECKSUM: 5dbc104ebbff2e4f2af279558bee8872b5785951
+PODFILE CHECKSUM: 6bbfd6c71fb7f410c10754d0ad20f126f4537919
 
 COCOAPODS: 1.8.1
