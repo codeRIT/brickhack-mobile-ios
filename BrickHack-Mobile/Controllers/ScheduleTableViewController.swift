@@ -22,7 +22,9 @@ class ScheduleTableViewController: UITableViewController {
 
     // Section 0 represents the previous and current events, colored backColor (except current)
     // Section 1 represents future events, colored frontColor.
-    var sampleData: [Int: [(TimelinePoint?, UIColor, String, String, Bool)]] = [:]
+    // timelinePoint, allColor, title, description, favorite
+    var sampleData: [Int: [(timelinePoint: TimelinePoint?,
+        allColor: UIColor, title: String, description: String, isFavorite: Bool, date: Date)]] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,46 +39,38 @@ class ScheduleTableViewController: UITableViewController {
 
         // Set timer for timeline refresh function,
         // which runs each minute (while the screen is visible) and updates the timeline view if necessary.
+        // @TODO: Change from 5s to change on every hour, effectively caching the result
+        // (or maybe don't bother with cache and do it every time the view is loaded / minimal persistance)
         scheduleTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true, block: { timer in
 
-            print("--------------")
-            print("OLD DATA FOR SECTION 0")
-            print(self.sampleData[0]?.last as Any)
+            // Determine which section is currently active
+            // (by default, 0)
 
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm"
-
-            // Don't attempt to convert until data exists
-            guard self.sampleData[1]?.first?.2 != nil else {
+            guard (!self.sampleData.isEmpty) else {
                 return
             }
 
-            // Convert our date string into a date object
-            let dateString = dateFormatter.date(from: self.sampleData[1]!.first!.2)
+            for sectionIndex in -1..<self.sampleData.count {
 
-            guard dateString != nil else {
-                return
-            }
+                // Grab the next section's date
+                let sectionDate = self.sampleData[sectionIndex + 1]!.first!.date
 
-            // Do the comparison
-            if (Date.init(timeIntervalSinceNow: 0) >= dateString!) {
-
-                // Goal: If we have passed the current date, move the first item in section 1 to section 0.
-
-                // Move first element of section 1 to end of section 0,
-                // and update color to show "completed"
-                var newCurrent = self.sampleData[1]!.first!
-                newCurrent.1 = self.backColor
-
-                // Only "fill" timeline point if it's defined for that cell
-                if (newCurrent.0 != nil) {
-                    newCurrent.0 = TimelinePoint(color: self.backColor, filled: true)
+                // If greater, STOP. We are at the current section.
+                if (sectionDate > Date(timeIntervalSinceNow: 0)) {
+                    break
                 }
 
-                // Reassign to first section
-                // @TODO: Why??
-                self.sampleData[1]!.removeFirst()
-                self.sampleData[0]!.append(newCurrent)
+                // Otherwise, go on to configure this current section as "passed"
+                var currentSection = self.sampleData[sectionIndex]!
+                for eventIndex in 0..<currentSection.count {
+
+                    currentSection[eventIndex].allColor = self.backColor
+
+                    // Only "fill" timeline point if it's defined for that cell
+                    if (currentSection[eventIndex].timelinePoint != nil) {
+                        currentSection[eventIndex].timelinePoint = TimelinePoint(color: self.backColor, filled: true)
+                    }
+                }
             }
 
             // And of course, reload the table.
@@ -84,8 +78,6 @@ class ScheduleTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
 
-            print("\nNEW DATA FOR SECTION 0")
-            print(self.sampleData[0]!.last!)
         })
 
         scheduleTimer.fire()
@@ -93,29 +85,35 @@ class ScheduleTableViewController: UITableViewController {
         /*
          * Static sample data to use.
          * Some notes:
-         *      a) Set nil point to have smooth, continuous line past that event
-         *      b) Section 0 (up to last event, which is current item) will be HIGHLIGHTED in primary color.
+         *      Each section corresponds to a time block. The header of each section will dictate the time.
+         *      An event is set to be the current event on a section-by-section basis in viewDidLoad
+         *      First point is ALWAYS filled. Rest is set in the timer closure on viewDidLoad.
          *
          * @TODO: Implement with pulled & parsed data from GSheets
          */
         self.sampleData = [
+            // 9am sat
             0:[
-            (TimelinePoint(color: backColor, filled: true),  backColor, "12:30", "Description.", true),
-            (nil,                                            backColor, "15:30", "Description.", false),
-            (TimelinePoint(color: backColor, filled: true),  backColor, "16:30", "Description.", false), // Current item
-            ], 1:[
-            (TimelinePoint(),                                frontColor, "19:00", "Description.", false),
-            (nil,                                            frontColor, "08:30", "Description.", false),
-            (nil,                                            frontColor, "09:30", "Description.", false),
-            (nil,                                            frontColor, "10:00", "Description.", true),
-            (TimelinePoint(),                                frontColor, "11:30", "Description.", false),
-            (TimelinePoint(),                                frontColor, "12:30", "Description.", false),
-            (TimelinePoint(),                                frontColor, "13:00", "Description.", false),
-            (TimelinePoint(),                                frontColor, "15:00", "Description.", false),
-            (TimelinePoint(),                                frontColor, "17:30", "Description.", false),
-            (TimelinePoint(),                                frontColor, "18:30", "Description.", false),
-            (TimelinePoint(),                                frontColor, "19:30", "Description.", false),
-            (TimelinePoint(),                                frontColor, "20:00", "Description.", false) ]]
+                (TimelinePoint(color: backColor, filled: true),  backColor, "9am 1", "Description.", true, Date(timeIntervalSince1970: 1581195600)),
+                (nil,                                            backColor, "9am 2", "Description.", false, Date(timeIntervalSince1970: 1581195600))],
+            // 12am sun
+            1:[
+                (TimelinePoint(),                                frontColor, "12am", "Description.", false, Date(timeIntervalSince1970: 1581206400))],
+            // 7am sun
+            2:[
+                (TimelinePoint(),                                frontColor, "7am", "Description.", false, Date(timeIntervalSince1970: 1581231600))],
+            // 8am sun
+            3:[
+                (TimelinePoint(),                                frontColor, "8am", "Description.", false, Date(timeIntervalSince1970: 1581235200))]]
+
+        // Static data sample to use for sections.
+        // From Figma: (sample date 2/8/2020)
+        // Sat, 9pm (2 things but only one stored),
+        // Sun, 12am, 7am, 8am
+//        self.sectionMapping = [0: Date(timeIntervalSince1970: 1581195600), // 9am
+//                               1: Date(timeIntervalSince1970: 1581206400), // 12am
+//                               2: Date(timeIntervalSince1970: 1581231600), // 7am
+//                               3: Date(timeIntervalSince1970: 1581235200)] // 8am
 
     }
 
@@ -140,7 +138,7 @@ class ScheduleTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineTableViewCell", for: indexPath) as! TimelineTableViewCell
 
         // Grab from our custom config
-        let (timelinePoint, allColor, title, description, favorite) = sampleData[indexPath.section]![indexPath.row]
+        let (timelinePoint, allColor, title, description, isFavorite, date) = sampleData[indexPath.section]![indexPath.row]
 
 
         /*
@@ -177,7 +175,11 @@ class ScheduleTableViewController: UITableViewController {
 
         // Text content
         cell.titleLabel.text = title
-        cell.descriptionLabel.text = description
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH"
+        cell.descriptionLabel.text = dateFormatter.string(from: date)
+
 
         // Set label color properly depending on dark mode, or no dark mode option.
         // Only change if bubble is not enableld to preserve contrast. Might need tweaking.
@@ -188,16 +190,22 @@ class ScheduleTableViewController: UITableViewController {
         }
 
         // Configure favorite accessory
-        if favorite {
+        if isFavorite {
             cell.accessoryView = UIImageView(image: UIImage(named: "filledStar"))
         } else {
             cell.accessoryView = UIImageView(image: UIImage(named: "emptyStar"))
         }
 
+        // Confgure bubble
+        cell.bubbleColor = UIColor.clear
+        cell.bubbleWidth = 20.0
+        cell.bubbleBorderColor = UIColor(named: "primaryColor")!
+
         // Disable selection per cell
         cell.selectionStyle = .none
 
         // Layout adjustment
+        // (Accessory adjustment is done in @peterkos/TimelineTableViewCell)
         cell.timeline.leftMargin = 30.0
 
         return cell
@@ -207,6 +215,32 @@ class ScheduleTableViewController: UITableViewController {
         // @TODO: Obvs read/write to/from server, but also:
         // @TODO: Change local data model, look for a table view delegate
         // @TODO: Check if margin updates when using forked TimelineTableViewCell eventually
+    }
+
+    // MARK: Section headers and view configuration
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // @TODO:
+        // Implement header design, timeframes in each section in data model,
+        // make Description font bigger, move accessory margin (- instead of + in TimelineTableViewCell),
+        // Remove nasty bubble -- ask Chris about a good indicator to use for "active block".
+        // (maybe make bar bigger?)
+        return tableView.dequeueReusableCell(withIdentifier: "header")
+
+
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        //@TODO
+        return 44
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0: return "9am"
+        case 1: return "10am"
+        default: return "Unknown"
+        }
     }
 
 }
