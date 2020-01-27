@@ -39,9 +39,9 @@ class ScheduleTableViewController: UITableViewController {
 
         // Set timer for timeline refresh function,
         // which runs each minute (while the screen is visible) and updates the timeline view if necessary.
-        // @TODO: Change from 5s to change on every hour, effectively caching the result
+        // @TODO: Change from 60s to change on every hour, effectively caching the result
         // (or maybe don't bother with cache and do it every time the view is loaded / minimal persistance)
-        scheduleTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true, block: { timer in
+        scheduleTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true, block: { timer in
 
             // Determine which section is currently active
             // (by default, 0)
