@@ -165,7 +165,6 @@ class ScheduleTableViewController: UITableViewController {
             // This is a bit counterintuitive but it works ¯\_(ツ)_/¯
             cell.timeline.backColor = frontColor
             cell.bubbleEnabled = true
-            print("Current element: \(title)")
         } else {
 
             // Only current item gets button.
@@ -220,27 +219,38 @@ class ScheduleTableViewController: UITableViewController {
     // MARK: Section headers and view configuration
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // @TODO:
-        // Implement header design, timeframes in each section in data model,
-        // make Description font bigger, move accessory margin (- instead of + in TimelineTableViewCell),
-        // Remove nasty bubble -- ask Chris about a good indicator to use for "active block".
-        // (maybe make bar bigger?)
-        return tableView.dequeueReusableCell(withIdentifier: "header")
 
+        print("Header for section \(section)")
 
-    }
+        // Get our dummy cell from IB
+        let cell = tableView.dequeueReusableCell(withIdentifier: "header")!
 
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        //@TODO
-        return 44
-    }
+        // Make date formatter for just time
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .short
+        dateFormatter.dateStyle = .none
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0: return "9am"
-        case 1: return "10am"
-        default: return "Unknown"
+        // Return cell as-is if invlaid data
+        guard let sectionDate = sampleData[section]?.first?.date else {
+            cell.textLabel!.text = "Unknown Time"
+            return cell
         }
+
+        // Otherwise set proper date
+        cell.textLabel!.text = dateFormatter.string(from: sectionDate)
+
+        return cell
+
+    }
+
+    // Defined height for the time header slot (e.g., "9am")
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60.0
+    }
+
+    // Remove margin between sections
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
     }
 
 }
