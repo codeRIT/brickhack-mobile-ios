@@ -149,6 +149,8 @@ class ScheduleTableViewController: UITableViewController {
          */
 
         // Colors, and point (if not nil)
+        // @TODO: Increase contrast of description color, see TimelineTableViewCell fork
+        cell.backgroundColor = UIColor.clear
         cell.timeline.backColor = allColor
         cell.timelinePoint = timelinePoint ?? TimelinePoint(diameter: 0, color: allColor, filled: true)
         cell.timeline.frontColor = allColor
@@ -156,12 +158,12 @@ class ScheduleTableViewController: UITableViewController {
         // If point is filled, set FRONTCOLOR to match rest of list, and show bubble.
         // (point is current bit)
         if (indexPath.section == 0 && indexPath.row == sampleData[0]!.count - 1) {
-
             // This is a bit counterintuitive but it works ¯\_(ツ)_/¯
             cell.timeline.backColor = frontColor
+            // Sets white text no matter what, due to contrastive background of bubble (set later in method)
+            cell.titleLabel.textColor = UIColor.white
             cell.bubbleEnabled = true
         } else {
-
             // Only current item gets button.
             // @TODO: Check with design on this one.
             cell.bubbleEnabled = false
@@ -173,15 +175,6 @@ class ScheduleTableViewController: UITableViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm a"
         cell.descriptionLabel.text = dateFormatter.string(from: date)
-
-
-        // Set label color properly depending on dark mode, or no dark mode option.
-        // Only change if bubble is not enableld to preserve contrast. Might need tweaking.
-        if #available(iOS 13.0, *), !cell.bubbleEnabled {
-            cell.titleLabel.textColor = UIColor.label
-        } else {
-            cell.titleLabel.textColor = UIColor.black
-        }
 
         // Configure favorite accessory
         let favButton = FavoriteButton(type: .custom)
@@ -197,9 +190,10 @@ class ScheduleTableViewController: UITableViewController {
         favButton.isSelected = isFavorite
 
         // Confgure bubble
-        cell.bubbleColor = UIColor.clear
-        cell.bubbleWidth = 20.0
-        cell.bubbleBorderColor = UIColor(named: "primaryColor")!
+        cell.bubbleColor = UIColor(named: "primaryColor")!
+        cell.bubbleBorderColor = UIColor.clear
+        // (I dont think this property works, check TimelineTableViewCell fork)
+//        cell.bubbleWidth = 100.0
 
         // Disable selection per cell
         cell.selectionStyle = .none
