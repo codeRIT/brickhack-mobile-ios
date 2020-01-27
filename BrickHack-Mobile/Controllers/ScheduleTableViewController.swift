@@ -90,31 +90,25 @@ class ScheduleTableViewController: UITableViewController {
          *      First point is ALWAYS filled. Rest is set in the timer closure on viewDidLoad.
          *
          * @TODO: Implement with pulled & parsed data from GSheets
+         *
+         * From Figma: (sample date 2/8/2020)
+         * Sat, 9pm (2 things but only one stored),
+         * Sun, 12am, 7am, 8am
          */
         self.sampleData = [
             // 9am sat
             0:[
-                (TimelinePoint(color: backColor, filled: true),  backColor, "9am 1", "Description.", true, Date(timeIntervalSince1970: 1581195600)),
-                (nil,                                            backColor, "9am 2", "Description.", false, Date(timeIntervalSince1970: 1581195600))],
+                (TimelinePoint(color: backColor, filled: true),  backColor, "9am 1", "Description.", true, Date(timeIntervalSince1970: 1581170400)),
+                (nil,                                            backColor, "9am 2", "Description.", false, Date(timeIntervalSince1970: 1581170400))],
             // 12am sun
             1:[
-                (TimelinePoint(),                                frontColor, "12am", "Description.", false, Date(timeIntervalSince1970: 1581206400))],
+                (TimelinePoint(),                                frontColor, "12am", "Description.", false, Date(timeIntervalSince1970: 1581224400))],
             // 7am sun
             2:[
-                (TimelinePoint(),                                frontColor, "7am", "Description.", false, Date(timeIntervalSince1970: 1581231600))],
+                (TimelinePoint(),                                frontColor, "7am", "Description.", false, Date(timeIntervalSince1970: 1581249600))],
             // 8am sun
             3:[
-                (TimelinePoint(),                                frontColor, "8am", "Description.", false, Date(timeIntervalSince1970: 1581235200))]]
-
-        // Static data sample to use for sections.
-        // From Figma: (sample date 2/8/2020)
-        // Sat, 9pm (2 things but only one stored),
-        // Sun, 12am, 7am, 8am
-//        self.sectionMapping = [0: Date(timeIntervalSince1970: 1581195600), // 9am
-//                               1: Date(timeIntervalSince1970: 1581206400), // 12am
-//                               2: Date(timeIntervalSince1970: 1581231600), // 7am
-//                               3: Date(timeIntervalSince1970: 1581235200)] // 8am
-
+                (TimelinePoint(),                                frontColor, "8am", "Description.", false, Date(timeIntervalSince1970: 1581253200))]]
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -138,6 +132,7 @@ class ScheduleTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineTableViewCell", for: indexPath) as! TimelineTableViewCell
 
         // Grab from our custom config
+        // Description unused for now
         let (timelinePoint, allColor, title, description, isFavorite, date) = sampleData[indexPath.section]![indexPath.row]
 
 
@@ -176,7 +171,7 @@ class ScheduleTableViewController: UITableViewController {
         cell.titleLabel.text = title
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH"
+        dateFormatter.dateFormat = "hh:mm a"
         cell.descriptionLabel.text = dateFormatter.string(from: date)
 
 
@@ -189,11 +184,20 @@ class ScheduleTableViewController: UITableViewController {
         }
 
         // Configure favorite accessory
-        if isFavorite {
-            cell.accessoryView = UIImageView(image: UIImage(named: "filledStar"))
-        } else {
-            cell.accessoryView = UIImageView(image: UIImage(named: "emptyStar"))
-        }
+
+        // @TODO: Set toggle functionality
+        // if isFavorite {
+        // cell.accessoryView = UIImageView(image: UIImage(named: "filledStar"))
+
+        let favButton = FavoriteButton(type: .custom)
+        favButton.setImage(UIImage(named: "filledStar"), for: .normal)
+        favButton.addTarget(self, action: #selector(favoriteTapped(sender:)), for: .touchUpInside)
+        favButton.tag = indexPath.row
+        cell.accessoryView = favButton
+        // Set custom properties
+        favButton.section = indexPath.section
+        favButton.row = indexPath.row
+        favButton.sizeToFit()
 
         // Confgure bubble
         cell.bubbleColor = UIColor.clear
@@ -210,17 +214,33 @@ class ScheduleTableViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+
+    // Because of the Wonderful Way UIKit works (https://stackoverflow.com/a/12810613/1431900),
+    // we have to define our own UIButton + handler for this accessoryView.
+    // To get two points of data (section + row) instead of just one `tag`,
+    // we use a subclassed UIButton, FavoriteButton, so we know what exact
+    // event was pressed. (row is section-dependent)
+    @objc func favoriteTapped(sender: UIButton) {
+        guard let favButton = sender as? FavoriteButton else {
+            MessageHandler.showInvalidFavoriteButtonError()
+            return
+        }
+        print("Tapped star at section \(favButton.section!), \(favButton.row!)")
+
         // @TODO: Obvs read/write to/from server, but also:
         // @TODO: Change local data model, look for a table view delegate
         // @TODO: Check if margin updates when using forked TimelineTableViewCell eventually
     }
 
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print("defualt accButtonTapped: \(indexPath)")
+    }
+
+
+
     // MARK: Section headers and view configuration
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-        print("Header for section \(section)")
 
         // Get our dummy cell from IB
         let cell = tableView.dequeueReusableCell(withIdentifier: "header")!
