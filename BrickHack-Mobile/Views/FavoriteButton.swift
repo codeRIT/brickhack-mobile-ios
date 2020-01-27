@@ -12,6 +12,20 @@ class FavoriteButton: UIButton {
 
     var section: Int?
     var row: Int?
+    override var isSelected: Bool {
+        didSet {
+            self.toggle()
+        }
+    }
+
+    // Selected state things are not working out, so this is the best solution for now.
+    func toggle() {
+        if isSelected {
+            self.setImage(UIImage(named: "filledStar"), for: .normal)
+        } else {
+            self.setImage(UIImage(named: "emptyStar"), for: .normal)
+        }
+    }
 
     /*
     // Only override draw() if you perform custom drawing.

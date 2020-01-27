@@ -184,20 +184,17 @@ class ScheduleTableViewController: UITableViewController {
         }
 
         // Configure favorite accessory
-
-        // @TODO: Set toggle functionality
-        // if isFavorite {
-        // cell.accessoryView = UIImageView(image: UIImage(named: "filledStar"))
-
         let favButton = FavoriteButton(type: .custom)
-        favButton.setImage(UIImage(named: "filledStar"), for: .normal)
+        // Set images
         favButton.addTarget(self, action: #selector(favoriteTapped(sender:)), for: .touchUpInside)
-        favButton.tag = indexPath.row
         cell.accessoryView = favButton
         // Set custom properties
         favButton.section = indexPath.section
         favButton.row = indexPath.row
         favButton.sizeToFit()
+
+        // Now, toggle the stars that are favorited
+        favButton.isSelected = isFavorite
 
         // Confgure bubble
         cell.bubbleColor = UIColor.clear
@@ -221,19 +218,25 @@ class ScheduleTableViewController: UITableViewController {
     // we use a subclassed UIButton, FavoriteButton, so we know what exact
     // event was pressed. (row is section-dependent)
     @objc func favoriteTapped(sender: UIButton) {
+
+        // Reject if improper call
         guard let favButton = sender as? FavoriteButton else {
             MessageHandler.showInvalidFavoriteButtonError()
             return
         }
-        print("Tapped star at section \(favButton.section!), \(favButton.row!)")
 
-        // @TODO: Obvs read/write to/from server, but also:
-        // @TODO: Change local data model, look for a table view delegate
-        // @TODO: Check if margin updates when using forked TimelineTableViewCell eventually
-    }
+        // Update view
+        // (FavoriteButton subclass handles this condition)
+        favButton.isSelected = !favButton.isSelected
 
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        print("defualt accButtonTapped: \(indexPath)")
+        // Update model
+        // (We handle this condition!)
+        sampleData[favButton.section!]![favButton.row!].isFavorite = favButton.isSelected
+
+        // @TODO: Handle updating favorite with server
+        // @TODO: Handle notifying users on their favorited events
+
+        print("User did something to \(sampleData[favButton.section!]![favButton.row!].title)")
     }
 
 
