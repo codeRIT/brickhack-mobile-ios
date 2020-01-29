@@ -1,5 +1,8 @@
 # brickhack-mobile-ios
 
+
+## Introduction 
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/9c6e5198aa3222ca35bd/maintainability)](https://codeclimate.com/github/codeRIT/brickhack-mobile-ios/maintainability)
 
 The app for managing attendees for BrickHack.
@@ -11,9 +14,6 @@ The app for managing attendees for BrickHack.
 Since we're using CocoaPods, you must open the project using `.xcworkspace`, not `.xcodeproj`.
 
 ## Dependencies
-
-We're using CocoaPods as the dependency manager.
-
 
 ### Installing CocoaPods (and related project-level dependencies):
 
@@ -33,7 +33,7 @@ Or, for `fish` users, in your `~/.config/fish/config.fish`:
 source (rbenv init - | source)
 ```
 
-Finally, run this to install `cocoapods` and its dependenceis. 
+Finally, run this to install `cocoapods` and its dependencies. 
 
 ```
 $ bundle install
@@ -41,7 +41,16 @@ $ bundle install
 
 ### Installing code-level dependencies:
 
-`$ pod install`
+```
+$ pod install
+```
+
+### API Keys
+
+The complicated series of steps above means that on first `$ pod install`, CocoaPods will prompt for API keys that need to be set. 
+
+- If you are an open-source contributor, please provide your own keys (e.g., Google Sheets) as needed.
+- If you are a member of codeRIT, ask the Engineering team lead for keys.
 
 ## Contribution
 For Git, we will be following the
