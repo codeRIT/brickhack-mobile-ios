@@ -8,12 +8,19 @@
 
 import UIKit
 import p2_OAuth2
+import TimelineTableViewCell
 
-// @TODO: Rename to "EventsViewController" maybe?
-class EventsViewController: UIViewController, UserDataHandler {
+class EventsViewController: UIViewController { //UserDataHandler {
 
-    var oauthGrant: OAuth2ImplicitGrant!
-    var userID: Int!
+
+    // MARK: UI
+    
+
+
+    // General properties
+    // @FIXME When login works
+//    var oauthGrant: OAuth2ImplicitGrant!
+//    var userID: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +32,26 @@ class EventsViewController: UIViewController, UserDataHandler {
         if let loginVC = segue.destination as? LoginViewController {
             loginVC.logout()
         }
-    }
 
-    // Set dark status bar
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        // TableViewController segue
+        // This is the main way to reference the ProfileTableViewCotroller
+        // that is contained within this view via an Embed segue.
+        if let tableVC = segue.destination as? ProfileTableViewController {
+
+            // May just set properties as Strings;
+            // this approach calls viewDidLoad() before this data is set,
+            // which may lead to odd behavior down the road.
+            tableVC.loadViewIfNeeded()
+
+            // @FIXME: Fill using user data once login is working
+            // (either here or in helper function or in previous VC)
+            tableVC.nameLabel.text = "Aanya Schroeder"
+            tableVC.schoolLabel.text = "University of Buffalo"
+
+            // @TODO: Emoji picker for ImageView? Don't think backend supports images atm.
+
+
+        }
     }
 
 }

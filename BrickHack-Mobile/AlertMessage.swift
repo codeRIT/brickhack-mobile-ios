@@ -88,6 +88,12 @@ class MessageHandler {
         showAlertMessage(withTitle: "Parsing Error",
                          body: "Error parsing user info from server.",
                          type: .error)
+    }
 
+    static func showInvalidFavoriteButtonError() {
+        print("ERROR: Attempted to favorite a non-favorite-button cell.")
+        showAlertMessage(withTitle: "Unable to favorite",
+                         body: "Please try again later.",
+                         type: .error)
     }
 }
