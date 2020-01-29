@@ -41,45 +41,7 @@ class ScheduleTableViewController: UITableViewController {
         // which runs each minute (while the screen is visible) and updates the timeline view if necessary.
         // @TODO: Change from 60s to change on every hour, effectively caching the result
         // (or maybe don't bother with cache and do it every time the view is loaded / minimal persistance)
-        scheduleTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true, block: { timer in
-
-            // Determine which section is currently active
-            // (by default, 0)
-
-            guard (!self.sampleData.isEmpty) else {
-                return
-            }
-
-            for sectionIndex in -1..<self.sampleData.count {
-
-                // Grab the next section's date
-                let sectionDate = self.sampleData[sectionIndex + 1]!.first!.date
-
-                // If greater, STOP. We are at the current section.
-                if (sectionDate > Date(timeIntervalSinceNow: 0)) {
-                    break
-                }
-
-                // Otherwise, go on to configure this current section as "passed"
-                var currentSection = self.sampleData[sectionIndex]!
-                for eventIndex in 0..<currentSection.count {
-
-                    currentSection[eventIndex].allColor = self.backColor
-
-                    // Only "fill" timeline point if it's defined for that cell
-                    if (currentSection[eventIndex].timelinePoint != nil) {
-                        currentSection[eventIndex].timelinePoint = TimelinePoint(color: self.backColor, filled: true)
-                    }
-                }
-            }
-
-            // And of course, reload the table.
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-
-        })
-
+        scheduleTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(refreshTimeline), userInfo: nil, repeats: true)
         scheduleTimer.fire()
 
         /*
@@ -90,6 +52,7 @@ class ScheduleTableViewController: UITableViewController {
          *      First point is ALWAYS filled. Rest is set in the timer closure on viewDidLoad.
          *
          * @TODO: Implement with pulled & parsed data from GSheets
+         * @TODO: Fix TimelineTableViewCell fork to include location label, for now just prepend to description
          *
          * From Figma: (sample date 2/8/2020)
          * Sat, 9pm (2 things but only one stored),
@@ -268,6 +231,49 @@ class ScheduleTableViewController: UITableViewController {
     // Remove margin between sections
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return .leastNormalMagnitude
+    }
+
+    // Set on a Timer to run every so often
+    // Updates the timer dispay to highlight the current event.
+    // Note: The topmost event is ALWAYS highlighted, even if it has not occured yet.
+    // (This is done in the dequeueCell tableview delegtae method)
+    @objc func refreshTimeline() {
+
+        // Determine which section is currently active
+        // (by default, 0)
+
+        guard (!self.sampleData.isEmpty) else {
+            return
+        }
+
+        for sectionIndex in -1..<self.sampleData.count {
+
+            // Grab the next section's date
+            let sectionDate = self.sampleData[sectionIndex + 1]!.first!.date
+
+            // If greater, STOP. We are at the current section.
+            if (sectionDate > Date(timeIntervalSinceNow: 0)) {
+                break
+            }
+
+            // Otherwise, go on to configure this current section as "passed"
+            var currentSection = self.sampleData[sectionIndex]!
+            for eventIndex in 0..<currentSection.count {
+
+                currentSection[eventIndex].allColor = self.backColor
+
+                // Only "fill" timeline point if it's defined for that cell
+                if (currentSection[eventIndex].timelinePoint != nil) {
+                    currentSection[eventIndex].timelinePoint = TimelinePoint(color: self.backColor, filled: true)
+                }
+            }
+        }
+
+        // And of course, reload the table.
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+
     }
 
 }
