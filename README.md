@@ -12,24 +12,36 @@ Since we're using CocoaPods, you must open the project using `.xcworkspace`, not
 
 ## Dependencies
 
-Installing p2/OAuth2:
-
-    $ cd path/to/brickhack-mobile-ios
-    $ git clone --recursive https://github.com/p2/OAuth2.git
-
 We're using CocoaPods as the dependency manager.
 
-Installing CocoPods:
 
-`$ sudo gem install cocoapods`
+### Installing CocoaPods (and related project-level dependencies):
 
-Installing dependencies:
+To install CocoaPods (and other dependencies), make sure you have ruby `2.6.3` or greater. The easiest way to do this on macOS is to set a global `rbenv` version as follows:
+```
+$ brew install rbenv ruby-build
+$ rbenv install 2.6.3
+$ rbenv global 2.6.3
+```
+
+And add rbenv to your `~/.bashrc` or `~/.zshrc`:
+```
+eval "$(rbenv init -)"
+```
+Or, for `fish` users, in your `~/.config/fish/config.fish`:
+```
+source (rbenv init - | source)
+```
+
+Finally, run this to install `cocoapods` and its dependenceis. 
+
+```
+$ bundle install
+```
+
+### Installing code-level dependencies:
 
 `$ pod install`
-
-Verify Apollo was installed correctly:
-
-`$ pod try Apollo`
 
 ## Contribution
 For Git, we will be following the
