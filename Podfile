@@ -13,4 +13,6 @@ target 'BrickHack-Mobile' do
     pod 'VYNFCKit'
 	pod "PromiseKit", "~> 6.8"
 	pod 'PromiseKit/Foundation', '~> 6.0'
+	pod 'TimelineTableViewCell', :git=>'https://github.com/peterkos/TimelineTableViewCell.git'
+    #pod 'TimelineTableViewCell', :path=>'~/Code/Github/TimelineTableViewCell'
 end

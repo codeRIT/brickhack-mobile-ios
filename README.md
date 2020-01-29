@@ -1,5 +1,7 @@
 # brickhack-mobile-ios
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/9c6e5198aa3222ca35bd/maintainability)](https://codeclimate.com/github/codeRIT/brickhack-mobile-ios/maintainability)
+
 The app for managing attendees for BrickHack.
 
 * **Scan Wristbands:** Attendees wear wristbands embedded with NFC tags. These tags are used to identify key events during BrickHack such as "received dinner" or "entered/left venue".
