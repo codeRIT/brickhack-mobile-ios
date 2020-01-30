@@ -87,7 +87,7 @@ class LoginViewController: UIViewController {
         "client_id": "745251411cbd86b08c69c7c504f83a319ea60bc0253e6ad9e9953f536d2c3003",
         "authorize_uri": Routes.authorize,
         "redirect_uris": ["brickhack-ios://oauth/callback"],
-        "scope": ""] as OAuth2JSON)
+        "scope": "Access-your-bricks"] as OAuth2JSON)
 
     // @TODO: Nonexistent value is 0 by default, maybe wrap somehow to nil?
     var userID: Int {
@@ -121,7 +121,7 @@ class LoginViewController: UIViewController {
         if (segue.identifier == "authSuccessSegue") {
 
             // Check for MainTabBarController (skip through nav controller)
-            if let tabVC = segue.destination.children.first! as? MainTabBarController {
+            if let tabVC = segue.destination.children.first as? MainTabBarController {
 
                 // Check if valid user (on error, user will reauth)
                 guard userID != 0 else {
@@ -215,7 +215,9 @@ class LoginViewController: UIViewController {
 
             // @FIXME: Bypass name functionality for now
             // Segue to main app
-            self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
+            }
 
             // Now that we have the user ID, append it and
             // request the user info.
