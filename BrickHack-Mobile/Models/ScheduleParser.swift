@@ -9,23 +9,84 @@
 import Foundation
 import Keys
 
+
+// MARK: Schedule data structures
+struct Section: CustomStringConvertible {
+    var title: String
+    var description: String {
+        return title
+    }
+}
+
+struct Event: CustomDebugStringConvertible {
+
+    // @TODO: Computed property to convert String->Date
+    // Note that "day" is 0 for sat, 1 for sun, etc.
+    // Note that section is for UI sections.
+    var day: Int
+    var section: Int
+    var timeString: String
+    var title: String
+    var location: String
+    var description: String
+
+    init(day: Int, section: Int, timeString: String, title: String, location: String, description: String) {
+        self.day         = day
+        self.section     = section
+        self.timeString  = timeString
+        self.title       = title
+        self.location    = location
+        self.description = description
+    }
+
+    init() {
+        self.init(day: 0, section: 0, timeString: "", title: "", location: "", description: "")
+    }
+
+    // Using "debugDescription" instead of "description" because of name conflict with my "description" property.
+    var debugDescription: String {
+        return "\(day), \(section), \(timeString), \(title), \(location), \(self.description)"
+    }
+}
+
+/**
+ * SECTION VS. SECTION VS. DAY
+ * In the spreadsheet, each day is broken down as a different section.
+ * However, in the Table View, each uniquely-timed event is broken down into different sections.
+ * This class has the totally-not-confusing responsibility of converting the Spreadsheet "section"
+ * to UI's "day", and calculating what UI "section" to use, depending on the event.
+ * So, be warned!
+ */
 class ScheduleParser {
 
+    // Wow! We've already hit one of these.
+    // This is used by the UI, so it treats Schedule sections as days, and real sections as sections.
+    //
+    // Day index starts at -1, because the event is re-created every row iteration.
+    // Because the section headers are rows themselves, this accounts for the first section header
+    // "eating up" the -1st index.
+    static var dayIndex = -1
+    static var sectionIndex = 0
+
+    // Last known collection of Events
+    static var events = [Event]()
+
+    // To make this a bit nicer for the UI...
+    static var sectionCount: Int {
+        switch dayIndex {
+        case -1: return 0
+        default: return sectionIndex
+        }
+    }
+
     // MARK: Data structures for parsing
-    // Used during parsing
+
+    // Spreadsheet sections
     private enum ScheduleKeyword: String {
         case section = ":section"
         case event = ":item"
     }
 
-    private struct Section: CustomStringConvertible {
-        var title: String
-        var description: String {
-            return title
-        }
-    }
-
-    // MARK: Struct Hell
     // Google loves their indentation, but we ony care about the last two levels or so.
     // All these structs serve to let Swift's JSON deserializer auto-unwarp down to the level we need.
     private struct Welcome: Codable {
@@ -55,45 +116,22 @@ class ScheduleParser {
 
     private struct UserEnteredValue: Codable, CustomStringConvertible {
         let stringValue: String?
-        let numberValue: Int?
+        let numberValue: Int? // number value is unused but we keep it here for the model
         var description: String {
             return stringValue ?? String(numberValue ?? -1)
         }
     }
 
-    // This is our main Event data struct
-    struct Event: CustomDebugStringConvertible {
+    /**
+     * Retrieve and parse the events from the spreadsheet.
+     * Potential issue: URLSession request thread may not be properly closed due to escaping closure? (Should be fine!)
+     */
+    static func retrieveEvents(completion: @escaping () -> ()) {
 
-        // @TODO: Computed property to convert String->Date
-        var section: Int
-        var timeString: String
-        var title: String
-        var location: String
-        var description: String
-
-        init(section: Int, timeString: String, title: String, location: String, description: String) {
-            self.section     = section
-            self.timeString  = timeString
-            self.title       = title
-            self.location    = location
-            self.description = description
-        }
-
-        // Convinence init
-        init() {
-            self.init(section: 0, timeString: "", title: "", location: "", description: "")
-        }
-
-        // Using "debugDescription" instead of "description" because of name conflict with my "description" property.
-        var debugDescription: String {
-            return "\(section), \(timeString), \(title), \(location), \(self.description)"
-        }
-    }
-
-    // MARK: Outward-facing data structures
-    var events = [Event]()
-
-    func makeRequestAndParse() {
+        // Reset our model
+        self.events.removeAll()
+        self.dayIndex = -1
+        self.sectionIndex = 0
 
         // MARK: HTTP Things
         let sheetsFields = "fields=sheets(data.rowData.values.userEnteredValue)"
@@ -104,22 +142,31 @@ class ScheduleParser {
 
         // MARK: The Request
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+
             guard error == nil else {
+                // @TODO: Error handle
                 print(error!)
                 return
             }
 
             guard let data = data else {
+                // @TODO: Error handle
                 print("no data")
                 return
             }
 
             do {
+                // Decode JSON
                 let welcome = try JSONDecoder().decode(Welcome.self, from: data)
-                self.parse(data: welcome)
+
+                // Send events to the real parse
+                parseEvents(data: welcome)
+
+                // Return
+                completion()
 
             } catch let error {
-                // @TODO: Use JSONError from MessageHandler.
+                // @TODO: Error handle (JSON parse error)
                 print("it broke")
                 print(error)
             }
@@ -132,24 +179,24 @@ class ScheduleParser {
     // MARK: Parsing
     // Postcondition: Events that are not fully defined will be SILENTLY SKIPPED.
     // @FIXME: Add support for empty-description events!!
-    private func parse(data: Welcome) {
-
-        // Section index starts at -1, because the event is re-created every row iteration.
-        // Because the section headers are rows themselves, this accounts for the first seciton header
-        // "eating up" the -1st index.
-        var sectionIndex = -1
+    // Sets event data as a field
+    private static func parseEvents(data: Welcome) {
 
         // The parse loop
+        // @FIXME: Using 3rd sheet as test, convert to 1st for production
         for (rowIndex, rowData) in data.sheets[2].data[0].rowData.enumerated() {
 
+            // See comment below for how this skip variable functions
             var skip = false
             var currentEvent = Event()
 
             // Use indexing to more accurately determine column purpose
             for columnIndex in 0..<rowData.columns.count {
 
-                // Skip section day header title ("Saturday", "Sunday")
-                // @TODO: Might just leave hardcoded in the spreadsheet.
+                // Skip section day header title ("Saturday", "Sunday").
+                // "section" 0 is Saturday, 1 is sunday, etc.
+                // Note that this is NOT the same as Table View sections -- remember, we are only in the model!
+                // (and that's how it was named on the spreadsheet)
                 if skip {
                     skip = false
                     continue
@@ -167,13 +214,14 @@ class ScheduleParser {
 
                 // First, parse the schedule
                 // (if default case, it is hopefully event data)
+                // @TODO: This switch/struct is overengineered, reduce
                 switch ScheduleKeyword(rawValue: cellText) {
                 case .section:
 
                     // Set the section tag on the current event.
-                    currentEvent.section = sectionIndex
-                    print("Added, incrementing section \(sectionIndex) on event \(currentEvent)")
-                    sectionIndex += 1
+                    currentEvent.section = dayIndex
+                    print("Added, incrementing section \(dayIndex) on event \(currentEvent)")
+                    dayIndex += 1
 
                     // Skip the next iteration, whic just has the section day title.
                     skip = true
@@ -203,18 +251,25 @@ class ScheduleParser {
                     self.events.append(currentEvent)
                     currentEvent = Event()
 
+                    // However, we also need to figure out what UI section the data is in.
+                    // Assuming events are in cronological order:
+                    if let lastEventTime = events.last?.timeString {
+
+                        // If the current and previous event times are not equal,
+                        // we need a new UI section to handle the new time.
+                        if lastEventTime != currentEvent.timeString {
+                            sectionIndex += 1
+                        } else {
+                            // Otherwise, keep them in the same section.
+                        }
+                    }
+
                 default: break
                 }
 
             }
         }
 
-        // Print stuff out
-        print("-----------")
-        print("Events:")
-        for event in self.events {
-            print(event)
-        }
     }
 
     // Helper function for debugging JSON
@@ -223,6 +278,7 @@ class ScheduleParser {
 
         guard let json2 = json else {
             print("oopsie")
+            // @TODO: JSON error
             return
         }
 
