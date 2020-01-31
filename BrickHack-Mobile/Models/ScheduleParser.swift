@@ -220,7 +220,6 @@ class ScheduleParser {
 
                     // Set the section tag on the current event.
                     currentEvent.section = dayIndex
-                    print("Added, incrementing section \(dayIndex) on event \(currentEvent)")
                     dayIndex += 1
 
                     // Skip the next iteration, whic just has the section day title.
@@ -237,7 +236,6 @@ class ScheduleParser {
                     // This is the ScheduleKeyword, handled in the above switch statement
                     // However we use this opportunity to set the schedule index tag from the previous row.
                     currentEvent.section = sectionIndex
-                    print("\(currentEvent), for section index \(sectionIndex)")
                     break
 
                 case 1: currentEvent.timeString = cellText // @TODO: Parse this here

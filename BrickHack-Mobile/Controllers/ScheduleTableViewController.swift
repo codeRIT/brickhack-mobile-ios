@@ -87,7 +87,6 @@ class ScheduleTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of events with a matching section number
-        print("rows in section \(section): \(timelineEvents.filter({ $0.event.section == section }).count)")
         return timelineEvents.filter({ $0.event.section == section }).count
     }
 
@@ -100,7 +99,6 @@ class ScheduleTableViewController: UITableViewController {
 //        let (timelinePoint, allColor, title, description, isFavorite, date)
 
         let currentTimelineEvent = timelineEvents[convertIndex(fromIndexPath: indexPath)]
-        print("parsing: \(currentTimelineEvent)")
 
         /*
         Overview of how cells are drawn
@@ -322,7 +320,7 @@ class ScheduleTableViewController: UITableViewController {
             // On completion, update our copy of events
             // (Rewrite instead of merge because merge logic is hard)
             self.timelineEvents.removeAll()
-            print(self.timelineEvents.count)
+            print("Cleared timeline events.")
             for event in ScheduleParser.events {
                 // @TODO: Fix color?
                 self.timelineEvents.append(TimelineEvent(allColor: self.frontColor, event: event))
