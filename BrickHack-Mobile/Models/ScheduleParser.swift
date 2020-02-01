@@ -25,22 +25,28 @@ struct Event: CustomDebugStringConvertible {
     // Note that section is for UI sections.
     var day: Int
     var section: Int
-    var timeString: String
+    var time: Date
+    var timeString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm a"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC") // Already in ET, dont convert again
+        return dateFormatter.string(from: time)
+    }
     var title: String
     var location: String
     var description: String
 
-    init(day: Int, section: Int, timeString: String, title: String, location: String, description: String) {
+    init(day: Int, section: Int, time: Date, title: String, location: String, description: String) {
         self.day         = day
         self.section     = section
-        self.timeString  = timeString
+        self.time        = time
         self.title       = title
         self.location    = location
         self.description = description
     }
 
     init() {
-        self.init(day: 0, section: 0, timeString: "", title: "", location: "", description: "")
+        self.init(day: 0, section: 0, time: Date(), title: "", location: "", description: "")
     }
 
     // Using "debugDescription" instead of "description" because of name conflict with my "description" property.
@@ -238,7 +244,7 @@ class ScheduleParser {
                     currentEvent.section = sectionIndex
                     break
 
-                case 1: currentEvent.timeString = cellText // @TODO: Parse this here
+                case 1: currentEvent.time = stringToDate(cellText) ?? Date()
                 case 2: currentEvent.title = cellText
                 case 3: currentEvent.location = cellText
                 case 4:
@@ -268,6 +274,39 @@ class ScheduleParser {
             }
         }
 
+    }
+
+
+    private static func stringToDate(_ text: String) -> Date? {
+
+        // Convert the spreadsheet time into a "blank" Date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mma"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+
+        let convertedTime = dateFormatter.date(from: text)
+
+        guard convertedTime != nil else {
+            return nil
+        }
+
+        // Build the final date
+        var dateComponents = DateComponents()
+        dateComponents.timeZone = TimeZone(identifier: "America/New_York") // Might not be req'd but works
+        dateComponents.year = 2020
+        dateComponents.month = 2
+        dateComponents.hour = Calendar.current.component(.hour, from: convertedTime!)
+        dateComponents.minute = Calendar.current.component(.minute, from: convertedTime!)
+
+        // Construct the proper day
+        // 0: sat, 1: sun
+        if sectionIndex == 0 {
+            dateComponents.day = 8
+        } else {
+            dateComponents.day = 9
+        }
+
+        return Calendar.current.date(from: dateComponents)
     }
 
     // Helper function for debugging JSON

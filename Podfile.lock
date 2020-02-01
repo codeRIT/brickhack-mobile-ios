@@ -55,7 +55,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   TimelineTableViewCell:
-    :commit: 333072fb1bdfd67087e939cfa0db8d29cfdef801
+    :commit: ac296d1ea14936040e5dfdf80634b9c7e7e8fb13
     :git: https://github.com/peterkos/TimelineTableViewCell.git
 
 SPEC CHECKSUMS:

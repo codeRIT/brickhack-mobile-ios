@@ -46,7 +46,7 @@ class ScheduleTableViewController: UITableViewController {
         }
 
         var description: String {
-            return "\(event.title)| \(event.description)"
+            return "\(event.title)| \(event.time) |\(event.timeString) |\(event.description)"
         }
     }
     var timelineEvents = [TimelineEvent]()
@@ -136,11 +136,7 @@ class ScheduleTableViewController: UITableViewController {
         // Text content
         cell.titleLabel.text = currentTimelineEvent.event.title
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm a"
-//        cell.descriptionLabel.text = dateFormatter.string(from: currentTimelineEvent.event.timeString)
-        // @FIXME: Convert string to date and parse here
-        cell.descriptionLabel.text = currentTimelineEvent.event.description
+        cell.descriptionLabel.text = currentTimelineEvent.event.timeString
 
         // Configure favorite accessory
         let favButton = FavoriteButton(type: .custom)
@@ -242,8 +238,6 @@ class ScheduleTableViewController: UITableViewController {
         }
 
         // Otherwise set proper date
-//        cell.textLabel!.text = dateFormatter.string(from: sectionDate)
-        // @FIXME: Proper date parsing
         cell.textLabel!.text = sectionDate
 
 
