@@ -35,23 +35,25 @@ struct Event: CustomDebugStringConvertible {
     var title: String
     var location: String
     var description: String
+    var uuid: String
 
-    init(day: Int, section: Int, time: Date, title: String, location: String, description: String) {
+    init(day: Int, section: Int, time: Date, title: String, location: String, description: String, uuid: String) {
         self.day         = day
         self.section     = section
         self.time        = time
         self.title       = title
         self.location    = location
         self.description = description
+        self.uuid = uuid
     }
 
     init() {
-        self.init(day: 0, section: 0, time: Date(), title: "", location: "", description: "")
+        self.init(day: 0, section: 0, time: Date(), title: "", location: "", description: "", uuid: "")
     }
 
     // Using "debugDescription" instead of "description" because of name conflict with my "description" property.
     var debugDescription: String {
-        return "\(day), \(section), \(timeString), \(title), \(location), \(self.description)"
+        return "\(day), \(section), \(timeString), \(title), \(location), \(self.description), \(self.uuid)"
     }
 }
 
@@ -247,10 +249,10 @@ class ScheduleParser {
                 case 1: currentEvent.time = stringToDate(cellText) ?? Date()
                 case 2: currentEvent.title = cellText
                 case 3: currentEvent.location = cellText
-                case 4:
-                    currentEvent.description = cellText
+                case 4: currentEvent.description = cellText
+                case 5: currentEvent.uuid = cellText
 
-                    // Once we reach the fourth case, we know we're at the end of the data for a cell.
+                    // Once we reach the fifth case, we know we're at the end of the data for a cell.
                     // This means that now we can reset the event!
                     self.events.append(currentEvent)
                     currentEvent = Event()
@@ -267,7 +269,6 @@ class ScheduleParser {
                             // Otherwise, keep them in the same section.
                         }
                     }
-
                 default: break
                 }
 

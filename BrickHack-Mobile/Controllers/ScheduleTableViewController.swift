@@ -217,7 +217,9 @@ class ScheduleTableViewController: UITableViewController {
         // Update model
         // (We handle this condition!)
         let indexPath = IndexPath(row: favButton.row!, section: favButton.section!)
-        print("\nUser did something to \(timelineEvents[convertIndex(fromIndexPath: indexPath)].event.title)")
+        let selectedEvent = timelineEvents[convertIndex(fromIndexPath: indexPath)]
+        selectedEvent.isFavorite = !selectedEvent.isFavorite
+        print("user toggled \(selectedEvent.event.title)")
 
         // @TODO: Handle updating favorite with server
         // @TODO: Handle notifying users on their favorited events
@@ -343,12 +345,24 @@ class ScheduleTableViewController: UITableViewController {
         ScheduleParser.retrieveEvents {
 
             // On completion, update our copy of events
+            // First, get a list of current events
+            let favoriteEvents = self.timelineEvents.filter({ $0.isFavorite })
+            print("Favorites: \(favoriteEvents)")
+
             // (Rewrite instead of merge because merge logic is hard)
             self.timelineEvents.removeAll()
+
             print("\nCleared timeline events.\n")
             for event in ScheduleParser.events {
-                // @TODO: Fix color?
-                self.timelineEvents.append(TimelineEvent(allColor: self.frontColor, event: event))
+                let newEvent = TimelineEvent(allColor: self.frontColor, event: event)
+
+                // Add favorite tag back if previously favorited
+                if favoriteEvents.filter({ $0.event.uuid == newEvent.event.uuid }).first != nil {
+                    print("found favorite \(newEvent)")
+                    newEvent.isFavorite = true
+                }
+
+                self.timelineEvents.append(newEvent)
             }
 
             completion()
