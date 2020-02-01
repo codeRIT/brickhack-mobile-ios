@@ -14,7 +14,6 @@ target 'BrickHack-Mobile' do
     pod 'PromiseKit/Foundation', '~> 6.0'
     pod 'TimelineTableViewCell', :git=>'https://github.com/peterkos/TimelineTableViewCell.git'
     #pod 'TimelineTableViewCell', :path=>'~/Code/Github/TimelineTableViewCell'
-    pod 'Toaster'
 end
 
 

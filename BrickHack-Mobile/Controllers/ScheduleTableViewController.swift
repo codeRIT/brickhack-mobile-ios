@@ -8,7 +8,7 @@
 
 import UIKit
 import TimelineTableViewCell
-import Toaster
+import SwiftMessages
 
 class ScheduleTableViewController: UITableViewController {
 
@@ -81,7 +81,6 @@ class ScheduleTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // This property is stored in the ScheduleParser,
         // as this is pretty much the only time it's needed here.
-        print("section count: \(ScheduleParser.sectionCount)")
         return ScheduleParser.sectionCount
     }
 
@@ -216,7 +215,7 @@ class ScheduleTableViewController: UITableViewController {
         // Update model
         // (We handle this condition!)
         let indexPath = IndexPath(row: favButton.row!, section: favButton.section!)
-        print("User did something to \(timelineEvents[convertIndex(fromIndexPath: indexPath)].event.title)")
+        print("\nUser did something to \(timelineEvents[convertIndex(fromIndexPath: indexPath)].event.title)")
 
         // @TODO: Handle updating favorite with server
         // @TODO: Handle notifying users on their favorited events
@@ -310,8 +309,25 @@ class ScheduleTableViewController: UITableViewController {
     // Updates the listing of events from the Google Sheet
     func updateSchedule() {
 
+        // Create custom toast to use for alerting the user
+        let toastView = MessageView.viewFromNib(layout: .messageView)
+        // Hide controls we don't want
+        toastView.button?.isHidden = true
+        toastView.bodyLabel?.isHidden = true
+        // Create a bit more of a custom theme (dark mdoe safe!)
+        toastView.configureTheme(.info)
+        toastView.backgroundColor = UIColor.systemBlue
+        toastView.titleLabel!.textColor = UIColor.white
+        toastView.iconImageView?.tintColor = UIColor.white
+
+        var toastConfig = SwiftMessages.Config()
+        toastConfig.presentationStyle = .bottom
+        toastConfig.duration = .indefinite(delay: 0.0, minimum: 2.0)
+
         DispatchQueue.main.async {
-            Toast(text: "Getting the latest schedule...").show()
+            // Show toast to user
+            toastView.configureContent(title: "Getting the latest events...", body: "")
+            SwiftMessages.show(config: toastConfig, view: toastView)
         }
 
         // Do it
@@ -320,7 +336,7 @@ class ScheduleTableViewController: UITableViewController {
             // On completion, update our copy of events
             // (Rewrite instead of merge because merge logic is hard)
             self.timelineEvents.removeAll()
-            print("Cleared timeline events.")
+            print("\nCleared timeline events.\n")
             for event in ScheduleParser.events {
                 // @TODO: Fix color?
                 self.timelineEvents.append(TimelineEvent(allColor: self.frontColor, event: event))
@@ -336,7 +352,9 @@ class ScheduleTableViewController: UITableViewController {
                     print(event)
                 }
 
-                Toast(text: "Updated the schedule!").show()
+                // Show toast to user
+                toastView.configureContent(title: "Schedule updated!", body: "")
+                SwiftMessages.hide()
             }
         }
     }

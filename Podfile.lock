@@ -20,7 +20,6 @@ PODS:
   - SwiftMessages/App (7.0.1)
   - SwiftyJSON (5.0.0)
   - TimelineTableViewCell (2.2.1)
-  - Toaster (2.2.0)
   - VYNFCKit (0.3.2)
 
 DEPENDENCIES:
@@ -34,7 +33,6 @@ DEPENDENCIES:
   - SwiftMessages
   - SwiftyJSON
   - TimelineTableViewCell (from `https://github.com/peterkos/TimelineTableViewCell.git`)
-  - Toaster
   - VYNFCKit
 
 SPEC REPOS:
@@ -48,7 +46,6 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftMessages
     - SwiftyJSON
-    - Toaster
 
 EXTERNAL SOURCES:
   Keys:
@@ -71,9 +68,8 @@ SPEC CHECKSUMS:
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TimelineTableViewCell: b2721a3c1f17c4a4950ae442f45cd4e8669a2750
-  Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
   VYNFCKit: 86a9b711fd1f34f6f7128a2a883cd58dbd781b9d
 
-PODFILE CHECKSUM: 7b2ccbb2e3c0dd31f22561c120a0a27b8b115467
+PODFILE CHECKSUM: 72789a355e215b22714d7bd9ab0ec3292b700001
 
 COCOAPODS: 1.8.4
