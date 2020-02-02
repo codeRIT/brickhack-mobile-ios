@@ -14,8 +14,6 @@ class EventsViewController: UIViewController { //UserDataHandler {
 
 
     // MARK: UI
-    
-
 
     // General properties
     // @FIXME When login works

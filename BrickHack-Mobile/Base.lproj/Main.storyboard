@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D1f-v2-RH4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -21,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brickHack6Logo" translatesAutoresizingMaskIntoConstraints="NO" id="1am-Hz-qrF">
-                                        <rect key="frame" x="36" y="159.66666666666663" width="296" height="279"/>
+                                        <rect key="frame" x="36" y="229.33333333333337" width="148" height="139.66666666666663"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginShapes" translatesAutoresizingMaskIntoConstraints="NO" id="QYc-0X-ayY">
-                                        <rect key="frame" x="-47" y="-50" width="422" height="698"/>
+                                        <rect key="frame" x="164" y="124.66666666666669" width="211" height="349"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" name="primaryColor"/>
@@ -86,6 +86,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <segue destination="D1f-v2-RH4" kind="show" identifier="authSuccessSegue" id="Jps-WT-Nwl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -105,7 +108,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="60l-ds-psv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1932" y="132"/>
+            <point key="canvasLocation" x="1938" y="548"/>
         </scene>
         <!--Events-->
         <scene sceneID="Udu-fV-S7q">
@@ -125,7 +128,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4I-Sq-rhl">
-                                <rect key="frame" x="0.0" y="244" width="375" height="534"/>
+                                <rect key="frame" x="0.0" y="244" width="375" height="568"/>
                                 <connections>
                                     <segue destination="S2k-45-cUt" kind="embed" id="zvN-Lw-JtR"/>
                                 </connections>
@@ -140,7 +143,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <accessibility key="accessibilityConfiguration" hint="checked-out"/>
                         <constraints>
-                            <constraint firstItem="DgF-Zc-fiO" firstAttribute="bottom" secondItem="r4I-Sq-rhl" secondAttribute="bottom" id="BN2-m4-c1v"/>
+                            <constraint firstAttribute="bottom" secondItem="r4I-Sq-rhl" secondAttribute="bottom" id="BN2-m4-c1v"/>
                             <constraint firstItem="EIp-cK-tIz" firstAttribute="leading" secondItem="DgF-Zc-fiO" secondAttribute="leading" constant="37" id="Sbf-iJ-jhh"/>
                             <constraint firstItem="r4I-Sq-rhl" firstAttribute="leading" secondItem="DgF-Zc-fiO" secondAttribute="leading" id="W7l-yf-cpg"/>
                             <constraint firstItem="8Zp-wc-XHQ" firstAttribute="top" secondItem="DgF-Zc-fiO" secondAttribute="top" constant="30" id="akc-RA-5my"/>

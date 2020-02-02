@@ -120,7 +120,11 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "authSuccessSegue") {
 
+            // Make the destination be fullscreen
+            segue.destination.modalPresentationStyle = .fullScreen
+
             // Check for MainTabBarController (skip through nav controller)
+            // Note: not used! 
             if let tabVC = segue.destination.children.first as? MainTabBarController {
 
                 // Check if valid user (on error, user will reauth)
