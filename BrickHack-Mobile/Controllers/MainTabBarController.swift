@@ -9,7 +9,10 @@
 import UIKit
 import p2_OAuth2
 
-class MainTabBarController: UITabBarController, UserDataHandler {
+/*
+ OLD CLASS
+ Currently not using. Code is left here if last-minute switch is needed.
+class MainTabBarController: UITabBarController { // , UserDataHandler {
 
     var userID: Int!
     var oauthGrant: OAuth2ImplicitGrant!
@@ -34,3 +37,4 @@ class MainTabBarController: UITabBarController, UserDataHandler {
         }
     }
 }
+*/

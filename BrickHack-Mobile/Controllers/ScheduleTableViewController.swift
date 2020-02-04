@@ -66,7 +66,7 @@ class ScheduleTableViewController: UITableViewController {
         // which runs each minute (while the screen is visible) and updates the timeline view if necessary.
         // @TODO: Change from 60s to change on every hour, effectively caching the result
         // (or maybe don't bother with cache and do it every time the view is loaded / minimal persistance)
-        scheduleTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(refreshTimeline), userInfo: nil, repeats: true)
+        scheduleTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(refreshTimeline), userInfo: nil, repeats: true)
         scheduleTimer.fire()
     }
 
@@ -253,7 +253,12 @@ class ScheduleTableViewController: UITableViewController {
 
     // Defined height for the time header slot (e.g., "9am")
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60.0
+        // If first element, set its header height to 0
+        // (to make "Schedule" view text not seem too far away)
+        if section == 0 {
+            return tableView.sectionHeaderHeight
+        }
+        return 50.0
     }
 
     // Remove margin between sections

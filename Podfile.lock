@@ -5,6 +5,7 @@ PODS:
   - Apollo/Core (0.16.0)
   - Keys (1.0.1)
   - p2.OAuth2 (4.2.0)
+  - Pageboy (3.5.0)
   - PromiseKit (6.11.0):
     - PromiseKit/CorePromise (= 6.11.0)
     - PromiseKit/Foundation (= 6.11.0)
@@ -19,6 +20,8 @@ PODS:
     - SwiftMessages/App (= 7.0.1)
   - SwiftMessages/App (7.0.1)
   - SwiftyJSON (5.0.0)
+  - Tabman (2.8.0):
+    - Pageboy (~> 3.5.0)
   - TimelineTableViewCell (2.2.1)
   - VYNFCKit (0.3.2)
 
@@ -32,6 +35,7 @@ DEPENDENCIES:
   - SVProgressHUD
   - SwiftMessages
   - SwiftyJSON
+  - Tabman (~> 2.6)
   - TimelineTableViewCell (from `https://github.com/peterkos/TimelineTableViewCell.git`)
   - VYNFCKit
 
@@ -42,10 +46,12 @@ SPEC REPOS:
   trunk:
     - Apollo
     - p2.OAuth2
+    - Pageboy
     - PromiseKit
     - SVProgressHUD
     - SwiftMessages
     - SwiftyJSON
+    - Tabman
 
 EXTERNAL SOURCES:
   Keys:
@@ -63,13 +69,15 @@ SPEC CHECKSUMS:
   Apollo: ad9ce2008f88fce57c062aa4853364b7927355c8
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   p2.OAuth2: d5ea9b928fc5d10d088d419db6f3380578b6f866
+  Pageboy: 3794c578aae5fcce06e90b3ed4a0ad6b807d75bb
   PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  Tabman: f62ad94ee54a7d96e3fbab34f677d9ea4d38ece6
   TimelineTableViewCell: b2721a3c1f17c4a4950ae442f45cd4e8669a2750
   VYNFCKit: 86a9b711fd1f34f6f7128a2a883cd58dbd781b9d
 
-PODFILE CHECKSUM: 72789a355e215b22714d7bd9ab0ec3292b700001
+PODFILE CHECKSUM: 329820a5a13a6b82a678097cfb99449bc03b70f5
 
 COCOAPODS: 1.8.4

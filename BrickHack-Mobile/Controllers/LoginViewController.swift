@@ -18,10 +18,9 @@ import SafariServices
 // as it needs a computed property to get/set the userID, while all other classes do not require
 // this functionality.
 protocol UserDataHandler {
-    var userID: Int! { get set }
-    var oauthGrant: OAuth2ImplicitGrant! { get set }
-    // @TODO: Add user data info upon backend implementation
-    // let userData: [String, Any] { get set }
+    var currentUser: User! { get set }
+//    var userID: Int! { get set }
+//    var oauthGrant: OAuth2ImplicitGrant! { get set }
 }
 
 
@@ -128,7 +127,7 @@ class LoginViewController: UIViewController {
             segue.destination.modalPresentationStyle = .fullScreen
 
             // Pass data forward (temp to main screen)
-            if let eventsVC = segue.destination as? EventsViewController {
+            if let eventsVC = segue.destination as? TabViewController {
                 print("passed user object")
                 eventsVC.currentUser = self.currentUser
             }
@@ -136,6 +135,7 @@ class LoginViewController: UIViewController {
 
             // Check for MainTabBarController (skip through nav controller)
             // Note: not used!
+            /*
             if let tabVC = segue.destination.children.first as? MainTabBarController {
 
                 // Check if valid user (on error, user will reauth)
@@ -147,7 +147,7 @@ class LoginViewController: UIViewController {
                 // Pass data to the tab bar controller, which will handle passing its own children
                 tabVC.userID = userID
                 tabVC.oauthGrant = oauthGrant
-            }
+            } */
         }
     }
 
