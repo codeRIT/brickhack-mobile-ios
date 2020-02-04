@@ -1,5 +1,8 @@
 # brickhack-mobile-ios
 
+
+## Introduction 
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/9c6e5198aa3222ca35bd/maintainability)](https://codeclimate.com/github/codeRIT/brickhack-mobile-ios/maintainability)
 
 The app for managing attendees for BrickHack.
@@ -12,24 +15,42 @@ Since we're using CocoaPods, you must open the project using `.xcworkspace`, not
 
 ## Dependencies
 
-Installing p2/OAuth2:
+### Installing CocoaPods (and related project-level dependencies):
 
-    $ cd path/to/brickhack-mobile-ios
-    $ git clone --recursive https://github.com/p2/OAuth2.git
+To install CocoaPods (and other dependencies), make sure you have ruby `2.6.3` or greater. The easiest way to do this on macOS is to set a global `rbenv` version as follows:
+```
+$ brew install rbenv ruby-build
+$ rbenv install 2.6.3
+$ rbenv global 2.6.3
+```
 
-We're using CocoaPods as the dependency manager.
+And add rbenv to your `~/.bashrc` or `~/.zshrc`:
+```
+eval "$(rbenv init -)"
+```
+Or, for `fish` users, in your `~/.config/fish/config.fish`:
+```
+source (rbenv init - | source)
+```
 
-Installing CocoPods:
+Finally, run this to install `cocoapods` and its dependencies. 
 
-`$ sudo gem install cocoapods`
+```
+$ bundle install
+```
 
-Installing dependencies:
+### Installing code-level dependencies:
 
-`$ pod install`
+```
+$ pod install
+```
 
-Verify Apollo was installed correctly:
+### API Keys
 
-`$ pod try Apollo`
+The complicated series of steps above means that on first `$ pod install`, CocoaPods will prompt for API keys that need to be set. 
+
+- If you are an open-source contributor, please provide your own keys (e.g., Google Sheets) as needed.
+- If you are a member of codeRIT, ask the Engineering team lead for keys.
 
 ## Contribution
 For Git, we will be following the
