@@ -14,6 +14,7 @@
 		31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C5F540219B29CD00E3E1AF /* AppDelegate.swift */; };
 		31C5F546219B29CD00E3E1AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F544219B29CD00E3E1AF /* Main.storyboard */; };
 		31C5F548219B29CF00E3E1AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C5F547219B29CF00E3E1AF /* Assets.xcassets */; };
+		D706937323E8F86B004FA788 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D706937223E8F86B004FA788 /* User.swift */; };
 		D750E81823DF67360075C639 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D750E81723DF67360075C639 /* FavoriteButton.swift */; };
 		D772876C23DFF92800C2D541 /* ScheduleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D772876B23DFF92800C2D541 /* ScheduleParser.swift */; };
 		D789978223D652ED0058060A /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789978123D652ED0058060A /* ScheduleTableViewController.swift */; };
@@ -51,6 +52,7 @@
 		31C5F54C219B29CF00E3E1AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31E39209219F765E00F7A3BE /* BrickHack-Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BrickHack-Mobile.entitlements"; sourceTree = "<group>"; };
 		C029FC28202ED2177D811FF7 /* Pods-BrickHack-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHack-Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHack-Mobile/Pods-BrickHack-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
+		D706937223E8F86B004FA788 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D750E81723DF67360075C639 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteButton.swift; path = "BrickHack-Mobile/Views/FavoriteButton.swift"; sourceTree = SOURCE_ROOT; };
 		D772876B23DFF92800C2D541 /* ScheduleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleParser.swift; sourceTree = "<group>"; };
 		D789978123D652ED0058060A /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				D79AA2B723425DFA009C469D /* APIRoutes.swift */,
 				D772876B23DFF92800C2D541 /* ScheduleParser.swift */,
+				D706937223E8F86B004FA788 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				D7D4B037234813A70001DFC5 /* AlertMessage.swift in Sources */,
 				D7C41E27236383300091C480 /* ResourcesViewController.swift in Sources */,
 				D789978523D6A4DC0058060A /* ProfileTableViewController.swift in Sources */,
+				D706937323E8F86B004FA788 /* User.swift in Sources */,
 				31C5F541219B29CD00E3E1AF /* AppDelegate.swift in Sources */,
 				D79AA2B823425DFA009C469D /* APIRoutes.swift in Sources */,
 				31602385220A116000F73F58 /* EventsViewController.swift in Sources */,
