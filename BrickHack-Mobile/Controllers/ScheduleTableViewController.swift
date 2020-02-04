@@ -66,7 +66,7 @@ class ScheduleTableViewController: UITableViewController {
         // which runs each minute (while the screen is visible) and updates the timeline view if necessary.
         // @TODO: Change from 60s to change on every hour, effectively caching the result
         // (or maybe don't bother with cache and do it every time the view is loaded / minimal persistance)
-        scheduleTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(refreshTimeline), userInfo: nil, repeats: true)
+        scheduleTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(refreshTimeline), userInfo: nil, repeats: true)
         scheduleTimer.fire()
     }
 
@@ -80,7 +80,6 @@ class ScheduleTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // This property is stored in the ScheduleParser,
         // as this is pretty much the only time it's needed here.
-        print("from sec num: \(ScheduleParser.sectionCount)")
         return ScheduleParser.sectionCount
     }
 

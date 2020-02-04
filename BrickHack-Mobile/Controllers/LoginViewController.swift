@@ -65,7 +65,6 @@ class LoginViewController: UIViewController {
                 print("Authorization successful.")
 
                 // If login is successful, continue to main app
-                // @FIXME: "NavController on SFViewController, whose view is not in the window hierarchy!"
                 self.loginFlow()
 
             }
@@ -89,6 +88,9 @@ class LoginViewController: UIViewController {
         "redirect_uris": ["brickhack-ios://oauth/callback"],
         "scope": "Access-your-bricks"] as OAuth2JSON)
 
+    // User model instance
+    var currentUser: User?
+
     // @TODO: Nonexistent value is 0 by default, maybe wrap somehow to nil?
     var userID: Int {
         get {
@@ -106,7 +108,9 @@ class LoginViewController: UIViewController {
         if hasInternetAccess() {
 
             // Only continue automatically if authenticated, AND user data is persisted
-            if oauthGrant.hasUnexpiredAccessToken() && userID != 0 {
+            if oauthGrant.hasUnexpiredAccessToken() && currentUser != nil {
+
+                print("currentUser: \(currentUser)")
 
                 // Continue to main app if authorized, don't show spinner
                 self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
@@ -123,8 +127,15 @@ class LoginViewController: UIViewController {
             // Make the destination be fullscreen
             segue.destination.modalPresentationStyle = .fullScreen
 
+            // Pass data forward (temp to main screen)
+            if let eventsVC = segue.destination as? EventsViewController {
+                print("passed user object")
+                eventsVC.currentUser = self.currentUser
+            }
+
+
             // Check for MainTabBarController (skip through nav controller)
-            // Note: not used! 
+            // Note: not used!
             if let tabVC = segue.destination.children.first as? MainTabBarController {
 
                 // Check if valid user (on error, user will reauth)
@@ -145,19 +156,10 @@ class LoginViewController: UIViewController {
 
     func loginFlow() {
 
-        // Generate signed request for userID
-        let idRequest = signURLRequest(withRoute: Routes.currentUser)
-        guard let signedIDRequest = idRequest else {
-            DispatchQueue.main.async {
-                MessageHandler.showAuthSigningError()
-            }
-            return
-        }
-
         // Generate signed request for username
         // (user id is added in network chain)
         let nameRequest = signURLRequest(withRoute: Routes.questionnaire)
-        guard var signedNameRequest = nameRequest else {
+        guard let signedNameRequest = nameRequest else {
             DispatchQueue.main.async {
                 MessageHandler.showAuthSigningError()
             }
@@ -169,10 +171,9 @@ class LoginViewController: UIViewController {
             SVProgressHUD.show()
         }
 
-        // Networking!
-        // First, grab the user id from teh server.
-        URLSession.shared.dataTask(with: signedIDRequest) { (data, response, error) in
+        URLSession.shared.dataTask(with: signedNameRequest) { (data, response, error) in
 
+            // MARK: Error checking
             guard error == nil else {
                 DispatchQueue.main.async {
                     MessageHandler.showNetworkError(withText: error!.localizedDescription)
@@ -183,112 +184,53 @@ class LoginViewController: UIViewController {
 
             guard let data = data else {
                 DispatchQueue.main.async {
-                    MessageHandler.showNetworkError(withText: error!.localizedDescription)
-                    SVProgressHUD.dismiss()
-                }
-                return
-            }
-
-            // Convert server data to JSON
-            var json: [String: Any]
-            do {
-                json = try JSON(data: data).dictionaryObject!
-            } catch {
-                DispatchQueue.main.async {
-                    MessageHandler.showNetworkError(withText: error.localizedDescription)
-                    SVProgressHUD.dismiss()
-                }
-                return
-            }
-
-            // Grab our integer from it
-            let userIDConverted = json["resource_owner_id"] as? Int
-
-            // Check cast
-            guard let userID = userIDConverted else {
-                DispatchQueue.main.async {
-                    MessageHandler.showNetworkError(withText: error!.localizedDescription)
-                    SVProgressHUD.dismiss()
-                }
-                return
-            }
-
-            // Save userID
-            UserDefaults.standard.set(userID, forKey: "userID")
-            print("userID: \(userID)")
-
-            // @FIXME: Bypass name functionality for now
-            // Segue to main app
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
-            }
-
-            // Now that we have the user ID, append it and
-            // request the user info.
-            signedNameRequest.url?.appendPathComponent("\(userID).json")
-            signedNameRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            // Note: spinner is still visible!
-            URLSession.shared.dataTask(with: signedNameRequest) { (data, response, error) in
-
-                guard error == nil else {
-                    DispatchQueue.main.async {
-                        MessageHandler.showNetworkError(withText: error!.localizedDescription)
-                        SVProgressHUD.dismiss()
-                    }
-                    return
-                }
-
-                guard let data = data else {
-                    DispatchQueue.main.async {
-                        MessageHandler.showUserDataParsingError()
-                        SVProgressHUD.dismiss()
-                    }
-                    return
-                }
-
-                // Check response code
-                if let httpResponse = response as? HTTPURLResponse {
-                    DispatchQueue.main.async {
-                        MessageHandler.showNetworkError(withText: httpResponse.statusString)
-                        SVProgressHUD.dismiss()
-                    }
-                    return
-                }
-
-                // Convert server data to JSON
-                var json: JSON
-
-                do {
-                    json = try JSON(data: data, options: .allowFragments)
-                } catch {
-                    DispatchQueue.main.async {
-                        MessageHandler.showUserDataParsingError(withText: "Unable to convert JSON")
-                        SVProgressHUD.dismiss()
-                    }
-                    return
-                }
-
-                // @FIXME
-                // Hello, Developer.
-                // At this point, the code should have errored out.
-                // The backend has not implemented the functionality needed for the preivous code to work.
-                // But, just in case something happens, this should do it.
-                DispatchQueue.main.async {
                     MessageHandler.showUserDataParsingError()
                     SVProgressHUD.dismiss()
                 }
-
                 return
+            }
+
+            // Check response code
+            guard let httpResponse = response as? HTTPURLResponse else {
+                DispatchQueue.main.async {
+                    MessageHandler.showNetworkError(withText: "Invalid response code")
+                    SVProgressHUD.dismiss()
+                }
+                return
+            }
+
+            guard httpResponse.statusCode != 404 else {
+                DispatchQueue.main.async {
+                    MessageHandler.showNetworkError(withText: "User account not found")
+                    SVProgressHUD.dismiss()
+                }
+                return
+            }
 
 
-                // This is some debugging code for the time being, that will not be reached:
-                let contents = String(data: data, encoding: .ascii)
-                print(json)
-                print(contents!)
-                print("JSON data:")
+            // MARK: Data conversion
 
-            }.resume()
+            // Convert server data to our User object
+            do {
+                self.currentUser = try JSONDecoder().decode(User.self, from: data)
+            } catch (let error) {
+                DispatchQueue.main.async {
+                    print("parsing error: \(error)")
+                    MessageHandler.showUserDataParsingError(withText: "Unable to convert JSON")
+                    SVProgressHUD.dismiss()
+                }
+                return
+            }
+
+            // Now that we have the user data, go to the main screen,
+            // passing the data forward!
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
+            }
+
+            return
+
         }.resume()
 
     }

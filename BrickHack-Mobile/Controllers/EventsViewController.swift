@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import p2_OAuth2
 import TimelineTableViewCell
 
 class EventsViewController: UIViewController { //UserDataHandler {
@@ -16,9 +15,7 @@ class EventsViewController: UIViewController { //UserDataHandler {
     // MARK: UI
 
     // General properties
-    // @FIXME When login works
-//    var oauthGrant: OAuth2ImplicitGrant!
-//    var userID: Int!
+    var currentUser: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +40,8 @@ class EventsViewController: UIViewController { //UserDataHandler {
 
             // @FIXME: Fill using user data once login is working
             // (either here or in helper function or in previous VC)
-            tableVC.nameLabel.text = "Aanya Schroeder"
-            tableVC.schoolLabel.text = "University of Buffalo"
-
-            // @TODO: Emoji picker for ImageView? Don't think backend supports images atm.
-
+            tableVC.nameLabel.text = currentUser.firstName + " " + currentUser.lastName
+            tableVC.schoolLabel.text = "Unknown School"
 
         }
     }
