@@ -44,13 +44,15 @@ class TabViewController: TabmanViewController, PageboyViewControllerDataSource, 
         let bar = TMBar.LineBar()
         bar.layout.contentInset.top = 30.0
         bar.layout.transitionStyle = .progressive
-        bar.backgroundColor = .white
         bar.indicator.cornerStyle = .rounded
-        if self.traitCollection.userInterfaceStyle == .dark {
-            bar.indicator.tintColor = UIColor.init(named: "quadColor")
+        bar.indicator.tintColor = UIColor.init(named: "tabBarIndicatorColor")
+        if #available(iOS 13.0, *) {
+            bar.backgroundView.style = .flat(color: .systemBackground)
         } else {
-            bar.indicator.tintColor = UIColor.init(named: "tertiaryColor")
+            bar.backgroundView.style = .flat(color: .white)
         }
+
+
 
 
         // Add to view

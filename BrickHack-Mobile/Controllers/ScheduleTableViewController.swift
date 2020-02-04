@@ -148,6 +148,8 @@ class ScheduleTableViewController: UITableViewController {
         // Set images
         favButton.addTarget(self, action: #selector(favoriteTapped(sender:)), for: .touchUpInside)
         cell.accessoryView = favButton
+        // Make "favorite" star a bit bigger
+        cell.accessoryView?.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         // Set custom properties
         favButton.section = indexPath.section
         favButton.row = indexPath.row
@@ -253,12 +255,7 @@ class ScheduleTableViewController: UITableViewController {
 
     // Defined height for the time header slot (e.g., "9am")
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        // If first element, set its header height to 0
-        // (to make "Schedule" view text not seem too far away)
-        if section == 0 {
-            return tableView.sectionHeaderHeight
-        }
-        return 50.0
+        return 40.0
     }
 
     // Remove margin between sections
