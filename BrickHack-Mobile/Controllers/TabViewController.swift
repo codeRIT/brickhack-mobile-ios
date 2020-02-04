@@ -40,9 +40,10 @@ class TabViewController: TabmanViewController, PageboyViewControllerDataSource, 
         self.reloadData()
 
         // Create bar
-        // @TODO: Dark Mode
-        let bar = TMBar.LineBar()
-        bar.layout.contentInset.top = 30.0
+        let bar = TMBar.ButtonBar()
+//        bar.layout.contentInset.top = 30.0
+        bar.layout.interButtonSpacing = 20.0
+        bar.layout.contentInset.left = 20.0
         bar.layout.transitionStyle = .progressive
         bar.indicator.cornerStyle = .rounded
         bar.indicator.tintColor = UIColor.init(named: "tabBarIndicatorColor")
@@ -51,9 +52,6 @@ class TabViewController: TabmanViewController, PageboyViewControllerDataSource, 
         } else {
             bar.backgroundView.style = .flat(color: .white)
         }
-
-
-
 
         // Add to view
         self.addBar(bar, dataSource: self, at: .top)
@@ -80,7 +78,7 @@ class TabViewController: TabmanViewController, PageboyViewControllerDataSource, 
         print("indexed at \(index)")
         if index == 0 {
             return TMBarItem(title: "Schedule")
-        } else if index == 2 {
+        } else if index == 1 {
             return TMBarItem(title: "Resources")
         } else {
             return TMBarItem(title: "Unknown")
