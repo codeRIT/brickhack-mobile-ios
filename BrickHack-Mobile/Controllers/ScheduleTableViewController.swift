@@ -63,10 +63,8 @@ class ScheduleTableViewController: UITableViewController {
         tableView.separatorStyle = .none
 
         // Set timer for timeline refresh function,
-        // which runs each minute (while the screen is visible) and updates the timeline view if necessary.
-        // @TODO: Change from 60s to change on every hour, effectively caching the result
-        // (or maybe don't bother with cache and do it every time the view is loaded / minimal persistance)
-        scheduleTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(refreshTimeline), userInfo: nil, repeats: true)
+        // which runs every 30 minutes (while the screen is visible) and updates the timeline view if necessary.
+        scheduleTimer = Timer.scheduledTimer(timeInterval: (60.0 * 30), target: self, selector: #selector(refreshTimeline), userInfo: nil, repeats: true)
         scheduleTimer.fire()
     }
 
