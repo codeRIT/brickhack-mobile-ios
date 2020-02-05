@@ -8,6 +8,10 @@
 
 import UIKit
 
+/**
+ Acts as a dummy intermediate to pass properties HERE instead of in whatever class attempts to instantiate it.
+ Yay for last minute decisions.
+ */
 class ResourcesViewController: UIViewController {
 
     var currentUser: User!
@@ -17,21 +21,20 @@ class ResourcesViewController: UIViewController {
 
     }
 
+    // MARK: PrepareForSegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         // Embedded TableViewController segue
-        // This is the main way to reference the ProfileTableViewCotroller
+        // This is the main way to reference the ResourcesTableViewCotroller
         // that is contained within this view via an Embed segue.
-        if let tableVC = segue.destination as? ProfileTableViewController {
+        if let tableVC = segue.destination as? ResourcesTableViewController {
 
-            // May just set properties as Strings;
-            // this approach calls viewDidLoad() before this data is set,
-            // which may lead to odd behavior down the road.
-            tableVC.loadViewIfNeeded()
-
-            tableVC.nameLabel.text = currentUser.firstName + " " + currentUser.lastName
-            tableVC.schoolLabel.text = "Unknown School"
+            // @TODO: Impement thanks
+            tableVC.nameText = currentUser.firstName + " " + currentUser.lastName
+            tableVC.infoText = "Majoring in " + currentUser.major
 
         }
+
     }
+
 }

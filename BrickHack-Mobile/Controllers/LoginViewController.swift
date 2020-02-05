@@ -42,6 +42,11 @@ class LoginViewController: UIViewController {
         }
 
         // Set authorization method
+        // SFSafariViewController is sandboxed, so we need to use
+        // p2_Oauth2's *embedded* view for auth, which allows US to
+        // reset cookies and prevent insta-login.
+        // @TODO: This causes some layoutconstraint bugs maybe. Maybe.
+        oauthGrant.authConfig.ui.useSafariView = false
         oauthGrant.authConfig.authorizeEmbedded = true
         oauthGrant.authConfig.authorizeContext = self
 

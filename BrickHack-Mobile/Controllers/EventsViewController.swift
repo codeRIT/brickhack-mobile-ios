@@ -20,13 +20,4 @@ class EventsViewController: UIViewController { //UserDataHandler {
         super.viewDidLoad()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        // Logout segue -- logout user before loading login view
-        if let loginVC = segue.destination as? LoginViewController {
-            loginVC.logout()
-        }
-
-    }
-
 }

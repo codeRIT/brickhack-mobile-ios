@@ -13,21 +13,23 @@ struct User: Decodable {
 
     var firstName: String
     var lastName: String
-    // @TODO: School name
+    var major: String
 
-    init(firstName: String, lastName: String) {
+    init(firstName: String, lastName: String, major: String) {
         self.firstName = firstName
         self.lastName = lastName
+        self.major = major
     }
 
     init() {
-        self.init(firstName: "", lastName: "")
+        self.init(firstName: "", lastName: "", major: "")
     }
 
     // Map underscored JSON values into camelCase in this code
     private enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
         case lastName = "last_name"
+        case major = "major"
     }
 }
 
