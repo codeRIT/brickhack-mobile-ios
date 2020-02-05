@@ -66,7 +66,7 @@ class ScheduleTableViewController: UITableViewController {
         // which runs each minute (while the screen is visible) and updates the timeline view if necessary.
         // @TODO: Change from 60s to change on every hour, effectively caching the result
         // (or maybe don't bother with cache and do it every time the view is loaded / minimal persistance)
-        scheduleTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(refreshTimeline), userInfo: nil, repeats: true)
+        scheduleTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(refreshTimeline), userInfo: nil, repeats: true)
         scheduleTimer.fire()
     }
 
@@ -148,6 +148,8 @@ class ScheduleTableViewController: UITableViewController {
         // Set images
         favButton.addTarget(self, action: #selector(favoriteTapped(sender:)), for: .touchUpInside)
         cell.accessoryView = favButton
+        // Make "favorite" star a bit bigger
+        cell.accessoryView?.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         // Set custom properties
         favButton.section = indexPath.section
         favButton.row = indexPath.row
@@ -253,7 +255,7 @@ class ScheduleTableViewController: UITableViewController {
 
     // Defined height for the time header slot (e.g., "9am")
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60.0
+        return 40.0
     }
 
     // Remove margin between sections

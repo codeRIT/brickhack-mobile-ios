@@ -11,7 +11,6 @@ import TimelineTableViewCell
 
 class EventsViewController: UIViewController { //UserDataHandler {
 
-
     // MARK: UI
 
     // General properties
@@ -28,22 +27,6 @@ class EventsViewController: UIViewController { //UserDataHandler {
             loginVC.logout()
         }
 
-        // TableViewController segue
-        // This is the main way to reference the ProfileTableViewCotroller
-        // that is contained within this view via an Embed segue.
-        if let tableVC = segue.destination as? ProfileTableViewController {
-
-            // May just set properties as Strings;
-            // this approach calls viewDidLoad() before this data is set,
-            // which may lead to odd behavior down the road.
-            tableVC.loadViewIfNeeded()
-
-            // @FIXME: Fill using user data once login is working
-            // (either here or in helper function or in previous VC)
-            tableVC.nameLabel.text = currentUser.firstName + " " + currentUser.lastName
-            tableVC.schoolLabel.text = "Unknown School"
-
-        }
     }
 
 }
