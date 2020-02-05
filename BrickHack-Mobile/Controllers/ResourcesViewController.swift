@@ -30,7 +30,7 @@ class ResourcesViewController: UIViewController {
 
             // @TODO: Impement thanks
             tableVC.nameText = currentUser.firstName + " " + currentUser.lastName
-            tableVC.infoText = "Majoring in X"//  + currentUser.major
+            tableVC.infoText = "Majoring in " + currentUser.major
 
         }
     }
