@@ -14,44 +14,35 @@ import UIKit
 class ProfileTableViewController: UITableViewController {
 
     // MARK: IBOutlets
+    // These are set in the prepareForSegue in ResourcesViewController
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var schoolLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
+
+    // MARK: Properties
+    var nameText: String?
+    var infoText: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        // Fill properites
+        self.nameLabel.text = nameText ?? "Unknown Name"
+        self.infoLabel.text = infoText ?? "Unknown Major"
+
+        // Fix header issue
+        let view = UIView()
+        view.frame.size.height = .leastNormalMagnitude
+        self.tableView.tableHeaderView = view
+
+        self.tableView.separatorStyle = .singleLine
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    // This doesn't work!
+    // When a header is not defined, iOS creates a default one with a default height.
+    // See the viewForHeaderInSection method for the real fix.
+    // src: https://stackoverflow.com/a/22185534/1431900
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.0
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

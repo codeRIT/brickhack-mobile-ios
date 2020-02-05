@@ -17,6 +17,7 @@
 		D706937323E8F86B004FA788 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D706937223E8F86B004FA788 /* User.swift */; };
 		D706937523E905FF004FA788 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D706937423E905FF004FA788 /* TabViewController.swift */; };
 		D750E81823DF67360075C639 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D750E81723DF67360075C639 /* FavoriteButton.swift */; };
+		D757301223EA236900343DDE /* ResourcesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D757301123EA236900343DDE /* ResourcesTableViewController.swift */; };
 		D772876C23DFF92800C2D541 /* ScheduleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D772876B23DFF92800C2D541 /* ScheduleParser.swift */; };
 		D789978223D652ED0058060A /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789978123D652ED0058060A /* ScheduleTableViewController.swift */; };
 		D789978523D6A4DC0058060A /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D789978423D6A4DC0058060A /* ProfileTableViewController.swift */; };
@@ -56,6 +57,7 @@
 		D706937223E8F86B004FA788 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D706937423E905FF004FA788 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		D750E81723DF67360075C639 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteButton.swift; path = "BrickHack-Mobile/Views/FavoriteButton.swift"; sourceTree = SOURCE_ROOT; };
+		D757301123EA236900343DDE /* ResourcesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesTableViewController.swift; sourceTree = "<group>"; };
 		D772876B23DFF92800C2D541 /* ScheduleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleParser.swift; sourceTree = "<group>"; };
 		D789978123D652ED0058060A /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
 		D789978423D6A4DC0058060A /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileTableViewController.swift; path = "/Users/peterkos/Code/Github/brickhack-mobile-ios/BrickHack-Mobile/Controllers/ProfileTableViewController.swift"; sourceTree = "<absolute>"; };
@@ -137,6 +139,7 @@
 				D789978123D652ED0058060A /* ScheduleTableViewController.swift */,
 				D789978423D6A4DC0058060A /* ProfileTableViewController.swift */,
 				D7C41E26236383300091C480 /* ResourcesViewController.swift */,
+				D757301123EA236900343DDE /* ResourcesTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				D789978223D652ED0058060A /* ScheduleTableViewController.swift in Sources */,
 				D772876C23DFF92800C2D541 /* ScheduleParser.swift in Sources */,
 				D7C07885233EDBA300089193 /* LoginViewController.swift in Sources */,
+				D757301223EA236900343DDE /* ResourcesTableViewController.swift in Sources */,
 				D7C41E2523637D650091C480 /* MainTabBarController.swift in Sources */,
 				D706937523E905FF004FA788 /* TabViewController.swift in Sources */,
 				D750E81823DF67360075C639 /* FavoriteButton.swift in Sources */,

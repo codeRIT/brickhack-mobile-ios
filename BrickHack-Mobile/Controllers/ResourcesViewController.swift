@@ -8,6 +8,10 @@
 
 import UIKit
 
+/**
+ Acts as a dummy intermediate to pass properties HERE instead of in whatever class attempts to instantiate it.
+ Yay for last minute decisions.
+ */
 class ResourcesViewController: UIViewController {
 
     var currentUser: User!
@@ -24,13 +28,9 @@ class ResourcesViewController: UIViewController {
         // that is contained within this view via an Embed segue.
         if let tableVC = segue.destination as? ProfileTableViewController {
 
-            // May just set properties as Strings;
-            // this approach calls viewDidLoad() before this data is set,
-            // which may lead to odd behavior down the road.
-            tableVC.loadViewIfNeeded()
-
-            tableVC.nameLabel.text = currentUser.firstName + " " + currentUser.lastName
-            tableVC.schoolLabel.text = "Unknown School"
+            // @TODO: Impement thanks
+            tableVC.nameText = currentUser.firstName + " " + currentUser.lastName
+            tableVC.infoText = "Majoring in X"//  + currentUser.major
 
         }
     }

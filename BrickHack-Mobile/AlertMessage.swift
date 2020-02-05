@@ -96,4 +96,11 @@ class MessageHandler {
                          body: "Please try again later.",
                          type: .error)
     }
+
+    static func showUnableToOpenURLError(url: URL) {
+        print("ERROR: URL \(url.absoluteString) cannot be opened.")
+        showAlertMessage(withTitle: "URL cannot be opened.",
+                         body: "Please try again later.",
+                         type: .error)
+    }
 }
