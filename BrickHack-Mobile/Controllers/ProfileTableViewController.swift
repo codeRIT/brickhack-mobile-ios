@@ -16,7 +16,6 @@ class ProfileTableViewController: UITableViewController {
     // MARK: IBOutlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var schoolLabel: UILabel!
-    @IBOutlet weak var profileImage: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
