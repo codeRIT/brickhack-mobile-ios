@@ -25,20 +25,14 @@ class ResourcesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         // Embedded TableViewController segue
-        // This is the main way to reference the ProfileTableViewCotroller
+        // This is the main way to reference the ResourcesTableViewCotroller
         // that is contained within this view via an Embed segue.
-        if let tableVC = segue.destination as? ProfileTableViewController {
+        if let tableVC = segue.destination as? ResourcesTableViewController {
 
             // @TODO: Impement thanks
             tableVC.nameText = currentUser.firstName + " " + currentUser.lastName
             tableVC.infoText = "Majoring in " + currentUser.major
 
-        }
-
-        // Logout segue -- logout user before loading login view
-        if let loginVC = segue.destination as? LoginViewController {
-            print("\n\nLOGGED OUT\n\n")
-            loginVC.logout()
         }
 
     }
