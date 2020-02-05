@@ -21,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brickHack6Logo" translatesAutoresizingMaskIntoConstraints="NO" id="1am-Hz-qrF">
-                                        <rect key="frame" x="36" y="229.33333333333337" width="148" height="139.66666666666663"/>
+                                        <rect key="frame" x="36" y="159.66666666666663" width="296" height="279"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginShapes" translatesAutoresizingMaskIntoConstraints="NO" id="QYc-0X-ayY">
-                                        <rect key="frame" x="164" y="124.66666666666669" width="211" height="349"/>
+                                        <rect key="frame" x="-47" y="-50" width="422" height="698"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to  BrickHack" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="xNm-NN-nc2">
                                         <rect key="frame" x="36" y="486.66666666666669" width="248" height="81.333333333333314"/>
@@ -258,7 +258,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNf-Aa-cwx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5364" y="-251.23152709359607"/>
+            <point key="canvasLocation" x="5364" y="-207"/>
         </scene>
         <!--Resources View Controller-->
         <scene sceneID="UT5-X6-ZKF">
@@ -284,21 +284,47 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nwl-VF-xjf">
-                                <rect key="frame" x="0.0" y="270" width="375" height="508"/>
+                                <rect key="frame" x="0.0" y="270" width="375" height="365"/>
                                 <connections>
                                     <segue destination="2e9-Rl-UDW" kind="embed" id="0EE-Cc-IyJ"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAn-JA-reA">
+                                <rect key="frame" x="131" y="655" width="112" height="40"/>
+                                <color key="backgroundColor" name="primaryColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="HDX-SR-cd8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.matchToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="titleLabel.adjustsFontSizeToFitWidth" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="initializeOAuth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wHz-Su-Dc7"/>
+                                    <segue destination="6Q1-Id-c6M" kind="unwind" unwindAction="unwindToLoginWithSegue:" id="KAA-dg-wSI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="jaN-ia-Njg" firstAttribute="trailing" secondItem="g6R-ba-pGl" secondAttribute="trailing" id="16d-mI-7jP"/>
+                            <constraint firstItem="jAn-JA-reA" firstAttribute="top" secondItem="nwl-VF-xjf" secondAttribute="bottom" constant="20" id="86Y-Le-l5v"/>
                             <constraint firstItem="g6R-ba-pGl" firstAttribute="leading" secondItem="jaN-ia-Njg" secondAttribute="leading" id="8Wo-XH-hWO"/>
                             <constraint firstItem="nwl-VF-xjf" firstAttribute="top" secondItem="g6R-ba-pGl" secondAttribute="bottom" constant="40" id="FOi-Lg-qMQ"/>
-                            <constraint firstItem="jaN-ia-Njg" firstAttribute="bottom" secondItem="nwl-VF-xjf" secondAttribute="bottom" id="VHo-LA-vbb"/>
                             <constraint firstItem="jaN-ia-Njg" firstAttribute="trailing" secondItem="nwl-VF-xjf" secondAttribute="trailing" id="YhI-wM-gCW"/>
                             <constraint firstItem="wxT-LE-0Pv" firstAttribute="top" secondItem="jaN-ia-Njg" secondAttribute="top" constant="20" id="Z79-Cb-9zm"/>
+                            <constraint firstItem="jAn-JA-reA" firstAttribute="leading" secondItem="jaN-ia-Njg" secondAttribute="leading" constant="131" id="eZV-tg-QC8"/>
+                            <constraint firstItem="jaN-ia-Njg" firstAttribute="trailing" secondItem="jAn-JA-reA" secondAttribute="trailing" constant="132" id="flF-wJ-bFm"/>
                             <constraint firstItem="nwl-VF-xjf" firstAttribute="leading" secondItem="jaN-ia-Njg" secondAttribute="leading" id="iAi-WL-HZZ"/>
+                            <constraint firstItem="jaN-ia-Njg" firstAttribute="bottom" secondItem="nwl-VF-xjf" secondAttribute="bottom" constant="143" id="ql7-X4-NqB"/>
                             <constraint firstItem="wxT-LE-0Pv" firstAttribute="leading" secondItem="jaN-ia-Njg" secondAttribute="leading" constant="15" id="rJ0-J0-DzT"/>
                             <constraint firstItem="g6R-ba-pGl" firstAttribute="top" secondItem="wxT-LE-0Pv" secondAttribute="bottom" constant="20" id="rqv-2A-ZQW"/>
                         </constraints>
@@ -306,6 +332,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wKq-zV-HKi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="6Q1-Id-c6M" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4568.8000000000002" y="-18.472906403940886"/>
         </scene>
@@ -314,7 +341,7 @@
             <objects>
                 <tableViewController id="2e9-Rl-UDW" customClass="ResourcesTableViewController" customModule="BrickHack_Mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ejc-ID-4PC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="395"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
@@ -519,7 +546,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cRh-Pi-L69" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5412" y="272.66009852216752"/>
+            <point key="canvasLocation" x="5364" y="104"/>
         </scene>
         <!--Schedule Table View Controller-->
         <scene sceneID="up2-D5-I0e">

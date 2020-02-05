@@ -21,6 +21,7 @@ class ResourcesViewController: UIViewController {
 
     }
 
+    // MARK: PrepareForSegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         // Embedded TableViewController segue
@@ -33,5 +34,13 @@ class ResourcesViewController: UIViewController {
             tableVC.infoText = "Majoring in " + currentUser.major
 
         }
+
+        // Logout segue -- logout user before loading login view
+        if let loginVC = segue.destination as? LoginViewController {
+            print("\n\nLOGGED OUT\n\n")
+            loginVC.logout()
+        }
+
     }
+
 }
