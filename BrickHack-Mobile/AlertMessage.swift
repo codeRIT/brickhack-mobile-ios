@@ -117,4 +117,11 @@ class MessageHandler {
                          body: "Setting a placeholder name in the meantime...",
                          type: .info)
     }
+
+    static func showScheduleParsingError() {
+        print("ERROR: Unable to get latest schedule")
+        showAlertMessage(withTitle: "Unable to get latest schedule!",
+                         body: "Please try again later, by restarting the app.",
+                         type: .error)
+    }
 }
