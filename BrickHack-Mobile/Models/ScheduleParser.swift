@@ -29,7 +29,7 @@ struct Event: CustomDebugStringConvertible {
     var timeString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E hh:mm a"
-        dateFormatter.timeZone = TimeZone(identifier: "UTC") // Already in ET, dont convert again
+        dateFormatter.timeZone = TimeZone(identifier: "America/New_York")
         return dateFormatter.string(from: time)
     }
     var title: String
@@ -152,13 +152,17 @@ class ScheduleParser {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
 
             guard error == nil else {
-                // @TODO: Error handle
+                DispatchQueue.main.async {
+                    MessageHandler.showScheduleParsingError()
+                }
                 print(error!)
                 return
             }
 
             guard let data = data else {
-                // @TODO: Error handle
+                DispatchQueue.main.async {
+                    MessageHandler.showScheduleParsingError()
+                }
                 print("no data")
                 return
             }
@@ -175,7 +179,9 @@ class ScheduleParser {
 
             } catch let error {
                 // @TODO: Error handle (JSON parse error)
-                print("it broke")
+                DispatchQueue.main.async {
+                    MessageHandler.showScheduleParsingError()
+                }
                 print(error)
             }
         }
@@ -296,7 +302,7 @@ class ScheduleParser {
 
         // Build the final date
         var dateComponents = DateComponents()
-        dateComponents.timeZone = TimeZone(identifier: "America/New_York") // Might not be req'd but works
+        dateComponents.timeZone = TimeZone(identifier: "America/New_York")
         dateComponents.year = 2020
         dateComponents.month = 2
         dateComponents.hour = Calendar.current.component(.hour, from: convertedTime!)
