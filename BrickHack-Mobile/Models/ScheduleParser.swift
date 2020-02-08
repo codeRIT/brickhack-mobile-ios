@@ -28,7 +28,7 @@ struct Event: CustomDebugStringConvertible {
     var time: Date
     var timeString: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm a"
+        dateFormatter.dateFormat = "E hh:mm a"
         dateFormatter.timeZone = TimeZone(identifier: "UTC") // Already in ET, dont convert again
         return dateFormatter.string(from: time)
     }
@@ -200,7 +200,7 @@ class ScheduleParser {
             for columnIndex in 0..<rowData.columns.count {
 
                 // Skip section day header title ("Saturday", "Sunday").
-                // "section" 0 is Saturday, 1 is sunday, etc.
+                // "section" 0 is Saturday, 1 is sunday
                 // Note that this is NOT the same as Table View sections -- remember, we are only in the model!
                 // (and that's how it was named on the spreadsheet)
                 if skip {
@@ -228,7 +228,7 @@ class ScheduleParser {
                     currentEvent.section = dayIndex
                     dayIndex += 1
 
-                    // Skip the next iteration, whic just has the section day title.
+                    // Skip the next iteration, which just has the section day title.
                     skip = true
                     continue
 
@@ -300,7 +300,7 @@ class ScheduleParser {
 
         // Construct the proper day
         // 0: sat, 1: sun
-        if sectionIndex == 0 {
+        if dayIndex <= 0 {
             dateComponents.day = 8
         } else {
             dateComponents.day = 9

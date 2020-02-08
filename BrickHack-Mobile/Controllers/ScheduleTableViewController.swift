@@ -12,7 +12,6 @@ import SwiftMessages
 
 class ScheduleTableViewController: UITableViewController {
 
-
     // MARK: Ivars
     var scheduleTimer = Timer()
 
@@ -24,7 +23,7 @@ class ScheduleTableViewController: UITableViewController {
     // Custom wrapper struct around an Event, to store additional UI parameters. Namely:
     // timelinePoint: whether or not the event has a dot to the left
     // allColor: a defined color for the timeline, for this event
-    struct TimelineEvent: CustomStringConvertible {
+    class TimelineEvent: CustomStringConvertible {
         var timelinePoint: TimelinePoint?
         var isFavorite: Bool
         var allColor: UIColor
@@ -37,16 +36,16 @@ class ScheduleTableViewController: UITableViewController {
             self.event = event
         }
 
-        init(allColor: UIColor, event: Event) {
+        convenience init(allColor: UIColor, event: Event) {
             self.init(timelinePoint: nil, isFavorite: false, allColor: allColor, event: event)
         }
 
-        init() {
+        convenience init() {
             self.init(timelinePoint: nil, isFavorite: false, allColor: UIColor.clear, event: Event())
         }
 
         var description: String {
-            return "\(event.title)| \(event.time) |\(event.timeString) |\(event.description)"
+            return "\(event)"
         }
     }
     var timelineEvents = [TimelineEvent]()
@@ -81,6 +80,7 @@ class ScheduleTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // This property is stored in the ScheduleParser,
         // as this is pretty much the only time it's needed here.
+        print("from sec num: \(ScheduleParser.sectionCount)")
         return ScheduleParser.sectionCount
     }
 
@@ -240,7 +240,6 @@ class ScheduleTableViewController: UITableViewController {
         // Otherwise set proper date
         cell.textLabel!.text = sectionDate
 
-
         return cell
 
     }
@@ -263,45 +262,55 @@ class ScheduleTableViewController: UITableViewController {
 
         // First, get an updated verison of the schedule
         // (Handles UI, threaded)
-        updateSchedule()
+        updateSchedule() {
 
-        // @FIXME: Update to reflect new model
-        // Start at -1 as we look at the next index to see if the current is over yet
-        /*
-        for sectionIndex in -1..<ScheduleParser.sectionCount {
-
-            // Grab the next section's date
-            let sectionDate = self.sampleData[sectionIndex + 1]!.first!.date
-
-            // If greater, STOP. We are at the current section.
-            if (sectionDate > Date(timeIntervalSinceNow: 0)) {
-                break
+            // Don't parse if no sections available
+            // (Sanity guard, shouldn't happen)
+            guard ScheduleParser.sectionCount >= 1 else {
+                print("nope")
+                return
             }
 
-            // Otherwise, go on to configure this current section as "passed"
-            var currentSection = self.sampleData[sectionIndex]!
-            for eventIndex in 0..<currentSection.count {
+            // Start at -1 as we look at the next index to see if the current is over yet
+            print("sectionCount: \(ScheduleParser.sectionCount)")
+            for sectionIndex in 0..<ScheduleParser.sectionCount {
 
-                currentSection[eventIndex].allColor = self.backColor
+                // Grab the next section's date
+                print(self.timelineEvents)
+                let events = self.timelineEvents.filter({ $0.event.section == sectionIndex })
+                print(events)
+                let sectionDate = events.first!.event.time
 
-                // Only "fill" timeline point if it's defined for that cell
-                if (currentSection[eventIndex].timelinePoint != nil) {
-                    currentSection[eventIndex].timelinePoint = TimelinePoint(color: self.backColor, filled: true)
+                // If greater, STOP. We are at the current section.
+                if (sectionDate > Date(timeIntervalSinceNow: 0)) {
+                    break
                 }
+
+                // Otherwise, go on to configure this current section as "passed"
+                self.timelineEvents.filter({ $0.event.section == sectionIndex }).forEach { timelineEvent in
+
+                    print("updated \(timelineEvent)")
+                    timelineEvent.allColor = self.backColor
+
+                    if timelineEvent.timelinePoint != nil {
+                        timelineEvent.timelinePoint = TimelinePoint(color: self.backColor, filled: true)
+                    }
+                }
+
+                // @TODO: Set the current event with a TimelinePoint
+                
             }
-        }
-         */
 
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
 
-        // And of course, reload the table.
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
         }
 
     }
 
     // Updates the listing of events from the Google Sheet
-    func updateSchedule() {
+    func updateSchedule(completion: @escaping () -> ()) {
 
         // Create custom toast to use for alerting the user
         let toastView = MessageView.viewFromNib(layout: .messageView)
@@ -336,6 +345,8 @@ class ScheduleTableViewController: UITableViewController {
                 self.timelineEvents.append(TimelineEvent(allColor: self.frontColor, event: event))
             }
 
+            completion()
+
             // Finally, update the table now that our model is full
             DispatchQueue.main.async {
 
@@ -343,7 +354,7 @@ class ScheduleTableViewController: UITableViewController {
 
                 print("EVENTS AFTER REFRESH: ")
                 for event in self.timelineEvents {
-                    print(event)
+//                    print(event)
                 }
 
                 // Show toast to user
