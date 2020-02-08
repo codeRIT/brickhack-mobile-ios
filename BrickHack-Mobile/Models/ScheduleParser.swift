@@ -276,7 +276,7 @@ class ScheduleParser {
                 case 1: currentEvent.time = stringToDate(cellText) ?? Date()
                 case 2: currentEvent.title = cellText
                 case 3: currentEvent.location = cellText
-                case 4: currentEvent.description = cellText
+                case 4: currentEvent.description = filterDescription(cellText)
                 case 5: currentEvent.uuid = cellText
                 default: break
                 }
@@ -286,6 +286,21 @@ class ScheduleParser {
 
     }
 
+    // Strips the description of any HTML
+    private static func filterDescription(_ text: String) -> String {
+
+        var result = String(text)
+
+        while result.contains("<") && result.contains(">") {
+            let htmlStart = result.firstIndex(of: "<")!
+            let htmlEnd = result.firstIndex(of: ">")!
+
+            result.removeSubrange(htmlStart...htmlEnd)
+        }
+
+        print("Converted \(text) to \(result)")
+        return result
+    }
 
     private static func stringToDate(_ text: String) -> Date? {
 
