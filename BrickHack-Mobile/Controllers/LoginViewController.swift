@@ -183,6 +183,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     MessageHandler.showNetworkError(withText: error!.localizedDescription)
                     SVProgressHUD.dismiss()
+                    self.logout()
                 }
                 return
             }
@@ -191,6 +192,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     MessageHandler.showUserDataParsingError()
                     SVProgressHUD.dismiss()
+                    self.logout()
                 }
                 return
             }
@@ -200,6 +202,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     MessageHandler.showNetworkError(withText: "Invalid response code")
                     SVProgressHUD.dismiss()
+                    self.logout()
                 }
                 return
             }
@@ -208,6 +211,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     MessageHandler.showNetworkError(withText: "User account not found")
                     SVProgressHUD.dismiss()
+                    self.logout()
                 }
                 return
             }
@@ -223,6 +227,7 @@ class LoginViewController: UIViewController {
                     print("parsing error: \(error)")
                     MessageHandler.showUserDataParsingError(withText: "Unable to convert JSON")
                     SVProgressHUD.dismiss()
+                    self.logout()
                 }
                 return
             }
