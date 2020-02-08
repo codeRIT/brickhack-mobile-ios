@@ -129,8 +129,14 @@ class ScheduleTableViewController: UITableViewController {
             cell.bubbleEnabled = true
         } else {
             // Only current item gets button.
-            // @TODO: Check with design on this one.
             cell.bubbleEnabled = false
+
+            // Reset label color as this previously-current item is no longer current
+            if #available(iOS 13.0, *) {
+                cell.titleLabel.textColor = UIColor.label
+            } else {
+                cell.titleLabel.textColor = UIColor.black
+            }
         }
 
         // Text content
@@ -272,13 +278,12 @@ class ScheduleTableViewController: UITableViewController {
             }
 
             // Start at -1 as we look at the next index to see if the current is over yet
+            // (Updating each section as "current" as we go)
             print("sectionCount: \(ScheduleParser.sectionCount)")
             for sectionIndex in 0..<ScheduleParser.sectionCount {
 
                 // Grab the next section's date
-                print(self.timelineEvents)
                 let events = self.timelineEvents.filter({ $0.event.section == sectionIndex })
-                print(events)
                 let sectionDate = events.first!.event.time
 
                 // If greater, STOP. We are at the current section.
@@ -291,14 +296,15 @@ class ScheduleTableViewController: UITableViewController {
 
                     print("updated \(timelineEvent)")
                     timelineEvent.allColor = self.backColor
-
-                    if timelineEvent.timelinePoint != nil {
-                        timelineEvent.timelinePoint = TimelinePoint(color: self.backColor, filled: true)
-                    }
                 }
 
                 // @TODO: Set the current event with a TimelinePoint
-                
+                let mostCurrentEvent = self.timelineEvents.filter({ $0.event.section == sectionIndex }).last
+                mostCurrentEvent?.timelinePoint = TimelinePoint(color: self.backColor, filled: true)
+
+                // Remove it from the previous section
+                let lastCurrentEvent = self.timelineEvents.filter({ $0.event.section == sectionIndex - 1}).last
+                lastCurrentEvent?.timelinePoint = nil
             }
 
             DispatchQueue.main.async {
