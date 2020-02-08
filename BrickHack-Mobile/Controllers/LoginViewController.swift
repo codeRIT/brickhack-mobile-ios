@@ -136,23 +136,6 @@ class LoginViewController: UIViewController {
                 print("passed user object")
                 eventsVC.currentUser = self.currentUser
             }
-
-
-            // Check for MainTabBarController (skip through nav controller)
-            // Note: not used!
-            /*
-            if let tabVC = segue.destination.children.first as? MainTabBarController {
-
-                // Check if valid user (on error, user will reauth)
-                guard userID != 0 else {
-                    MessageHandler.showInvalidUserError()
-                    return
-                }
-
-                // Pass data to the tab bar controller, which will handle passing its own children
-                tabVC.userID = userID
-                tabVC.oauthGrant = oauthGrant
-            } */
         }
     }
 
@@ -176,6 +159,7 @@ class LoginViewController: UIViewController {
             SVProgressHUD.show()
         }
 
+        // MARK: User data request
         URLSession.shared.dataTask(with: signedNameRequest) { (data, response, error) in
 
             // MARK: Error checking
@@ -183,6 +167,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     MessageHandler.showNetworkError(withText: error!.localizedDescription)
                     SVProgressHUD.dismiss()
+                    self.logout()
                 }
                 return
             }
@@ -191,6 +176,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     MessageHandler.showUserDataParsingError()
                     SVProgressHUD.dismiss()
+                    self.logout()
                 }
                 return
             }
@@ -200,6 +186,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     MessageHandler.showNetworkError(withText: "Invalid response code")
                     SVProgressHUD.dismiss()
+                    self.logout()
                 }
                 return
             }
@@ -208,30 +195,50 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     MessageHandler.showNetworkError(withText: "User account not found")
                     SVProgressHUD.dismiss()
+                    self.logout()
                 }
                 return
             }
 
-
             // MARK: Data conversion
+
+            var unknownErrorOccured = false
 
             // Convert server data to our User object
             do {
                 self.currentUser = try JSONDecoder().decode(User.self, from: data)
-            } catch (let error) {
+            } catch {
+
+                print("Got in error")
+
+                // This error might be fixable!
+                // Admin accounts don't have a questionnaire, and if the user was
+                // able to login, then this is almost certainly an admin account.
+                // (Or their questionnaire doesn't exist).
+
+                unknownErrorOccured = true
                 DispatchQueue.main.async {
-                    print("parsing error: \(error)")
-                    MessageHandler.showUserDataParsingError(withText: "Unable to convert JSON")
-                    SVProgressHUD.dismiss()
+                    MessageHandler.showUnknownUserDataError()
                 }
-                return
+
+                // In this case, we just assign some blank data.
+                self.currentUser = User(firstName: "Mystery", lastName: "User", major: "Bachelors of codeRIT")
             }
 
-            // Now that we have the user data, go to the main screen,
-            // passing the data forward!
-            DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
-                self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
+            // Now that we have the user data (or fake admin data),
+            // go to the main screen, and pass the data forward!
+
+            // If error occured, give user like three seconds to read it before moving on
+            if unknownErrorOccured {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+                    SVProgressHUD.dismiss()
+                    self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    self.performSegue(withIdentifier: "authSuccessSegue", sender: self)
+                }
             }
 
             return

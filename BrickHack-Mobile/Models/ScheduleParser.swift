@@ -241,7 +241,6 @@ class ScheduleParser {
                 case 0:
 
                     guard rowIndex > 1 || !currentEvent.title.isEmpty else {
-                        print("broken like me right now")
                         break
                     }
 
