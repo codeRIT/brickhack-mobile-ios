@@ -184,25 +184,28 @@ class ScheduleParser {
 
     }
 
+
     // MARK: Parsing
-    // Postcondition: Events that are not fully defined will be SILENTLY SKIPPED.
-    // @FIXME: Add support for empty-description events!!
+
     // Sets event data as a field
+    // @FIXME: Bug when setting date ("monday 1am") as date is set then converted? something like that
+    // Day index appears to be fine.
     private static func parseEvents(data: Welcome) {
+
+        var currentEvent = Event()
 
         // The parse loop
         // @FIXME: Using 3rd sheet as test, convert to 1st for production
-        for (rowIndex, rowData) in data.sheets[2].data[0].rowData.enumerated() {
+        for (rowIndex, rowData) in data.sheets[0].data[0].rowData.enumerated() {
 
             // See comment below for how this skip variable functions
             var skip = false
-            var currentEvent = Event()
 
             // Use indexing to more accurately determine column purpose
             for columnIndex in 0..<rowData.columns.count {
 
                 // Skip section day header title ("Saturday", "Sunday").
-                // "section" 0 is Saturday, 1 is sunday
+                // "section" 0 is Saturday, 1 is Sunday
                 // Note that this is NOT the same as Table View sections -- remember, we are only in the model!
                 // (and that's how it was named on the spreadsheet)
                 if skip {
@@ -210,13 +213,8 @@ class ScheduleParser {
                     continue
                 }
 
-                // Check for valid text
-                // (And convinence so we don't have to read this mess of an index)
-                // Note: error message is printed in SHEETS index (1-based) for easier debugging there.
-                guard let cellText = rowData.columns[columnIndex].userEnteredValue?.stringValue else {
-                    print("Unable to parse cell value \(rowData.columns[columnIndex]) at row \(rowIndex + 1), column \(columnIndex + 1)")
-                    continue
-                }
+                // Only set if text is valid, otherwise, #emptystring
+                let cellText = rowData.columns[columnIndex].userEnteredValue?.stringValue ?? ""
 
                 // Now, onto the core parsing.
 
@@ -241,21 +239,11 @@ class ScheduleParser {
                 // Now, figure out what part of the Event struct we're filling.
                 switch columnIndex {
                 case 0:
-                    // This is the ScheduleKeyword, handled in the above switch statement
-                    // However we use this opportunity to set the schedule index tag from the previous row.
-                    currentEvent.section = sectionIndex
-                    break
 
-                case 1: currentEvent.time = stringToDate(cellText) ?? Date()
-                case 2: currentEvent.title = cellText
-                case 3: currentEvent.location = cellText
-                case 4: currentEvent.description = cellText
-                case 5: currentEvent.uuid = cellText
-
-                    // Once we reach the fifth case, we know we're at the end of the data for a cell.
-                    // This means that now we can reset the event!
-                    self.events.append(currentEvent)
-                    currentEvent = Event()
+                    guard rowIndex > 1 || !currentEvent.title.isEmpty else {
+                        print("broken like me right now")
+                        break
+                    }
 
                     // However, we also need to figure out what UI section the data is in.
                     // Assuming events are in cronological order:
@@ -269,6 +257,22 @@ class ScheduleParser {
                             // Otherwise, keep them in the same section.
                         }
                     }
+
+                    // This is the ScheduleKeyword, handled in the above switch statement
+                    // However we use this opportunity to set the schedule index tag from the previous row.
+                    currentEvent.section = sectionIndex
+
+                    // Append the completed event
+                    self.events.append(currentEvent)
+
+                    // Reset event manually
+                    currentEvent = Event()
+
+                case 1: currentEvent.time = stringToDate(cellText) ?? Date()
+                case 2: currentEvent.title = cellText
+                case 3: currentEvent.location = cellText
+                case 4: currentEvent.description = cellText
+                case 5: currentEvent.uuid = cellText
                 default: break
                 }
 
@@ -311,7 +315,7 @@ class ScheduleParser {
     }
 
     // Helper function for debugging JSON
-    private func prettyPrintJSON(data: Data) {
+    private static func prettyPrintJSON(data: Data) {
         let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
 
         guard let json2 = json else {

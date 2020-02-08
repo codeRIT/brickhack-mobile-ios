@@ -20,13 +20,11 @@ class ResourcesTableViewController: UITableViewController {
     // MARK: IBActions
 
     @IBAction func callEmergency(_ sender: Any) {
-
         let emergencyURL = URL(string: "tel://\(emergencyNumber)")!
         openURL(url: emergencyURL)
     }
 
     @IBAction func callNonEmergency(_ sender: Any) {
-
         let nonEmergencyURL = URL(string: "tel://\(emergencyNumber)")!
         openURL(url: nonEmergencyURL)
     }
@@ -37,6 +35,14 @@ class ResourcesTableViewController: UITableViewController {
 
     @IBAction func openSlack(_ sender: Any) {
         openURL(url: URL(string: slackURL)!)
+    }
+
+    @IBAction func viewPrivacy(_ sender: Any) {
+        openURL(url: URL(string: privacyPolicy)!)
+    }
+
+    @IBAction func supportSite(_ sender: Any) {
+        openURL(url: URL(string: supportURL)!)
     }
 
 
@@ -51,6 +57,8 @@ class ResourcesTableViewController: UITableViewController {
     let nonEmergencyNumber = "585_475_2853"
     let devpostURL         = "https://brickhack6.devpost.com"
     let slackURL           = "https://brickhack6.slack.com"
+    let privacyPolicy      = "https://brickhack.io/assets/Privacy_Policy-8b43021522715c979496895d16e44df07394b39b4a3c934e66c47bf5cf29f57f.pdf"
+    let supportURL         = "https://brickhack.io/"
 
     override func viewDidLoad() {
         super.viewDidLoad()

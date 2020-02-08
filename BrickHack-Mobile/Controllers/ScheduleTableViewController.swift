@@ -63,10 +63,8 @@ class ScheduleTableViewController: UITableViewController {
         tableView.separatorStyle = .none
 
         // Set timer for timeline refresh function,
-        // which runs each minute (while the screen is visible) and updates the timeline view if necessary.
-        // @TODO: Change from 60s to change on every hour, effectively caching the result
-        // (or maybe don't bother with cache and do it every time the view is loaded / minimal persistance)
-        scheduleTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(refreshTimeline), userInfo: nil, repeats: true)
+        // which runs every 30 minutes (while the screen is visible) and updates the timeline view if necessary.
+        scheduleTimer = Timer.scheduledTimer(timeInterval: (60.0 * 30), target: self, selector: #selector(refreshTimeline), userInfo: nil, repeats: true)
         scheduleTimer.fire()
     }
 
@@ -139,9 +137,9 @@ class ScheduleTableViewController: UITableViewController {
         }
 
         // Text content
+        // Note "description" is our own property!
         cell.titleLabel.text = currentTimelineEvent.event.title
-
-        cell.descriptionLabel.text = currentTimelineEvent.event.timeString
+        cell.descriptionLabel.text = currentTimelineEvent.event.description
 
         // Configure favorite accessory
         let favButton = FavoriteButton(type: .custom)
@@ -189,7 +187,11 @@ class ScheduleTableViewController: UITableViewController {
             eventSum += eventsInSection.count
         }
 
-        return eventSum
+        // This gets the index to the SECTION.
+        // Now, we need to increment it relative to the section
+        // to find out corresponding row's absolute index.
+        // (debug time for this: 1.5 hours)
+        return eventSum + indexPath.row
     }
 
     // Because of the Wonderful Way UIKit works (https://stackoverflow.com/a/12810613/1431900),
@@ -301,7 +303,6 @@ class ScheduleTableViewController: UITableViewController {
                     timelineEvent.allColor = self.backColor
                 }
 
-                // @TODO: Set the current event with a TimelinePoint
                 let mostCurrentEvent = self.timelineEvents.filter({ $0.event.section == sectionIndex }).last
                 mostCurrentEvent?.timelinePoint = TimelinePoint(color: self.backColor, filled: true)
 
@@ -372,11 +373,6 @@ class ScheduleTableViewController: UITableViewController {
             DispatchQueue.main.async {
 
                 self.tableView.reloadData()
-
-                print("EVENTS AFTER REFRESH: ")
-                for event in self.timelineEvents {
-//                    print(event)
-                }
 
                 // Show toast to user
                 toastView.configureContent(title: "Schedule updated!", body: "")
