@@ -29,7 +29,7 @@ struct Event: CustomDebugStringConvertible {
     var timeString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E hh:mm a"
-        dateFormatter.timeZone = TimeZone(identifier: "UTC") // Already in ET, dont convert again
+        dateFormatter.timeZone = TimeZone(identifier: "America/New_York")
         return dateFormatter.string(from: time)
     }
     var title: String
@@ -152,13 +152,17 @@ class ScheduleParser {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
 
             guard error == nil else {
-                // @TODO: Error handle
+                DispatchQueue.main.async {
+                    MessageHandler.showScheduleParsingError()
+                }
                 print(error!)
                 return
             }
 
             guard let data = data else {
-                // @TODO: Error handle
+                DispatchQueue.main.async {
+                    MessageHandler.showScheduleParsingError()
+                }
                 print("no data")
                 return
             }
@@ -175,7 +179,9 @@ class ScheduleParser {
 
             } catch let error {
                 // @TODO: Error handle (JSON parse error)
-                print("it broke")
+                DispatchQueue.main.async {
+                    MessageHandler.showScheduleParsingError()
+                }
                 print(error)
             }
         }
@@ -241,7 +247,6 @@ class ScheduleParser {
                 case 0:
 
                     guard rowIndex > 1 || !currentEvent.title.isEmpty else {
-                        print("broken like me right now")
                         break
                     }
 
@@ -271,7 +276,7 @@ class ScheduleParser {
                 case 1: currentEvent.time = stringToDate(cellText) ?? Date()
                 case 2: currentEvent.title = cellText
                 case 3: currentEvent.location = cellText
-                case 4: currentEvent.description = cellText
+                case 4: currentEvent.description = filterDescription(cellText)
                 case 5: currentEvent.uuid = cellText
                 default: break
                 }
@@ -281,6 +286,21 @@ class ScheduleParser {
 
     }
 
+    // Strips the description of any HTML
+    private static func filterDescription(_ text: String) -> String {
+
+        var result = String(text)
+
+        while result.contains("<") && result.contains(">") {
+            let htmlStart = result.firstIndex(of: "<")!
+            let htmlEnd = result.firstIndex(of: ">")!
+
+            result.removeSubrange(htmlStart...htmlEnd)
+        }
+
+        print("Converted \(text) to \(result)")
+        return result
+    }
 
     private static func stringToDate(_ text: String) -> Date? {
 
@@ -297,7 +317,7 @@ class ScheduleParser {
 
         // Build the final date
         var dateComponents = DateComponents()
-        dateComponents.timeZone = TimeZone(identifier: "America/New_York") // Might not be req'd but works
+        dateComponents.timeZone = TimeZone(identifier: "America/New_York")
         dateComponents.year = 2020
         dateComponents.month = 2
         dateComponents.hour = Calendar.current.component(.hour, from: convertedTime!)

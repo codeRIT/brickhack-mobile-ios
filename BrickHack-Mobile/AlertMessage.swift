@@ -23,7 +23,14 @@ class MessageHandler {
     static func showAlertMessage(withTitle title: String, body: String, type: MessageType ) {
 
         let view = MessageView.viewFromNib(layout: .tabView)
-        view.configureTheme(.error)
+
+        // Map our fake type to their type
+        switch type {
+        case .error: view.configureTheme(.error)
+        case .warning: view.configureTheme(.warning)
+        case .info: view.configureTheme(.info)
+        }
+        
         view.button?.isHidden = true
         view.configureContent(title: title,
                               body: body,
@@ -101,6 +108,20 @@ class MessageHandler {
         print("ERROR: URL \(url.absoluteString) cannot be opened.")
         showAlertMessage(withTitle: "URL cannot be opened.",
                          body: "Please try again later.",
+                         type: .error)
+    }
+
+    static func showUnknownUserDataError() {
+        print("ERROR: Could not find questionnaire for user.")
+        showAlertMessage(withTitle: "User name unknown!",
+                         body: "Setting a placeholder name in the meantime...",
+                         type: .info)
+    }
+
+    static func showScheduleParsingError() {
+        print("ERROR: Unable to get latest schedule")
+        showAlertMessage(withTitle: "Unable to get latest schedule!",
+                         body: "Please try again later, by restarting the app.",
                          type: .error)
     }
 }
