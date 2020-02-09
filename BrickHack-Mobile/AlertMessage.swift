@@ -22,6 +22,9 @@ class MessageHandler {
     // Precondition: must be called on the main thread
     static func showAlertMessage(withTitle title: String, body: String, type: MessageType ) {
 
+        // Disable previous alert if still visible
+        SwiftMessages.hide()
+
         let view = MessageView.viewFromNib(layout: .tabView)
 
         // Map our fake type to their type
