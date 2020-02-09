@@ -89,11 +89,6 @@ class ScheduleTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineTableViewCell", for: indexPath) as! TimelineTableViewCell
-
-        // Grab from our custom config
-        // Description unused for now
-//        let (timelinePoint, allColor, title, description, isFavorite, date)
-
         let currentTimelineEvent = timelineEvents[convertIndex(fromIndexPath: indexPath)]
 
         /*
@@ -101,7 +96,7 @@ class ScheduleTableViewController: UITableViewController {
 
                        ----------------
          backColor     |
-         tPoint.color  o 12:30 (bold)
+         tPoint.color  o Title (bold)
                        |
          frontColor    | Description
                        |
@@ -214,21 +209,59 @@ class ScheduleTableViewController: UITableViewController {
         }
 
         // Update view
-        // (FavoriteButton subclass handles this condition)
+        // (FavoriteButton subclass handles updating this condition)
         favButton.isSelected = !favButton.isSelected
 
-        // Update model
-        // (We handle this condition!)
+        // Now, prep the model:
+
+        // Get the event at this position
         let indexPath = IndexPath(row: favButton.row!, section: favButton.section!)
         let selectedEvent = timelineEvents[convertIndex(fromIndexPath: indexPath)]
+
+        // Update model
         selectedEvent.isFavorite = !selectedEvent.isFavorite
-        print("user toggled \(selectedEvent.event.title)")
+
+        // Manage the list of events
+        if selectedEvent.isFavorite {
+            scheduleFavoriteNotification(forEvent: selectedEvent)
+            print("Scheduled notification for \(selectedEvent.event.title)")
+        } else {
+            unscheduleFavoriteNotification(forEvent: selectedEvent)
+            print("Unscheduled notification for \(selectedEvent.event.title)")
+        }
 
         // @TODO: Handle updating favorite with server
-        // @TODO: Handle notifying users on their favorited events
     }
 
+    private func scheduleFavoriteNotification(forEvent timelineEvent: TimelineEvent) {
 
+        // Extract components and set trigger
+        let components = Calendar.current.dateComponents(in: .current, from: timelineEvent.event.time)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+
+        print(timelineEvent.event.uuid)
+
+
+        let content = UNMutableNotificationContent()
+        content.title = timelineEvent.event.title + " is starting!"
+        content.body = timelineEvent.event.description
+        let request = UNNotificationRequest(identifier: timelineEvent.event.uuid, content: content, trigger: trigger)
+
+        // Add request to local notification center
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    MessageHandler.showNotificationRegisterError(withEventTitle: timelineEvent.event.title)
+                }
+                return
+            }
+        }
+    }
+
+    private func unscheduleFavoriteNotification(forEvent timelineEvent: TimelineEvent) {
+        let identifier = timelineEvent.event.uuid
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
 
     // MARK: Section headers and view configuration
 

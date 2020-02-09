@@ -124,4 +124,11 @@ class MessageHandler {
                          body: "Please try again later, by restarting the app.",
                          type: .error)
     }
+
+    static func showNotificationRegisterError(withEventTitle title: String) {
+        print("ERROR: Unable to register notification for event \(title)")
+        showAlertMessage(withTitle: "Unable to register a notification!",
+                         body: "Please try again later.",
+                         type: .error)
+    }
 }
