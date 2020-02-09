@@ -1,19 +1,29 @@
-# brickhack-mobile-ios
+# BrickHack Mobile (iOS)
 
 
-## Introduction 
+<div style="display: inline">
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/9c6e5198aa3222ca35bd/maintainability)](https://codeclimate.com/github/codeRIT/brickhack-mobile-ios/maintainability)
+<img alt="Code Climate maintainability" src="https://img.shields.io/codeclimate/maintainability/codeRIT/brickhack-mobile-ios">
 
-The app for managing attendees for BrickHack.
+<img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/codeRIT/brickhack-mobile-ios">
+</div>
 
-* **Scan Wristbands:** Attendees wear wristbands embedded with NFC tags. These tags are used to identify key events during BrickHack such as "received dinner" or "entered/left venue".
-* **Scan History**: Volunteers are able to quickly see their scan history to correct any errors.
-* **Questionnaires:** Volunteers and organizers are able to quickly retreive attendee information whenever needed.
-## Project
-Since we're using CocoaPods, you must open the project using `.xcworkspace`, not `.xcodeproj`.
+<p align="center">
+	<img src=".github/appicon.jpg" width="300px" style="border-radius: 20%"/>
+</p>
 
-## Dependencies
+## Features 
+
+The definitive app for BrickHack 6 attendees!
+
+This app lets you:
+
+* **View the Schedule:** Attendees are able to view the latest and greatest events as they happen, and view some basic information for each event..
+* **Track events**: By favoriting events, users can get push notifications as those events start.
+* **Resources:** View the Devpost, Slack, and call emergency services if needed.
+
+
+## Setup
 
 ### Installing CocoaPods (and related project-level dependencies):
 
@@ -38,9 +48,6 @@ Finally, run this to install `cocoapods` and its dependencies.
 ```
 $ bundle install
 ```
-
-### Installing code-level dependencies:
-
 ```
 $ pod install
 ```
@@ -56,3 +63,10 @@ The complicated series of steps above means that on first `$ pod install`, Cocoa
 For Git, we will be following the
 [Git Workflow](https://nvie.com/posts/a-successful-git-branching-model/)
 set forth by Vincent Driessen on NVIE.
+
+
+### .xcodeproj
+
+Each developer needs to use and _not_ commit their own Bundle Identifier, and developer team. 
+
+The App Store version uses `io.BrickHack.Mobile.peterkos`, but despite this, all locally run versions need to use a unique identifier. 
