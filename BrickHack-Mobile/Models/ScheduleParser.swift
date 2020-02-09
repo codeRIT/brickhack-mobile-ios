@@ -307,7 +307,7 @@ class ScheduleParser {
         // Convert the spreadsheet time into a "blank" Date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mma"
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.timeZone = TimeZone(identifier: "America/New_York")
 
         let convertedTime = dateFormatter.date(from: text)
 
