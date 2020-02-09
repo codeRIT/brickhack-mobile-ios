@@ -235,12 +235,13 @@ class ScheduleTableViewController: UITableViewController {
 
     private func scheduleFavoriteNotification(forEvent timelineEvent: TimelineEvent) {
 
+        askForNotificationPermissionIfNeeded()
+
         // Extract components and set trigger
         let components = Calendar.current.dateComponents(in: .current, from: timelineEvent.event.time)
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
 
         print(timelineEvent.event.uuid)
-
 
         let content = UNMutableNotificationContent()
         content.title = timelineEvent.event.title + " is starting!"
@@ -249,7 +250,7 @@ class ScheduleTableViewController: UITableViewController {
 
         // Add request to local notification center
         UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
+            if error != nil {
                 DispatchQueue.main.async {
                     MessageHandler.showNotificationRegisterError(withEventTitle: timelineEvent.event.title)
                 }
@@ -261,6 +262,17 @@ class ScheduleTableViewController: UITableViewController {
     private func unscheduleFavoriteNotification(forEvent timelineEvent: TimelineEvent) {
         let identifier = timelineEvent.event.uuid
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
+
+    private func askForNotificationPermissionIfNeeded() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            if !granted {
+
+                DispatchQueue.main.async {
+                    MessageHandler.showNotificationDisabledInfo()
+                }
+            }
+        }
     }
 
     // MARK: Section headers and view configuration

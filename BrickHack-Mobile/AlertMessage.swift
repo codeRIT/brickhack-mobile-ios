@@ -37,7 +37,7 @@ class MessageHandler {
                               iconText: "⚠️")
 
         // Tapping message will hide view
-        view.tapHandler       = { _ in SwiftMessages.hide() }
+        view.tapHandler = { _ in SwiftMessages.hide() }
 
         // Configure view properties
         // @TODO: Add progress bar timer, à-la Discord?
@@ -47,9 +47,7 @@ class MessageHandler {
         config.preferredStatusBarStyle = .lightContent
         config.duration = .automatic
 
-
         SwiftMessages.show(config: config, view: view)
-
     }
 
     static func showConnectionError() {
@@ -130,5 +128,12 @@ class MessageHandler {
         showAlertMessage(withTitle: "Unable to register a notification!",
                          body: "Please try again later.",
                          type: .error)
+    }
+
+    static func showNotificationDisabledInfo() {
+        print("INFO: Notification permissions denied, need to reset in Settings!")
+        showAlertMessage(withTitle: "Notifications are disabled!",
+                         body: "Go to the Settings app to re-enable notifications.",
+                         type: .info)
     }
 }
