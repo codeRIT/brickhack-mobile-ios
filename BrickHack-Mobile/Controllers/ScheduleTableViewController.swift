@@ -9,8 +9,9 @@
 import UIKit
 import TimelineTableViewCell
 import SwiftMessages
+import UserNotifications
 
-class ScheduleTableViewController: UITableViewController {
+class ScheduleTableViewController: UITableViewController, UNUserNotificationCenterDelegate {
 
     // MARK: Ivars
     var scheduleTimer = Timer()
@@ -166,6 +167,8 @@ class ScheduleTableViewController: UITableViewController {
     }
 
 
+    // MARK: Some helper functions
+
     // Helper function to get a global index for an event from its local table index
     // Section > Row:
     // 0
@@ -233,19 +236,28 @@ class ScheduleTableViewController: UITableViewController {
         // @TODO: Handle updating favorite with server
     }
 
+    // MARK: Notifications
     private func scheduleFavoriteNotification(forEvent timelineEvent: TimelineEvent) {
 
         askForNotificationPermissionIfNeeded()
 
-        // Extract components and set trigger
-        let components = Calendar.current.dateComponents(in: .current, from: timelineEvent.event.time)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        // If this looks complicated, see this StackOverflow answer:
+        // https://stackoverflow.com/a/60134234/1431900
+        let now = Date(timeIntervalSinceNow: 0)
 
-        print(timelineEvent.event.uuid)
+        // If event has already occured, silently fail.
+        if (timelineEvent.event.time < now) {
+            return
+        }
+
+        // Otherwise, let's calculate the time until the next event
+        let interval = timelineEvent.event.time.timeIntervalSince(Date(timeIntervalSinceNow: 0))
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
 
         let content = UNMutableNotificationContent()
         content.title = timelineEvent.event.title + " is starting!"
         content.body = timelineEvent.event.description
+        content.sound = .default
         let request = UNNotificationRequest(identifier: timelineEvent.event.uuid, content: content, trigger: trigger)
 
         // Add request to local notification center
@@ -265,11 +277,17 @@ class ScheduleTableViewController: UITableViewController {
     }
 
     private func askForNotificationPermissionIfNeeded() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-            if !granted {
 
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+
+            print("NOTIF ERROR: \(error)")
+            if !granted {
                 DispatchQueue.main.async {
                     MessageHandler.showNotificationDisabledInfo()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
                 }
             }
         }
@@ -343,8 +361,6 @@ class ScheduleTableViewController: UITableViewController {
 
                 // Otherwise, go on to configure this current section as "passed"
                 self.timelineEvents.filter({ $0.event.section == sectionIndex }).forEach { timelineEvent in
-
-                    print("updated \(timelineEvent)")
                     timelineEvent.allColor = self.backColor
                 }
 
