@@ -202,7 +202,7 @@ class ScheduleParser {
 
         // The parse loop
         // @FIXME: Using 3rd sheet as test, convert to 1st for production
-        for (rowIndex, rowData) in data.sheets[2].data[0].rowData.enumerated() {
+        for (rowIndex, rowData) in data.sheets[0].data[0].rowData.enumerated() {
 
             // See comment below for how this skip variable functions
             var skip = false
