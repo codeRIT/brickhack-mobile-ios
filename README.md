@@ -50,6 +50,10 @@ Or, for `fish` users, in your `~/.config/fish/config.fish`:
 ```
 source (rbenv init - | source)
 ```
+Next, install the `cocoapods-keys`gem:
+```
+$ gem install cocoapods-keys
+```
 
 Finally, run this to install `cocoapods` and its dependencies. 
 
