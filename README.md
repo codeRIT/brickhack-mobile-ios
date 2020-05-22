@@ -68,7 +68,7 @@ $ pod install
 
 The complicated series of steps above means that on first `$ pod install`, CocoaPods will prompt for API keys that need to be set. 
 
-- If you are an open-source contributor, please provide your own keys (e.g., [Google Sheets API Request] (https://developers.google.com/sheets/api/guides/authorizing#APIKey)) as needed.
+- If you are an open-source contributor, please provide your own keys (e.g., [Google Sheets API Request](https://developers.google.com/sheets/api/guides/authorizing#APIKey)) as needed.
 - If you are a member of codeRIT, ask the Engineering team lead for keys.
 
 ### .xcodeproj
