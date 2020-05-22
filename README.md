@@ -68,7 +68,7 @@ $ pod install
 
 The complicated series of steps above means that on first `$ pod install`, CocoaPods will prompt for API keys that need to be set. 
 
-- If you are an open-source contributor, please provide your own keys (e.g., Google Sheets) as needed.
+- If you are an open-source contributor, please provide your own keys (e.g., [Google Sheets API Request] (https://developers.google.com/sheets/api/guides/authorizing#APIKey)) as needed.
 - If you are a member of codeRIT, ask the Engineering team lead for keys.
 
 ### .xcodeproj
@@ -84,4 +84,4 @@ Thanks for your willingness to contribute!
 
 While we normally welcome ideas, BrickHack 6 is over, so any updates to this app are moot.
 
-Planning for BrickHack 7 will begin sometime in March/April 2020, so until then, give this repo a star and be on the lookout for updates!
+Planning for BrickHack 7 will begin sometime in July 2020, so until then, give this repo a star and be on the lookout for updates!
