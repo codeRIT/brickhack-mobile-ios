@@ -51,6 +51,8 @@ Or, for `fish` users, in your `~/.config/fish/config.fish`:
 source (rbenv init - | source)
 ```
 Next, install the `cocoapods-keys`gem:
+
+(Note: May have to run with `sudo`)
 ```
 $ gem install cocoapods-keys
 ```
