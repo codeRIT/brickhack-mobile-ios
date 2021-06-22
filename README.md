@@ -31,6 +31,13 @@ This app lets you:
 * **Access Resources:** View the Devpost, Slack, and call emergency services if needed.
 
 
+# Updates & Contribution
+
+BrickHack 7 did not have an iOS application (due to it being an all-online event), and we currently don't have plans for BrickHack 8 (2022).
+
+Expect an update on this sometime in August!
+
+
 # Setup
 
 ### Installing CocoaPods (and related project-level dependencies):
@@ -78,12 +85,3 @@ The complicated series of steps above means that on first `$ pod install`, Cocoa
 Each developer needs to use and _not_ commit their own Bundle Identifier, and developer team. 
 
 The App Store version uses `io.BrickHack.Mobile.peterkos`, but despite this, all locally run versions need to use a unique identifier. 
-
-
-# Contributors
-
-Thanks for your willingness to contribute!
-
-While we normally welcome ideas, BrickHack 6 is over, so any updates to this app are moot.
-
-Planning for BrickHack 7 will begin sometime in July 2020, so until then, give this repo a star and be on the lookout for updates!
